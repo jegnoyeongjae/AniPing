@@ -72,7 +72,7 @@ const Gnb = () => {
                         </div>
                     </li>
                     <li className="has2" onMouseEnter={handleMouseEnterDepth1}>
-                        <Link to=''><span>카테고리 추가할거 있음 여기 없음 지웡</span></Link>
+                        <Link to=''><span>이게 뭐더라</span></Link>
                         <div className="depth2">
                             <div className="depth2-inner">
                                 <div className="depth2-menu">
