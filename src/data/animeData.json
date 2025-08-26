@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "title": "귀멸의 칼날",
+    "story": "가족을 잃고 여동생 네즈코를 구하기 위해 귀살대에 들어간 탄지로의 이야기",
+    "director": "소토자키 하루오",
+    "characters": [
+      { "name": "카마도 탄지로", "cv": "하나에 나츠키" },
+      { "name": "카마도 네즈코", "cv": "키토 아카리" },
+      { "name": "아가츠마 젠이츠", "cv": "시모노 히로" }
+    ],
+    "image": "/images/demon.png",
+    "pv": "https://www.youtube.com/embed/VQGCKyvzIM4",
+    "likes": 128,
+    "bookmarks": 56,
+    "tags": ["액션", "판타지", "배틀"]
+  },
+  {
+    "id": 2,
+    "title": "진격의 거인",
+    "story": "인류를 위협하는 거인과 맞서 싸우는 엘렌과 조사병단의 이야기",
+    "director": "이사야마 하지메",
+    "characters": [
+      { "name": "엘렌 예거", "cv": "카지 유우키" },
+      { "name": "미카사 아커만", "cv": "이시카와 유이" },
+      { "name": "아르민 아를레르트", "cv": "이나바 마리나" }
+    ],
+    "image": "/images/attack.png",
+    "pv": "https://www.youtube.com/embed/MGRm4IzK1SQ",
+    "likes": 220,
+    "bookmarks": 110,
+    "tags": ["다크판타지", "액션", "스릴러"]
+  },
+  {
+    "id": 3,
+    "title": "나의 히어로 아카데미아",
+    "story": "개성을 가진 사회 속에서 히어로를 꿈꾸는 소년들의 성장 이야기",
+    "director": "나가사키 켄지",
+    "characters": [
+      { "name": "미도리야 이즈쿠", "cv": "야마시타 다이키" },
+      { "name": "바쿠고 카츠키", "cv": "오카모토 노부히코" },
+      { "name": "토도로키 쇼토", "cv": "카지 유우키" }
+    ],
+    "image": "/images/hero.png",
+    "pv": "https://www.youtube.com/embed/wIb3nnOeves",
+    "likes": 95,
+    "bookmarks": 42,
+    "tags": ["액션", "히어로", "학원물"]
+  }
+]
