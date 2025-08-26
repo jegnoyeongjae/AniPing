@@ -1,0 +1,15 @@
+.ChaRankPage {
+  width: 1440px;
+  margin: 0 auto;
+  padding-top: 80px;
+  background-color: #fff;
+}
+.ChaRankPage h4 {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border: 1px solid #222;
+}

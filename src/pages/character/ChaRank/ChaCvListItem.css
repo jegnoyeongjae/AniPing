@@ -1,0 +1,23 @@
+.ChaCvListItem li {
+  display: flex;
+  padding-left: 50px;
+  padding-right: 50px;
+  align-items: center;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #222;
+}
+.ChaCvListItem span {
+  font-size: 20px;
+  font-weight: bold;
+}
+.ChaCvListItem .cvProfile {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-left: 120px;
+}
+.ChaCvListItem .imgList {
+  display: flex;
+  gap: 10px;
+  margin-left: 250px;
+}

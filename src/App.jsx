@@ -1,10 +1,13 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import './App.css'
-import AppRoute from './router/AppRouter'
-import { HomePage } from './pages'
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import './App.css';
+import AppRoute from './router/AppRouter';
+import { HomePage } from './pages';
+import ChaService from './pages/character/ChaService';
+import ChaRankPage from './pages/character/ChaRank/ChaRankPage';
+import ChaLine from './pages/character/ChaRank/ChaLine';
+import ChaCvList from './pages/character/ChaRank/ChaCvList';
 
 function App() {
-
   return (
     <BrowserRouter>
       <Routes>
@@ -18,10 +21,14 @@ function App() {
           {/* <Route path="/detail/:id" element={
             isLoaded ? <DetailPage todos={todos} onRemove={onRemove} changeIsDone={changeIsDone} /> : <p>데이터 로딩 중...</p>
           } /> */}
+          <Route path="/service" element={<ChaService />} />
+          <Route path="/chaRankPage" element={<ChaRankPage />} />
+          <Route path="/chaLine" element={<ChaLine />} />
+          <Route path="/chaCvList" element={<ChaCvList />} />
         </Route>
       </Routes>
     </BrowserRouter>
-  )
+  );
 }
 
-export default App
+export default App;

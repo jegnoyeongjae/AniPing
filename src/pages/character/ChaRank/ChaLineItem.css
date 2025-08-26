@@ -1,0 +1,15 @@
+.ChaLineItem li {
+  padding: 40px;
+  align-items: center;
+  border-bottom: 1px solid #222;
+  font-size: 20px;
+  font-weight: bold;
+}
+.ChaLineItem li div {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.lineContent {
+  margin-left: 70px;
+}
