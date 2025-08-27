@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Anime from "../../components/anime/Anime";
-import data from "../../data/animeData.json";  // ✅ 경로 수정
+
 
 const AniList = () => {
   const [animes, setAnimes] = useState([]);

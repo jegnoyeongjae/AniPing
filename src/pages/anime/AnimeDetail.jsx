@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import animeData from "../../data/animeData.json";
+
 
 const AnimeDetail = () => {
   const { id } = useParams();
