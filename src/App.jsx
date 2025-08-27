@@ -3,11 +3,28 @@ import './App.css'
 import AppRoute from './router/AppRouter'
 import AdminRouter from './router/AdminRouter'
 import { HomePage } from './pages'
-import AdminBoard from './pages/admin/AdminBoard'
-import { useState } from 'react'
+import { AdminBoard, AdUserLi } from './pages/admin'
+import { useState, useEffect } from 'react'
+import axios from 'axios'
 
 function App() {
   const [type, setType] = useState('admin');
+  const [searchLis, setSearchLis] = useState([]);
+
+  useEffect(() => {
+    fetchData();
+  }, [])
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get('/data/userInfo.json');
+      const data = response.data.userInfo;
+      setSearchLis(data);
+    } catch (e) {
+      console.error('데이터 로드에 실패했습니다.');
+    }
+  }
+
 
   return (
     <BrowserRouter>
@@ -24,7 +41,8 @@ function App() {
 
         {type === 'admin' && (
           <Route path="/" element={<AdminRouter />}>
-            <Route path="AdminBoard" element={<AdminBoard />} />
+            <Route path="/AdminBoard" element={<AdminBoard />} />
+            <Route path="/AdUserLi" element={<AdUserLi searchLis={searchLis}/>} />
           </Route>
         )}
 

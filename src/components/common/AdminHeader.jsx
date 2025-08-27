@@ -32,15 +32,14 @@ const AdminHeader = () => {
                             <li className='subTitle'><Link to="/AdminBoard"> - 대시보드</Link></li>
                             <li className='userLi'>
                                 <div className='userTitle'>
-                                    <p className='subTitle'><Link to=""> - 사용자</Link></p>
+                                    <p className='subTitle'><Link to="/AdUserLi"> - 사용자</Link></p>
                                     <div onClick={onClickUserManage}>{showingUserManage ? "∧" : "∨"}</div>
                                 </div>
                                 <div onClick={onClickUserManage}>
                                     {showingUserManage
                                         ?
                                         <ul className='userLiName'>
-                                            <li><Link to="">- 사용자 목록</Link></li>
-                                            <li><Link to="">- 개인 공지 보내기</Link></li>
+                                            <li><Link to="/AdUserLi">- 사용자 목록</Link></li>
                                             <li><Link to="">- 운영진 설정</Link></li>
                                         </ul>
                                         : null}

@@ -50,17 +50,42 @@ const AdminBoard = () => {
             <div className='secondLine'>
                 <div className="secondLeft">
                     <h2 className="todayTodo">오늘의 할 일</h2>
-                    <ul>
-                        <li className="waitAsk">답변대기 문의 <span className="waiteAskNum">0</span></li>
-                        <li className="waitReport">신고받은 댓글 관리 <span className="waitReportNum">0</span></li>
+                    <ul className='todayTodoLi'>
+                        <li className="waitAsk">
+                            <p>답변대기 문의</p>
+                            <p className="waiteAskNum">0</p>
+                        </li>
+                        <li className="waitReport">
+                            <p>신고받은 댓글 관리</p>
+                            <p className="waitReportNum">0</p>
+                        </li>
                     </ul>
                 </div>
                 <div className="secondRight">
                     <div className="secondRightTop">
-                        <p>공지사항</p>
-                        <p>전체보기</p>
+                        <div className='secondRightTopLi'>
+                            <div className='secondRightTopTitle'>
+                                <h2>공지사항</h2>
+                                <p>더보기</p>
+                            </div>
+                            <div className='secondRightTopData'>
+                                <p>a</p>
+                                <p>a</p>
+                                <p>a</p>
+                            </div>
+                        </div>
+                        <div className='secondRightTopLi'>
+                            <div className='secondRightTopTitle'>
+                                <h2>전체보기</h2>
+                                <p>더보기</p>
+                            </div>
+                            <div className='secondRightTopData'>
+                                <p>a</p>
+                                <p>a</p>
+                                <p>a</p>
+                            </div>
+                        </div>
                     </div>
-                    <p></p>
                 </div>
             </div>
             <div className='thirdLine'>
