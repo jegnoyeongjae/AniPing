@@ -6,6 +6,7 @@ import ChaService from './pages/character/ChaService';
 import ChaRankPage from './pages/character/ChaRank/ChaRankPage';
 import ChaLine from './pages/character/ChaRank/ChaLine';
 import ChaCvList from './pages/character/ChaRank/ChaCvList';
+import ChaCvDetail from './pages/character/ChaRank/ChaCvDetail';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path="/chaRankPage" element={<ChaRankPage />} />
           <Route path="/chaLine" element={<ChaLine />} />
           <Route path="/chaCvList" element={<ChaCvList />} />
+          <Route path="/chaCvDetail/:id" element={<ChaCvDetail />} />
         </Route>
       </Routes>
     </BrowserRouter>

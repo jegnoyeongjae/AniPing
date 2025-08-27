@@ -107,6 +107,9 @@ const Gnb = () => {
                     <li>
                       <Link to="/chaCvList">3</Link>
                     </li>
+                    <li>
+                      <Link to="/chaCvDetail/:id">4</Link>
+                    </li>
                   </ul>
                 </div>
               </div>
