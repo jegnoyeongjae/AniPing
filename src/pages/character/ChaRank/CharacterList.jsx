@@ -6,8 +6,10 @@ const CharacterList = ({ aniList }) => {
       {aniList.map((ani, idx) => (
         <div key={idx}>
           <img src={ani.aniImg} alt={ani.anititle} />
-          <p>{ani.aniTitle}</p>
-          <p>{ani.aniName}</p>
+          <div>
+            <p>{ani.aniTitle}</p>
+            <p>{ani.aniName}</p>
+          </div>
         </div>
       ))}
     </div>
