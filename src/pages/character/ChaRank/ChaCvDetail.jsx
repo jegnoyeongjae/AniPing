@@ -54,24 +54,101 @@ const ChaCvDetail = () => {
     },
     {
       id: 1003,
-      name: '우치야마 코우키3',
-      birth: '1990.08.163',
-      stature: '176cm3',
-      agency: '극단 히마와리3',
-      blood: 'O',
+      name: '타카하시 리에',
+      birth: '1994.02.27',
+      stature: '160cm',
+      agency: '81 프로듀스',
+      blood: 'A',
       profile:
-        '아역 출신으로 무려 1993년에 소속사에 들아왔다 (일본 나이로 3살)외화 더빙을 주로 하다가 킹덤하츠2에서 배역을 얻음으로써 본격적으로 성우일을 했다어느 경력이 있어서 이리노 미유의 뒤를 잇는 급 푸쉬를 받고있는 성우이다 우치야마 코우키는 일본 가수인 퍼퓸의 팬이라 한다.3',
+        '일본의 여성 성우. 치바현 카시와시 출신. 이전까진 단역을 맡아왔으나 2015년 현재 7월 방영되는 애니메이션 중 세 작품의 주연을 따내며 주목받고 있는 성우. 성우가 된 계기는 매주 놓치지 않고 보던 애니메이션 쓰르라미 울 적에의 캐릭터 호죠 사토시의 목소리를 듣고 감명받아 이런 역할을 연기하고 싶다고 생각해서라고 한다.',
+
       image: '/images/kouki.jpg',
       aniList: [
         {
-          aniTitle: '니세코이3',
-          aniImg: '/images/kouki-raku.jpg',
-          aniName: '이치죠 라쿠3',
+          aniTitle: 'Re: 제로부터 시작하는 이세계 생활 3기',
+          aniImg: '/images/taka-emila.jpg',
+          aniName: '에밀리아',
         },
         {
-          aniTitle: '하이큐!!3',
-          aniImg: '/images/kouki-kei.jpg',
-          aniName: '츠키시마 케이3',
+          aniTitle: '최애의 아이',
+          aniImg: '/images/taka-i.png',
+          aniName: '호시노 아이',
+        },
+        {
+          aniTitle: '이 멋진 세계에 축복을!',
+          aniImg: '/images/taka-megu.png',
+          aniName: '메구밍',
+        },
+        {
+          aniTitle: '장난을 잘 치는 타카기 양',
+          aniImg: '/images/taka-takagi.jpg',
+          aniName: '타카기',
+        },
+      ],
+    },
+    {
+      id: 1004,
+      name: '츠다 켄지로',
+      birth: '1971.06.11',
+      stature: '170cm',
+      agency: 'ANDSTIR',
+      blood: 'O',
+      profile:
+        '1995년에 만 23~24세의 나이로 성우 활동을 시작했기 때문에 늦게 데뷔한 축에 속하는데, 그 이전에 연극 배우로 활동한 경력이 꽤 되기 때문에 기본 실력을 쌓은 조건이었으며, 배우 경력까지 합치면 연기 경력 자체는 30년이 넘는 베테랑이다. 덕분에 성우로서 데뷔 초부터 출중한 연기력을 보여왔고 현재는 뛰어난 연기력으로 크게 호평을 받는 남성 성우 중 한 명으로 꼽히고 있다.',
+      image: '/images/kouki.jpg',
+      aniList: [
+        {
+          aniTitle: 'Re: 제로부터 시작하는 이세계 생활',
+          aniImg: '/images/kenjiro-hainkel.jpg',
+          aniName: '하인켈 아스트레아',
+        },
+        {
+          aniTitle: '전생했더니 슬라임이었던 건에 대하여',
+          aniImg: '/images/kenjiro-besta.jpg',
+          aniName: '베스터',
+        },
+        {
+          aniTitle: '체인소 맨',
+          aniImg: '/images/kenjiro-kishibe.png',
+          aniName: '키시베',
+        },
+        {
+          aniTitle: '주술회전',
+          aniImg: '/images/kenjiro-nanami.jpg',
+          aniName: '나나미 켄토',
+        },
+        {
+          aniTitle: '일곱 개의 대죄 : 분노의 심판',
+          aniImg: '/images/kenjiro-mon.png',
+          aniName: '몬스피트',
+        },
+      ],
+    },
+    {
+      id: 1005,
+      name: '에노키 쥰야',
+      birth: '1988.10.19',
+      stature: '168cm',
+      agency: '아토믹 몽키',
+      blood: 'A',
+      profile:
+        '연기는 카지 유우키와 유사하면서 좀 더 점잖은 톤이다. 그래서인지 미성의 목소리나 소년을 주로 연기하며, 점잖은 연기톤을 바탕으로 차분하고 조용한 성향의 캐릭터(렌고쿠 센쥬로, 유자키 나사 등)를 주로 맡으나 이타도리 유지 같은 열혈 캐릭터나 판나코타 푸고 같은 격정적인 캐릭터 역시 준수하게 소화해낸다. 본인의 평소 목소리와 가장 비슷한 톤으로 연기하는 캐릭터는 마이타 루이 등이 있다.',
+      image: '/images/kouki.jpg',
+      aniList: [
+        {
+          aniTitle: '도쿄 리벤저스 : 성야결전편',
+          aniImg: '/images/junya-inu.jpg',
+          aniName: '이누이 세이슈',
+        },
+        {
+          aniTitle: '코미 양은 커뮤증입니다',
+          aniImg: '/images/junya-komi.jpg',
+          aniName: '코미 쇼스케',
+        },
+        {
+          aniTitle: '주술회전',
+          aniImg: '/images/junya-yuji.png',
+          aniName: '이타도리 유지',
         },
       ],
     },

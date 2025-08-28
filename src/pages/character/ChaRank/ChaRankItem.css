@@ -3,13 +3,36 @@
   padding-top: 10px;
   border-bottom: 1px solid #222;
 }
-.ChaRankItem li {
+.ChaRankItem .rankItem {
+  width: 1440px;
   display: flex;
   justify-content: space-between;
   padding-left: 50px;
   padding-right: 50px;
   align-items: center;
 }
+.rankItem li {
+  display: block;
+  text-align: center;
+}
 .rankName {
-  margin-right: 50px;
+  width: 100px;
+}
+.rankAni {
+  width: 100px;
+}
+.rankDate {
+  width: 100px;
+}
+.rankRank {
+  width: 100px;
+}
+.rankImg {
+  width: 100px;
+}
+.rankImg img {
+  width: 100%;
+  height: 100px;
+  object-fit: contain;
+  border: 1px solid #ddd;
 }

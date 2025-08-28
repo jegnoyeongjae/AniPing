@@ -4,11 +4,15 @@ const ChaRankItem = ({ character }) => {
   return (
     <div className="ChaRankItem">
       <li>
-        <span>{rank}위</span>
-        <img src={image} alt="캐릭터" />
-        <span className="rankName">{name}</span>
-        <span>{aniname}</span>
-        <span>{anidate}</span>
+        <ul className="rankItem">
+          <li className="rankRank">{rank}위</li>
+          <li className="rankImg">
+            <img src={image} alt="캐릭터" />
+          </li>
+          <li className="rankName">{name}</li>
+          <li className="rankAni">{aniname}</li>
+          <li className="rankDate">{anidate}</li>
+        </ul>
       </li>
     </div>
   );

@@ -5,7 +5,7 @@ const ChaPhoto = ({ data }) => {
   return (
     <div className="ChaPhoto">
       <h2>{name}</h2>
-      <div>
+      <div className="photo">
         <img src={image} alt={name} />
         <div>
           <span>생년월일 : {birth}</span>
