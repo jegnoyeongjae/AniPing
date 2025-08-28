@@ -1,7 +1,7 @@
 #AdminHeader {
     top: 0;
     left: 215px;
-    width: 165px;
+    width: 200px;
     height: 100vh;
     overflow: scroll;
     background-color: rgba(59, 71, 177, 0.438);
@@ -10,7 +10,7 @@
 }
 
 #AdminHeader .inner{
-    width: 150px;
+    width: 185px;
 }
 
 #AdminHeader .adminInfo {
@@ -34,8 +34,8 @@
 }
 
 #AdminHeader .inner .admincate {
-    padding-left: 12px;
-    width: 131px;
+    padding-left: 25px;
+    width: 135px;
 }
 
 #AdminHeader .headerTitle {
@@ -51,7 +51,7 @@
 }
 
 #AdminHeader .subTitle {
-    padding-left: 10px;
+    padding-left: 12px;
     margin-bottom: 2px;
 }
 
@@ -73,5 +73,5 @@
 
 #AdminHeader .goToMain{
     margin-top: 30px;
-    margin-left: 90px;
+    margin-left: 120px;
 }
