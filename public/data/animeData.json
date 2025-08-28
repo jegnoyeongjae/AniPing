@@ -1,0 +1,72 @@
+[
+  {
+    "id": 1,
+    "title": "Intro to JavaScript",
+    "url": "https://example.com/videos/js-intro.mp4",
+    "duration": 300,
+    "isHD": true
+  },
+  {
+    "id": 2,
+    "title": "React Basics",
+    "url": "https://example.com/videos/react-basics.mp4",
+    "duration": 420,
+    "isHD": true
+  },
+  {
+    "id": 3,
+    "title": "CSS Flexbox Guide",
+    "url": "https://example.com/videos/css-flexbox.mp4",
+    "duration": 275,
+    "isHD": false
+  },
+  {
+    "id": 4,
+    "title": "Node.js Crash Course",
+    "url": "https://example.com/videos/nodejs-crash.mp4",
+    "duration": 500,
+    "isHD": true
+  },
+  {
+    "id": 5,
+    "title": "Python for Beginners",
+    "url": "https://example.com/videos/python-beginners.mp4",
+    "duration": 360,
+    "isHD": false
+  }
+  ,{
+    "id": 6,
+    "title": "Intro to JavaScript",
+    "url": "https://example.com/videos/js-intro.mp4",
+    "duration": 300,
+    "isHD": true
+  },
+  {
+    "id": 7,
+    "title": "React Basics",
+    "url": "https://example.com/videos/react-basics.mp4",
+    "duration": 420,
+    "isHD": true
+  },
+  {
+    "id": 8,
+    "title": "CSS Flexbox Guide",
+    "url": "https://example.com/videos/css-flexbox.mp4",
+    "duration": 275,
+    "isHD": false
+  },
+  {
+    "id": 9,
+    "title": "Node.js Crash Course",
+    "url": "https://example.com/videos/nodejs-crash.mp4",
+    "duration": 500,
+    "isHD": true
+  },
+  {
+    "id": 10,
+    "title": "Python for Beginners",
+    "url": "https://example.com/videos/python-beginners.mp4",
+    "duration": 360,
+    "isHD": false
+  }
+]
