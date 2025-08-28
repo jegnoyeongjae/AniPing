@@ -12,3 +12,4 @@ const Anime = ({ anime }) => {
 };
 
 export default Anime;
+

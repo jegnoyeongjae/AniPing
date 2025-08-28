@@ -1,0 +1,15 @@
+.ChaRankItem {
+  padding-bottom: 10px;
+  padding-top: 10px;
+  border-bottom: 1px solid #222;
+}
+.ChaRankItem li {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 50px;
+  padding-right: 50px;
+  align-items: center;
+}
+.rankName {
+  margin-right: 50px;
+}

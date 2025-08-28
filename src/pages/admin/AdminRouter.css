@@ -1,0 +1,6 @@
+.adminRouter {
+    display: flex;
+    justify-content: space-between;
+    width: 1440px;
+    margin: 0 auto;
+}
