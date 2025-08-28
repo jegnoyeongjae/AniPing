@@ -1,9 +1,11 @@
+
+
+import './AdList.css'
+
 const AdList = () => {
 
     return (
-        <div>
-            <div>
-            </div>
+        <div id="AdList">
         </div>
     )
 
