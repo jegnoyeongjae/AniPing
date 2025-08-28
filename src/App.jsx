@@ -9,7 +9,7 @@ import axios from 'axios'
 import './App.css';
 
 function App() {
-  const [type, setType] = useState('user');
+  const [type, setType] = useState('admin');
   const [searchLis, setSearchLis] = useState([]);
 
   useEffect(() => {
