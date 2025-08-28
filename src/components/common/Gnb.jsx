@@ -32,13 +32,16 @@ const Gnb = () => {
             <nav className="gnb" onMouseLeave={handleMouseLeaveGnb}>
                 <ul className="depth1">
                     <li className="has2" onMouseEnter={handleMouseEnterDepth1}>
-                        <Link to=''><span>애니메이션 게시판</span></Link>
+                        <Link to=''><span>애니메이션 장르</span></Link>
                         <div className="depth2">
                             <div className="depth2-inner">
                                 <div className="depth2-menu">
                                     <ul>
-                                        <li><Link to=''>연락</Link></li>
-                                        <li><Link to=''>하지마</Link></li>
+                                        <li><Link to=''>판타지</Link></li>
+                                        <li><Link to=''>로맨스</Link></li>
+                                        <li><Link to=''>SF</Link></li>
+                                        <li><Link to=''>일상</Link></li>
+                                        <li><Link to=''>미스터리</Link></li>
                                     </ul>
                                 </div>
                             </div>

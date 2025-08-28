@@ -57,11 +57,17 @@
     display: flex;
     gap: 40px;
 }
-.gnb .depth2-menu > ul > li > a{
+/* .gnb .depth2-menu > ul > li > a{
     display: block;
     margin-bottom: 4px;
     color: #121212;
     font-weight: 500;
+} */
+.gnb .depth2-menu > ul > li > a{
+    display: inline-block;
+    line-height: normal;
+    padding: 8px 16px;
+    white-space: nowrap;
 }
 .gnb .depth2-menu > ul > li:hover > a{
     text-decoration: underline;
@@ -94,9 +100,9 @@
 .gnb .has2 .depth2-inner{
     width: auto;
 }
-.gnb .has2 .depth2-menu > ul{
+/* .gnb .has2 .depth2-menu > ul{
     display: block;
-}
+} */
 
 #Gnb .line{
     position: absolute;
@@ -106,4 +112,17 @@
     height: 1px;
     background-color: #555;
     display: none;
+}
+
+
+/* 2차 메뉴 가로 나열 */
+.depth2-menu ul {
+  flex-direction: row;   /* 가로 배치 */
+}
+.depth2-menu a {
+  color: #333;
+}
+.depth2-menu a:hover {
+  background: #f0f0f0;
+  border-radius: 4px;
 }
