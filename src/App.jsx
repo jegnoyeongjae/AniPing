@@ -10,7 +10,7 @@ import { ChaService, ChaRankPage, ChaLine, ChaCvList, ChaCvDetail} from './pages
 
 
 function App() {
-  const [type, setType] = useState('admin');
+  const [type, setType] = useState('user');
   const [searchLis, setSearchLis] = useState([]);
 
   useEffect(() => {

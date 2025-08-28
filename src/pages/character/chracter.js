@@ -5,6 +5,9 @@ import ChaQuestions from "./ChaQuestions";
 import ChaService from "./ChaService";
 import ChaRankPage from "./ChaRank/ChaRankPage";
 import ChaLine from "./ChaRank/ChaLine";
+import ChaCvDetail from "./ChaRank/ChaCvDetail";
+import ChaCvList from "./ChaRank/ChaCvList";
 
 
-export {ChaDirect,ChaHistory,ChaList,ChaQuestions,ChaService,ChaRankPage,ChaLine}
+
+export {ChaDirect,ChaHistory,ChaList,ChaQuestions,ChaService,ChaRankPage,ChaLine, ChaCvDetail, ChaCvList}
