@@ -6,6 +6,8 @@ import { HomePage } from './pages'
 import { AdminBoard, AdUserLi } from './pages/admin'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
+import { ChaService, ChaRankPage, ChaLine, ChaCvList, ChaCvDetail} from './pages/character/chracter'
+
 
 function App() {
   const [type, setType] = useState('admin');
@@ -35,14 +37,23 @@ function App() {
             <Route path="/list" element={''} />
             <Route path="/new" element={''} />
             <Route path="/edit/:id" element={''} />
+            {/* <Route path="/edit/:id" element={<EditPage todos={todos} onUpdateTodo={onUpdateTodo} />} /> */}
             <Route path="/detail/:id" element={''} />
+            {/* <Route path="/detail/:id" element={
+            isLoaded ? <DetailPage todos={todos} onRemove={onRemove} changeIsDone={changeIsDone} /> : <p>데이터 로딩 중...</p>
+          } /> */}
+            <Route path="/service" element={<ChaService />} />
+            <Route path="/chaRankPage" element={<ChaRankPage />} />
+            <Route path="/chaLine" element={<ChaLine />} />
+            <Route path="/chaCvList" element={<ChaCvList />} />
+            <Route path="/chaCvDetail/:id" element={<ChaCvDetail />} />
           </Route>
         )}
 
         {type === 'admin' && (
           <Route path="/" element={<AdminRouter />}>
             <Route path="/AdminBoard" element={<AdminBoard />} />
-            <Route path="/AdUserLi" element={<AdUserLi searchLis={searchLis}/>} />
+            <Route path="/AdUserLi" element={<AdUserLi searchLis={searchLis} />} />
           </Route>
         )}
 

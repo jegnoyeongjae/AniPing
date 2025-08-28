@@ -9,6 +9,7 @@ const Admin = () => {
             <Routes>
                 <Route path='/adList' element={<AdList />} />
             </Routes>
+
         </div>
     )
 

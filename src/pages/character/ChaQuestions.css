@@ -1,0 +1,17 @@
+.ChaQuestions ul {
+  align-items: center;
+  margin-bottom: 100px;
+}
+.ChaQuestions li {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+.ChaQuestions li button {
+  width: 500px;
+  font-size: 17px;
+  background-color: transparent;
+  color: black;
+  border-bottom: 1px solid #222;
+  border-radius: 0;
+}
