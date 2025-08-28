@@ -42,7 +42,7 @@ function App() {
         {type === 'admin' && (
           <Route path="/" element={<AdminRouter />}>
             <Route path="/AdminBoard" element={<AdminBoard />} />
-            <Route path="/AdUserLi" element={<AdUserLi searchLis={searchLis}/>} />
+            <Route path="/AdUserLi" element={<AdUserLi searchLis={searchLis} setSearchLis={setSearchLis}/>} />
           </Route>
         )}
 

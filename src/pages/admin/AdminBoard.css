@@ -14,7 +14,10 @@ h2 {
     padding-right: 15px;
     background-color: #ececec;
     height: 100vh;
-    width: 1280px;
+    width: 1200px;
+}
+
+#AdminBoard .inner {
     margin: 0 auto;
 }
 
@@ -29,7 +32,7 @@ h2 {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    width: 300px;
+    width: 290px;
     background-color: #f9f9f9;
 }
 
