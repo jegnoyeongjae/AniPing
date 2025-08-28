@@ -1,7 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import AppRoute from './router/AppRouter'
 import AdminRouter from './router/AdminRouter'
-import { HomePage } from './pages'
 import { AdminBoard, AdUserLi } from './pages/admin'
 import { useState, useEffect } from 'react'
 import { ChaService, ChaRankPage, ChaLine, ChaCvList, ChaCvDetail} from './pages/character/chracter'
