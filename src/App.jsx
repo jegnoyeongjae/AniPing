@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react'
 import { ChaService, ChaRankPage, ChaLine, ChaCvList, ChaCvDetail} from './pages/character/chracter'
 import { HomePage,AniList,AnimeDetail } from './pages'
 import axios from 'axios'
-import './App.css'
+import './App.css';
 
 function App() {
   const [type, setType] = useState('user');
@@ -30,11 +30,10 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-
         {type === 'user' && (
           <Route path="/" element={<AppRoute />}>
             <Route index element={<HomePage Data={''} />} />
-            <Route path="/list" element={<AniList/>}/>
+            <Route path="/list/:category" element={<AniList/>}/>
             <Route path="/new" element={''} />
             <Route path="/edit/:id" element={''} />
             {/* <Route path="/edit/:id" element={<EditPage todos={todos} onUpdateTodo={onUpdateTodo} />} /> */}
@@ -53,7 +52,7 @@ function App() {
         {type === 'admin' && (
           <Route path="/" element={<AdminRouter />}>
             <Route path="/AdminBoard" element={<AdminBoard />} />
-            <Route path="/AdUserLi" element={<AdUserLi searchLis={searchLis} />} />
+            <Route path="/AdUserLi" element={<AdUserLi searchLis={searchLis}/>} />
           </Route>
         )}
 

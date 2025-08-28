@@ -1,22 +1,55 @@
-import { useEffect, useState } from "react";
-import Anime from "../../components/anime/Anime";
+import { useParams } from "react-router-dom";
+
 
 
 const AniList = () => {
-  const [animes, setAnimes] = useState([]);
-
-  useEffect(() => {
-    setAnimes(data);
-  }, []);
-
+  const {category}=useParams("category");
+console.log(category);
   return (
     <div>
-      <h2>애니메이션 리스트</h2>
-      <div style={{ display: "flex", gap: "20px" }}>
-        {animes.map((anime) => (
-          <Anime key={anime.id} anime={anime} />
-        ))}
-      </div>
+    {category}<br></br>
+    {category}<br></br>
+    {category}<br></br>
+    {category}<br></br>
+    {category}<br></br>
+    {category}<br></br>
+    {category}<br></br>
+    {category}<br></br>
+    {category}<br></br>
+    {category}<br></br>
+    {category}<br></br>
+    {category}<br></br>
+    {category}<br></br>
+    {category}<br></br>
+    {category}<br></br>
+    {category}<br></br>
+    {category}<br></br>
+    {category}<br></br>
+    {category}<br></br>
+    {category}<br></br>
+     장르입니다~<br></br>
+     장르입니다~<br></br>
+     장르입니다~<br></br>
+     장르입니다~<br></br>
+     장르입니다~<br></br>
+     장르입니다~<br></br>
+     장르입니다~<br></br>
+     장르입니다~<br></br>
+     장르입니다~<br></br>
+     장르입니다~<br></br>
+     장르입니다~<br></br>
+     장르입니다~<br></br>
+     장르입니다~<br></br>
+     장르입니다~<br></br>
+     장르입니다~<br></br>
+     장르입니다~<br></br>
+     장르입니다~<br></br>
+     장르입니다~<br></br>
+     장르입니다~<br></br>
+     장르입니다~<br></br>
+     장르입니다~<br></br>
+     장르입니다~<br></br>
+     장르입니다~<br></br>
     </div>
   );
 };

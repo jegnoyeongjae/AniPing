@@ -40,11 +40,11 @@ const Gnb = () => {
                             <div className="depth2-inner">
                                 <div className="depth2-menu">
                                     <ul>
-                                        <li><Link to=''>판타지</Link></li>
-                                        <li><Link to=''>로맨스</Link></li>
-                                        <li><Link to=''>SF</Link></li>
-                                        <li><Link to=''>일상</Link></li>
-                                        <li><Link to=''>미스터리</Link></li>
+                                        <li><Link to='/list/fantasy'>판타지</Link></li>
+                                        <li><Link to='/list/romance'>로맨스</Link></li>
+                                        <li><Link to='/list/SF'>SF</Link></li>
+                                        <li><Link to='/list/normal'>일상</Link></li>
+                                        <li><Link to='/list/mystery'>미스터리</Link></li>
                                     </ul>
                                 </div>
                             </div>
