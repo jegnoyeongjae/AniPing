@@ -165,7 +165,6 @@ const ChaCvDetail = () => {
         <ChaPhoto data={foundData} />
       </div>
       <div className="ChaProfile">
-        <h2>프로필</h2>
         <ChaProfile data={foundData} />
       </div>
       <div className="CharacterList">

@@ -71,7 +71,7 @@ const ChaCvList = () => {
     <div className="ChaCvList">
       <div>
         <h4>
-          <span>순위</span>
+          <span className="rank">순위</span>
           <span className="cv">성우</span>
           <span className="aniList">최근 참여작품</span>
         </h4>

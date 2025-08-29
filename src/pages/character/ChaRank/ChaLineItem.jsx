@@ -5,7 +5,7 @@ const ChaLineItem = ({ line }) => {
   return (
     <div className="ChaLineItem">
       <li>
-        <div>
+        <div className="lineItem">
           <img src={image} alt={title} />
           <span>{title}</span>
         </div>
