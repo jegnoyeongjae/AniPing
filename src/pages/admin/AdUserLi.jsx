@@ -1,12 +1,18 @@
+import { useState } from "react";
 import { AdUserSearch, AdUserSearchList } from "../../components/admin";
 
 import './AdUserLi.css'
 
 const AdUserLi = ({ searchLis, setSearchLis }) => {
+    const [filterDatas, setFilterDatas] = useState([])
+
     const handleClickDelete = (targetId) => {
         const deleteUser = searchLis.filter((data) => data.id !== targetId);
         setSearchLis(deleteUser);
     }
+
+
+
     return (
         <div id="AdUserLi">
             <div className="inner">
@@ -20,9 +26,19 @@ const AdUserLi = ({ searchLis, setSearchLis }) => {
                         <p>가입날짜</p>
                         <p></p>
                     </h4>
-                    {searchLis.map((searchLi, idx) => <AdUserSearchList key={searchLi.id} index={idx} searchLi={searchLi} handleClickDelete={handleClickDelete} />)}
+                    {searchLis.map((searchLi, idx) => 
+                        <AdUserSearchList 
+                            key={searchLi.id} 
+                            index={idx} 
+                            searchLi={searchLi} 
+                            handleClickDelete={handleClickDelete}
+                            filterDatas={filterDatas}
+                        />)}
                 </ul>
-                <AdUserSearch />
+                <AdUserSearch 
+                    searchLis={searchLis}
+                    setFilterDatas={setFilterDatas}
+                />
             </div>
         </div>
     )
