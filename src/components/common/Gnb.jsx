@@ -42,7 +42,7 @@ const Gnb = () => {
                                     <ul>
                                         <li><Link to='/list/fantasy'>판타지</Link></li>
                                         <li><Link to='/list/romance'>로맨스</Link></li>
-                                        <li><Link to='/list/SF'>SF</Link></li>
+                                        <li><Link to='/list/sf'>SF</Link></li>
                                         <li><Link to='/list/normal'>일상</Link></li>
                                         <li><Link to='/list/mystery'>미스터리</Link></li>
                                     </ul>

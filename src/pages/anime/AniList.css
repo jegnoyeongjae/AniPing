@@ -1,0 +1,54 @@
+.ani-list-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  font-family: "Noto Sans KR", sans-serif;
+}
+
+.ani-list-title {
+  font-size: 2rem;
+  margin-bottom: 24px;
+}
+
+.ani-list-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.ani-card {
+  background: #f5f5f5;
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+  transition: transform 0.2s ease;
+}
+
+.ani-card:hover {
+  transform: translateY(-4px);
+}
+
+.ani-card img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+
+.ani-card h3 {
+  margin: 12px 0;
+  font-size: 1.1rem;
+}
+
+.detail-link {
+  display: inline-block;
+  margin-bottom: 12px;
+  padding: 6px 12px;
+  background-color: #ff5a5a;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.detail-link:hover {
+  background-color: #e14b4b;
+}

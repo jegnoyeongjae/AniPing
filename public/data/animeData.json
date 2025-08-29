@@ -1,72 +1,27 @@
-[
-  {
-    "id": 1,
-    "title": "Intro to JavaScript",
-    "url": "https://example.com/videos/js-intro.mp4",
-    "duration": 300,
-    "isHD": true
-  },
-  {
-    "id": 2,
-    "title": "React Basics",
-    "url": "https://example.com/videos/react-basics.mp4",
-    "duration": 420,
-    "isHD": true
-  },
-  {
-    "id": 3,
-    "title": "CSS Flexbox Guide",
-    "url": "https://example.com/videos/css-flexbox.mp4",
-    "duration": 275,
-    "isHD": false
-  },
-  {
-    "id": 4,
-    "title": "Node.js Crash Course",
-    "url": "https://example.com/videos/nodejs-crash.mp4",
-    "duration": 500,
-    "isHD": true
-  },
-  {
-    "id": 5,
-    "title": "Python for Beginners",
-    "url": "https://example.com/videos/python-beginners.mp4",
-    "duration": 360,
-    "isHD": false
-  }
-  ,{
-    "id": 6,
-    "title": "Intro to JavaScript",
-    "url": "https://example.com/videos/js-intro.mp4",
-    "duration": 300,
-    "isHD": true
-  },
-  {
-    "id": 7,
-    "title": "React Basics",
-    "url": "https://example.com/videos/react-basics.mp4",
-    "duration": 420,
-    "isHD": true
-  },
-  {
-    "id": 8,
-    "title": "CSS Flexbox Guide",
-    "url": "https://example.com/videos/css-flexbox.mp4",
-    "duration": 275,
-    "isHD": false
-  },
-  {
-    "id": 9,
-    "title": "Node.js Crash Course",
-    "url": "https://example.com/videos/nodejs-crash.mp4",
-    "duration": 500,
-    "isHD": true
-  },
-  {
-    "id": 10,
-    "title": "Python for Beginners",
-    "url": "https://example.com/videos/python-beginners.mp4",
-    "duration": 360,
-    "isHD": false
-  }
-]
+{
+  "fantasy": [
+    { "id": 1, "title": "판타지1","category": "fantasy", "img": "/images/fantasy1.jpg" },
+    { "id": 2, "title": "판타지2","category": "fantasy", "img": "/images/fantasy2.jpg" },
+    { "id": 3, "title": "판타지3","category": "fantasy", "img": "/images/fantasy3.jpg" }
+  ],
+  "romance": [
+    { "id": 4, "title": "로맨스1","category": "romance", "img": "/images/romance1.jpg" },
+    { "id": 5, "title": "로맨스2","category": "romance", "img": "/images/romance2.jpg" },
+    { "id": 6, "title": "로맨스3","category": "romance", "img": "/images/romance3.jpg" }
+  ],
+  "sf": [
+    { "id": 7, "title": "sf1","category": "sf", "img": "/images/sf1.jpg" },
+    { "id": 8, "title": "sf2","category": "sf", "img": "/images/sf2.jpg" },
+    { "id": 9, "title": "sf3","category": "sf", "img": "/images/sf3.jpg" }
+  ],
+  "normal": [
+    { "id": 10, "title": "일상1","category": "normal", "img": "/images/normal1.jpg" },
+    { "id": 11, "title": "일상2","category": "normal", "img": "/images/normal2.jpg" },
+    { "id": 12, "title": "일상3","category": "normal", "img": "/images/normal3.jpg" }
+  ],
+  "mystery": [
+    { "id": 13, "title": "미스터리1","category": "mystery", "img": "/images/mystery1.jpg" },
+    { "id": 14, "title": "미스터리2","category": "mystery", "img": "/images/mystery2.jpg" },
+    { "id": 15, "title": "미스터리3","category": "mystery", "img": "/images/mystery3.jpg" }
+  ]
+}
