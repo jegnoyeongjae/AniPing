@@ -7,29 +7,9 @@
   margin-bottom: 20px;
 }
 
-/* 캐러셀 트랙 */
-.card-list {
-  /* 가로 캐러셀 핵심 */
-  display: grid;
-  grid-auto-flow: column;              /* 아이템을 가로로 자동 배치 */
-  grid-auto-columns: clamp(200px, 22vw, 240px);  /* 카드 너비(반응형) */
-  gap: 20px;
 
-  overflow-x: auto;
-  overflow-y: hidden;
-  scroll-snap-type: x mandatory;       /* 스냅 캐러셀 */
-  scroll-behavior: smooth;             /* 부드러운 스크롤 */
 
-  padding-bottom: 10px;
-  -webkit-overflow-scrolling: touch;
 
-  /* 스크롤바 숨기기 (크로스 브라우저) */
-  -ms-overflow-style: none;            /* IE/Edge */
-  scrollbar-width: none;               /* Firefox */
-}
-.card-list::-webkit-scrollbar {        /* Chrome/Safari */
-  display: none;
-}
 
 /* 카드 */
 .card {
@@ -38,15 +18,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: default; 
+}
 
-  scroll-snap-align: start;            /* 카드 단위로 딱 멈춤 */
-  user-select: none;                   /* 드래그 텍스트 방지 */
-  -webkit-user-drag: none;
-  transition: transform .2s ease;
-}
-.card:hover {
-  transform: translateY(-2px);
-}
 
 /* hero/컨테이너 기존 규격 유지 */
 .homepage {
@@ -54,17 +28,17 @@
   width: 1440px;
   margin: 0 auto;
 }
-.hero {
+.homepage .hero {
   height: 700px;
   background: url("/images/hero-bg.jpg") center/cover no-repeat;
   display: flex; align-items: center; justify-content: center;
   color: #fff; position: relative;
 }
-.hero::after { content:""; position:absolute; inset:0; background:rgba(0,0,0,.5); }
-.hero-content { position:relative; text-align:center; z-index:1; }
-.hero-content h1 { font-size: 3rem; margin-bottom: 16px; }
-.hero-content p { font-size: 1.2rem; margin-bottom: 24px; }
-.hero-btn {
+.homepage .hero::after { content:""; position:absolute; inset:0; background:rgba(0,0,0,.5); }
+.homepage .hero-content { position:relative; text-align:center; z-index:1; }
+.homepage .hero-content h1 { font-size: 3rem; margin-bottom: 16px; }
+.homepage .hero-content p { font-size: 1.2rem; margin-bottom: 24px; }
+.homepage .hero-btn {
   display:inline-block; padding:12px 24px; border-radius:8px;
   background:#ff5a5a; color:#fff; text-decoration:none; font-weight:700;
 }
@@ -82,7 +56,7 @@
 }
 
 .swiper-slide img {
-  width: 1457px;
+  width: 1490px;
   height: 100%;
   object-fit: cover;
 }
