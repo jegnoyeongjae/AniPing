@@ -10,6 +10,8 @@ import {
   ChaCvList,
   ChaCvDetail,
 } from './pages/character/chracter';
+
+import ChaPost from './pages/character/ChaPost/ChaPost';
 import { HomePage, AniList, AnimeDetail } from './pages';
 import axios from 'axios';
 import './App.css';
@@ -51,6 +53,7 @@ function App() {
             <Route path="/chaLine" element={<ChaLine />} />
             <Route path="/chaCvList" element={<ChaCvList />} />
             <Route path="/chaCvDetail/:id" element={<ChaCvDetail />} />
+            <Route path="/chaPost" element={<ChaPost />} />
           </Route>
         )}
 

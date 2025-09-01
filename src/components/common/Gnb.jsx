@@ -92,7 +92,7 @@ const Gnb = () => {
                       <Link to="/service">고객센터</Link>
                     </li>
                     <li>
-                      <Link to="">모르는거나 궁금한거있음 연락 ㄱ</Link>
+                      <Link to="/chaPost">자유게시판</Link>
                     </li>
                   </ul>
                 </div>
