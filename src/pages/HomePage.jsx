@@ -36,9 +36,10 @@ const HomePage = () => {
           .map((item) => (
             <SwiperSlide key={item.id}>
               <div className="card">
-                <img src={item.img} alt={item.title} />
-                <h3>{item.title}</h3>
-                <Link to={`/detail/${item.id}`}>상세보기</Link>
+                <Link to={`/detail/${item.id}`}>
+                  <img src={item.homeImg} alt={item.title} />
+                  <h3>{item.title}</h3>
+                </Link>
               </div>
             </SwiperSlide>
           ))}
@@ -47,6 +48,7 @@ const HomePage = () => {
   );
 
   return (
+    <div className="homePageWrapper">
     <div className="homepage">
       {/* Hero 배너 */}
       <section className="hero">
@@ -66,10 +68,10 @@ const HomePage = () => {
             <img src="/images/banner/SAO.png" alt="배너2" />
           </SwiperSlide>
           <SwiperSlide>
-            <div className="banner">Banner 3</div>
+            <img src="/images/banner/attack2.png" alt="배너3" />
           </SwiperSlide>
           <SwiperSlide>
-            <div className="banner">Banner 4</div>
+            <img src="/images/banner/oshi1.png" alt="배너3" />
           </SwiperSlide>
         </Swiper>
       </section>
@@ -100,6 +102,7 @@ const HomePage = () => {
           </SwiperSlide>
         </Swiper>
       </section>
+    </div>
     </div>
   );
 };
