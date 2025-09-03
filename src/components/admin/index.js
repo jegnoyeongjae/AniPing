@@ -1,4 +1,5 @@
 import AdUserSearch from "./AdUserSearch";
 import AdUserSearchList from "./AdUserSearchList";
+import AdminSettingLi from "./AdminSettingLi";
 
-export {AdUserSearch, AdUserSearchList};
+export {AdUserSearch, AdUserSearchList, AdminSettingLi};

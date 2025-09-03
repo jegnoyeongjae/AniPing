@@ -1,34 +1,23 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import './AdUserSearch.css';
 
-const AdUserSearch = ({ searchLis, setFilterDatas }) => {
-
+const AdUserSearch = ({ searchLis, setSearchResult }) => {
     const [userInput, setUserInput] = useState('');
 
     const handleSearchChange = (e) => {
         setUserInput(e.target.value);
     }
 
-    const filteredText = searchLis.filter(searchL => {
-        console.log('flter안의 어퍼 문자열',userInput.toLowerCase());
-        console.log('flter안의 서치리스트',searchL);
-        console.log('flter안의 서치리스트 로어케이스',searchL.userId.toString());
-        searchL.userId.toString().toLowerCase().includes(userInput.toLowerCase())
-    }
-    )
-
     const handleClickSearch = () => {
         if (!userInput.trim()) {
-            console.log(userInput, filteredText);
-            alert('유저아이디를 입력해주세요.');
-            return;
+            setSearchResult(searchLis);
         } else {
-            setFilterDatas(filteredText);
-            console.log(userInput, filteredText);
-            return;
+            const filteredText = searchLis.filter(searchL =>
+                searchL.userId.toLowerCase().includes(userInput.toLowerCase())
+            );
+            setSearchResult(filteredText);
         }
     }
-
 
     return (
         <div id="AdUserSearch">
