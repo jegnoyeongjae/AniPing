@@ -2,12 +2,12 @@
 .ani-list-container {
   max-width: 1440px;
   margin: 0 auto;
-  padding: 100px 50px;
+  padding: 100px;
 }
 
 .ani-list-container h2 {
   font-size: 2rem;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 /* 카드 리스트: 한 줄에 5개씩, 자동 줄바꿈 */
@@ -19,16 +19,15 @@
 
 /* 카드 */
 .ani-card {
-  background: #eee;
-  border-radius: 4px;
-  padding: 40px;
+  background: #ede7f0;
+  border-radius: 8px;
+  padding: 5px;
   text-align: center;
 }
 
 .ani-card img {
   width: 100%;
-  height: 250px;
-  object-fit: cover;
+  height: 190px;
+  object-fit:cover;
   border-radius: 6px;
-  margin-bottom: 8px;
 }

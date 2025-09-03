@@ -1,11 +1,11 @@
 .homePageWrapper{
-  background-color: #1e0a20;
+  background-color: #2c132e;
 }
 
 .homepage {
   width: 1440px;
   padding: 80px;
-  background: #1e0a20;
+  background: #2c132e;
   margin: 0 auto;
 }
 
@@ -17,6 +17,7 @@
   margin-bottom: 20px;
   font-size: 24px;
   font-weight: bold;
+  color: #b2c6ce;
 }
 
 .card {
@@ -55,6 +56,9 @@
   object-fit: cover;
 }
 
+.ad-section h2{
+  color:#b2c6ce;
+}
 
 .ad-card {
   background: #ddd;

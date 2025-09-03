@@ -37,7 +37,7 @@ const HomePage = () => {
             <SwiperSlide key={item.id}>
               <div className="card">
                 <Link to={`/detail/${item.id}`}>
-                  <img src={item.homeImg} alt={item.title} />
+                  <img src={item.img} alt={item.title} />
                   <h3>{item.title}</h3>
                 </Link>
               </div>
