@@ -1,6 +1,6 @@
 [
-  { "id": 1, "title": "판타지1", "category": "fantasy", "img": "/images/banner/SAO.png"},
-  { "id": 2, "title": "판타지2", "category": "fantasy", "img": "/images/fantasy.jpg" },
+  { "id": 1, "title": "소드아트온라인", "category": "fantasy", "img": "/images/banner/SAO.png"},
+  { "id": 2, "title": "귀멸의칼날", "category": "fantasy", "img": "/images/banner/demon2.png" },
   { "id": 3, "title": "판타지3", "category": "fantasy", "img": "/images/fantasy3.jpg" },
   { "id": 4, "title": "판타지4", "category": "fantasy", "img": "/images/fantasy4.jpg" },
   { "id": 5, "title": "판타지5", "category": "fantasy", "img": "/images/fantasy5.jpg" },
@@ -53,6 +53,4 @@
   { "id": 48, "title": "일상8", "category": "normal", "img": "/images/normal8.jpg" },
   { "id": 49, "title": "일상9", "category": "normal", "img": "/images/normal9.jpg" },
   { "id": 50, "title": "일상10", "category": "normal", "img": "/images/normal10.jpg" }
-
-  
 ]

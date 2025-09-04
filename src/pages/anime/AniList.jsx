@@ -1,5 +1,5 @@
 // src/pages/AniList.jsx
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./AniList.css";
 
@@ -31,8 +31,10 @@ const AniList = () => {
       <div className="ani-card-list">
         {items.map((item) => (
           <div className="ani-card" key={item.id}>
-            <img src={item.img} alt={item.title} />
-            <h3>{item.title}</h3>
+            <Link to={`/detail/${item.id}`}>
+              <img src={item.img} alt={item.title} />
+              <h3>{item.title}</h3>
+            </Link>
           </div>
         ))}
       </div>

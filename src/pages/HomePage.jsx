@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
+import { useNavigate } from "react-router-dom";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -46,6 +47,7 @@ const HomePage = () => {
       </Swiper>
     </section>
   );
+  const navigate=useNavigate();
 
   return (
     <div className="homePageWrapper">
@@ -62,10 +64,13 @@ const HomePage = () => {
           className="heroSwiper"
         >
           <SwiperSlide>
-            <img src="/images/banner/demon.png" alt="배너1" />
+            <img 
+            src="/images/banner/SAO.png" alt="배너1"
+            onClick={()=>navigate("/detail/1")}
+            style={{cursor:"pointer"}} />
           </SwiperSlide>
           <SwiperSlide>
-            <img src="/images/banner/SAO.png" alt="배너2" />
+            <img src="/images/banner/demon.png" alt="배너2" />
           </SwiperSlide>
           <SwiperSlide>
             <img src="/images/banner/attack2.png" alt="배너3" />
