@@ -82,12 +82,12 @@ const ChaLine = () => {
       content: '아우라. 자해해라.',
       title: '장송의 프리렌',
     },
-    // {
-    //   id: 14,
-    //   image: '/images/',
-    //   content: '',
-    //   title: '',
-    // },
+    {
+      id: 14,
+      image: '/images/jirobo.jpg',
+      content: '인간이 5명이나 모이면 반드시 1명은 쓰레기가 있다',
+      title: '나루토',
+    },
     // {
     //   id: 15,
     //   image: '/images/',
