@@ -15,7 +15,7 @@ import { AdCuSeAsk } from './pages/admin/customerservice';
 import './App.css';
 
 function App() {
-  const [type, setType] = useState('admin');
+  const [type, setType] = useState('user');
 
   return (
     <BrowserRouter>
