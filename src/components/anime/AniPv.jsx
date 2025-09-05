@@ -23,12 +23,12 @@ const AniPv = () => {
     const match = url.match(/v=([a-zA-Z0-9_-]{11})/);
     return match ? `https://www.youtube.com/embed/${match[1]}` : url;
   };
-
+    //s    //s    //s
   return (
     <div className="aniPv">
       <h2>줄거리</h2>
       <p className="story">{pvData.story}</p>
-
+        <span>삭제예정</span>
       <h2>PV 영상</h2>
       <div className="pvVideo">
         <iframe

@@ -15,11 +15,12 @@ const AniCha = () => {
       })
       .catch((err) => console.error("캐릭터 데이터 불러오기 실패:", err));
   }, [id]);
-
+  
   return (
     <div className="aniCha">
       <h2>등장인물</h2>
       <div className="aniChaList">
+               <span>삭제예정</span>
         {characters.map((cha, index) => (
           <div className="aniChaCard" key={index}>
             <img src={cha.image} alt={cha.nameKr} className="aniChaImage" />
