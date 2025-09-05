@@ -11,6 +11,7 @@ import {
   ChaCvDetail,
 } from './pages/character/chracter';
 import { HomePage, AniList, AnimeDetail } from './pages';
+import { AdCuSeAsk } from './pages/admin/customerservice';
 import './App.css';
 
 function App() {
@@ -43,6 +44,7 @@ function App() {
             <Route path="/AdminBoard" element={<AdminBoard />} />
             <Route path="/AdUserLi" element={<AdUserLi/>} />
             <Route path="/AdminSetting" element={<AdminSetting/>} />
+            <Route path="/AdCuSeAsk" element={<AdCuSeAsk/>} />
           </Route>
         )}
 
