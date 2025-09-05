@@ -1,0 +1,25 @@
+[
+  {
+    "animeId": 1,
+    "characters": [
+      {
+        "nameKr": "키리토",
+        "nameEn": "KIRITO",
+        "nameJp": "キリト",
+        "cvKr": "마츠오카 요시츠구",
+        "cvEn": "MATSUOKA YOSHITSUGU",
+        "cvJp": "松岡禎丞",
+        "image": "/images/aniCha/kirito.jpg"
+      },
+      {
+        "nameKr": "아스나",
+        "nameEn": "ASUNA",
+        "nameJp": "アスナ",
+        "cvKr": "토마츠 하루카",
+        "cvEn": "TOMATSU HARUKA",
+        "cvJp": "戸松遥",
+        "image": "/images/aniCha/asuna.jpg"
+      }
+    ]
+  }
+]

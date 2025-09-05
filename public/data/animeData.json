@@ -1,72 +1,56 @@
 [
-  {
-    "id": 1,
-    "title": "Intro to JavaScript",
-    "url": "https://example.com/videos/js-intro.mp4",
-    "duration": 300,
-    "isHD": true
-  },
-  {
-    "id": 2,
-    "title": "React Basics",
-    "url": "https://example.com/videos/react-basics.mp4",
-    "duration": 420,
-    "isHD": true
-  },
-  {
-    "id": 3,
-    "title": "CSS Flexbox Guide",
-    "url": "https://example.com/videos/css-flexbox.mp4",
-    "duration": 275,
-    "isHD": false
-  },
-  {
-    "id": 4,
-    "title": "Node.js Crash Course",
-    "url": "https://example.com/videos/nodejs-crash.mp4",
-    "duration": 500,
-    "isHD": true
-  },
-  {
-    "id": 5,
-    "title": "Python for Beginners",
-    "url": "https://example.com/videos/python-beginners.mp4",
-    "duration": 360,
-    "isHD": false
-  }
-  ,{
-    "id": 6,
-    "title": "Intro to JavaScript",
-    "url": "https://example.com/videos/js-intro.mp4",
-    "duration": 300,
-    "isHD": true
-  },
-  {
-    "id": 7,
-    "title": "React Basics",
-    "url": "https://example.com/videos/react-basics.mp4",
-    "duration": 420,
-    "isHD": true
-  },
-  {
-    "id": 8,
-    "title": "CSS Flexbox Guide",
-    "url": "https://example.com/videos/css-flexbox.mp4",
-    "duration": 275,
-    "isHD": false
-  },
-  {
-    "id": 9,
-    "title": "Node.js Crash Course",
-    "url": "https://example.com/videos/nodejs-crash.mp4",
-    "duration": 500,
-    "isHD": true
-  },
-  {
-    "id": 10,
-    "title": "Python for Beginners",
-    "url": "https://example.com/videos/python-beginners.mp4",
-    "duration": 360,
-    "isHD": false
-  }
+  { "id": 1, "title": "소드아트온라인", "category": "fantasy", "img": "/images/banner/SAO.png"},
+  { "id": 2, "title": "귀멸의칼날", "category": "fantasy", "img": "/images/banner/demon2.png" },
+  { "id": 3, "title": "판타지3", "category": "fantasy", "img": "/images/fantasy3.jpg" },
+  { "id": 4, "title": "판타지4", "category": "fantasy", "img": "/images/fantasy4.jpg" },
+  { "id": 5, "title": "판타지5", "category": "fantasy", "img": "/images/fantasy5.jpg" },
+  { "id": 6, "title": "판타지6", "category": "fantasy", "img": "/images/fantasy6.jpg" },
+  { "id": 7, "title": "판타지7", "category": "fantasy", "img": "/images/fantasy7.jpg" },
+  { "id": 8, "title": "판타지8", "category": "fantasy", "img": "/images/fantasy8.jpg" },
+  { "id": 9, "title": "판타지9", "category": "fantasy", "img": "/images/fantasy9.jpg" },
+  { "id": 10, "title": "판타지10", "category": "fantasy", "img": "/images/fantasy10.jpg" },
+
+  { "id": 11, "title": "로맨스1", "category": "romance", "img": "/images/romance1.jpg" },
+  { "id": 12, "title": "로맨스2", "category": "romance", "img": "/images/romance2.jpg" },
+  { "id": 13, "title": "로맨스3", "category": "romance", "img": "/images/romance3.jpg" },
+  { "id": 14, "title": "로맨스4", "category": "romance", "img": "/images/romance4.jpg" },
+  { "id": 15, "title": "로맨스5", "category": "romance", "img": "/images/romance5.jpg" },
+  { "id": 16, "title": "로맨스6", "category": "romance", "img": "/images/romance6.jpg" },
+  { "id": 17, "title": "로맨스7", "category": "romance", "img": "/images/romance7.jpg" },
+  { "id": 18, "title": "로맨스8", "category": "romance", "img": "/images/romance8.jpg" },
+  { "id": 19, "title": "로맨스9", "category": "romance", "img": "/images/romance9.jpg" },
+  { "id": 20, "title": "로맨스10", "category": "romance", "img": "/images/romance10.jpg" },
+
+  { "id": 21, "title": "미스터리1", "category": "mystery", "img": "/images/mystery1.jpg" },
+  { "id": 22, "title": "미스터리2", "category": "mystery", "img": "/images/mystery2.jpg" },
+  { "id": 23, "title": "미스터리3", "category": "mystery", "img": "/images/mystery3.jpg" },
+  { "id": 24, "title": "미스터리4", "category": "mystery", "img": "/images/mystery4.jpg" },
+  { "id": 25, "title": "미스터리5", "category": "mystery", "img": "/images/mystery5.jpg" },
+  { "id": 26, "title": "미스터리6", "category": "mystery", "img": "/images/mystery6.jpg" },
+  { "id": 27, "title": "미스터리7", "category": "mystery", "img": "/images/mystery7.jpg" },
+  { "id": 28, "title": "미스터리8", "category": "mystery", "img": "/images/mystery8.jpg" },
+  { "id": 29, "title": "미스터리9", "category": "mystery", "img": "/images/mystery9.jpg" },
+  { "id": 30, "title": "미스터리10", "category": "mystery", "img": "/images/mystery10.jpg" },
+
+  { "id": 31, "title": "sf1", "category": "sf", "img": "/images/sf1.jpg" },
+  { "id": 32, "title": "sf2", "category": "sf", "img": "/images/sf2.jpg" },
+  { "id": 33, "title": "sf3", "category": "sf", "img": "/images/sf3.jpg" },
+  { "id": 34, "title": "sf4", "category": "sf", "img": "/images/sf4.jpg" },
+  { "id": 35, "title": "sf5", "category": "sf", "img": "/images/sf5.jpg" },
+  { "id": 36, "title": "sf6", "category": "sf", "img": "/images/sf6.jpg" },
+  { "id": 37, "title": "sf7", "category": "sf", "img": "/images/sf7.jpg" },
+  { "id": 38, "title": "sf8", "category": "sf", "img": "/images/sf8.jpg" },
+  { "id": 39, "title": "sf9", "category": "sf", "img": "/images/sf9.jpg" },
+  { "id": 40, "title": "sf10", "category": "sf", "img": "/images/sf10.jpg" },
+
+  { "id": 41, "title": "일상1", "category": "normal", "img": "/images/normal1.jpg" },
+  { "id": 42, "title": "일상2", "category": "normal", "img": "/images/normal2.jpg" },
+  { "id": 43, "title": "일상3", "category": "normal", "img": "/images/normal3.jpg" },
+  { "id": 44, "title": "일상4", "category": "normal", "img": "/images/normal4.jpg" },
+  { "id": 45, "title": "일상5", "category": "normal", "img": "/images/normal5.jpg" },
+  { "id": 46, "title": "일상6", "category": "normal", "img": "/images/normal6.jpg" },
+  { "id": 47, "title": "일상7", "category": "normal", "img": "/images/normal7.jpg" },
+  { "id": 48, "title": "일상8", "category": "normal", "img": "/images/normal8.jpg" },
+  { "id": 49, "title": "일상9", "category": "normal", "img": "/images/normal9.jpg" },
+  { "id": 50, "title": "일상10", "category": "normal", "img": "/images/normal10.jpg" }
 ]

@@ -27,7 +27,8 @@ function App() {
             <Route path="/new" element={''} />
             <Route path="/edit/:id" element={''} />
             {/* <Route path="/edit/:id" element={<EditPage todos={todos} onUpdateTodo={onUpdateTodo} />} /> */}
-            <Route path="/detail/:id" element={<AnimeDetail />} />
+
+            <Route path="/detail/:id" element={<AniDetail />} />
             {/* <Route path="/detail/:id" element={
             isLoaded ? <DetailPage todos={todos} onRemove={onRemove} changeIsDone={changeIsDone} /> : <p>데이터 로딩 중...</p>
           } /> */}
@@ -42,9 +43,9 @@ function App() {
         {type === 'admin' && (
           <Route path="/" element={<AdminRouter />}>
             <Route path="/AdminBoard" element={<AdminBoard />} />
-            <Route path="/AdUserLi" element={<AdUserLi/>} />
-            <Route path="/AdminSetting" element={<AdminSetting/>} />
-            <Route path="/AdCuSeAsk" element={<AdCuSeAsk/>} />
+            <Route path="/AdUserLi" element={<AdUserLi />} />
+            <Route path="/AdminSetting" element={<AdminSetting />} />
+            <Route path="/AdCuSeAsk" element={<AdCuSeAsk />} />
           </Route>
         )}
 
