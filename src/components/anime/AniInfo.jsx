@@ -45,7 +45,7 @@ const AniInfo=()=>{
                 
                 <div className="aniInfoAction"> {/*좋아요 다시 누르면 취소되게 */}
                     <button className="likeBtn" onClick={handleLike}>
-                        ❤️ 좋아요 {likes}
+                        ❤️ {likes}
                     </button>
                     <button className="saveBtn" onClick={handleSave}>
                         {saved? "☆즐겨찾기 등록":"⭐즐겨찾기 해제"}

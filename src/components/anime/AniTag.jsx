@@ -1,3 +1,6 @@
+import "./AniTag.css"
+
+
 const AniTag=()=>{
     return(
         <div className="AniTag">
