@@ -10,7 +10,7 @@ import {
   ChaCvList,
   ChaCvDetail,
 } from './pages/character/chracter';
-import { HomePage, AniList, AnimeDetail } from './pages';
+import { HomePage, AniList, AniDetail } from './pages';
 import { AdCuSeAsk } from './pages/admin/customerservice';
 import './App.css';
 
