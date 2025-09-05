@@ -4,11 +4,11 @@ import { AniCha,AniComment,AniInfo,AniPv,AniTag } from "../../components/anime"
 const AniDetail = ()=>{
   return(
     <div className="ani-detail-container">
-      <AniCha />
-      <AniComment />
-      <AniTag />
       <AniInfo />
+      <AniCha />
       <AniPv />
+      <AniTag />
+      <AniComment />
     </div>
   )
 }
