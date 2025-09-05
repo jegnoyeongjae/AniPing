@@ -1,16 +1,21 @@
 import { useState } from "react";
-
 import './AdUserSearch.css';
 
-const AdUserSearch = () => {
-    const [text, setText] = useState('');
+const AdUserSearch = ({ searchLis, setSearchResult }) => {
+    const [userInput, setUserInput] = useState('');
 
-    const handleChangeText = e => setText(e.target.value);
+    const handleSearchChange = (e) => {
+        setUserInput(e.target.value);
+    }
 
     const handleClickSearch = () => {
-        if (!text.trim()) {
-            alert('유저아이디를 입력해주세요.');
-            return
+        if (!userInput.trim()) {
+            setSearchResult(searchLis);
+        } else {
+            const filteredText = searchLis.filter(searchL =>
+                searchL.userId.toLowerCase().includes(userInput.toLowerCase())
+            );
+            setSearchResult(filteredText);
         }
     }
 
@@ -20,8 +25,8 @@ const AdUserSearch = () => {
                 <input
                     type="text"
                     placeholder="유저아이디를 입력하세요"
-                    value={text}
-                    onChange={handleChangeText}
+                    value={userInput}
+                    onChange={handleSearchChange}
                 />
                 <button onClick={handleClickSearch}>
                     검색하기
