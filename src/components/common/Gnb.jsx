@@ -21,6 +21,8 @@ const Gnb = () => {
     lineRef.current.style.display = 'none';
   };
 
+
+
   return (
     <div id="Gnb" ref={gnbRef}>
       <h1 className="logo">

@@ -1,0 +1,33 @@
+/* AniList.css */
+.ani-list-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 100px;
+}
+
+.ani-list-container h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+/* 카드 리스트: 한 줄에 5개씩, 자동 줄바꿈 */
+.ani-card-list {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 한 줄에 5개 */
+  gap: 20px;
+}
+
+/* 카드 */
+.ani-card {
+  background: #ede7f0;
+  border-radius: 8px;
+  padding: 5px;
+  text-align: center;
+}
+
+.ani-card img {
+  width: 100%;
+  height: 190px;
+  object-fit:cover;
+  border-radius: 6px;
+}

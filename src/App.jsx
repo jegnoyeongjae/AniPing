@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import AppRoute from './router/AppRouter';
 import AdminRouter from './router/AdminRouter';
-import { AdminBoard, AdUserLi } from './pages/admin';
+import { AdminBoard, AdUserLi, AdminSetting } from './pages/admin';
 import { useState, useEffect } from 'react';
 import {
   ChaService,
@@ -14,8 +14,9 @@ import {
 import ChaPost from './pages/character/ChaPost/ChaPost';
 import ChaPostEdit from './pages/character/ChaPost/ChaPostEdit';
 import ChaNewPost from './pages/character/ChaPost/ChaNewPost';
-import { HomePage, AniList, AnimeDetail } from './pages';
 import axios from 'axios';
+import { AdCuSeAsk } from './pages/admin/customerservice';
+import { HomePage, AniList, AniDetail } from './pages';
 import './App.css';
 import ChaPostDetail from './pages/character/ChaPost/ChaPostDetail';
 
@@ -137,7 +138,8 @@ function App() {
             <Route path="/new" element={''} />
             <Route path="/edit/:id" element={''} />
             {/* <Route path="/edit/:id" element={<EditPage todos={todos} onUpdateTodo={onUpdateTodo} />} /> */}
-            <Route path="/detail/:id" element={<AnimeDetail />} />
+
+            <Route path="/detail/:id" element={<AniDetail />} />
             {/* <Route path="/detail/:id" element={
             isLoaded ? <DetailPage todos={todos} onRemove={onRemove} changeIsDone={changeIsDone} /> : <p>데이터 로딩 중...</p>
           } /> */}
@@ -162,12 +164,9 @@ function App() {
         {type === 'admin' && (
           <Route path="/" element={<AdminRouter />}>
             <Route path="/AdminBoard" element={<AdminBoard />} />
-            <Route
-              path="/AdUserLi"
-              element={
-                <AdUserLi searchLis={searchLis} setSearchLis={setSearchLis} />
-              }
-            />
+            <Route path="/AdUserLi" element={<AdUserLi />} />
+            <Route path="/AdminSetting" element={<AdminSetting />} />
+            <Route path="/AdCuSeAsk" element={<AdCuSeAsk />} />
           </Route>
         )}
 

@@ -40,7 +40,7 @@ const AdminHeader = () => {
                                         ?
                                         <ul className='userLiName'>
                                             <li><Link to="/AdUserLi">- 사용자 목록</Link></li>
-                                            <li><Link to="">- 운영진 설정</Link></li>
+                                            <li><Link to="/AdminSetting">- 운영진 설정</Link></li>
                                         </ul>
                                         : null}
                                 </div>
@@ -91,7 +91,7 @@ const AdminHeader = () => {
                                     {showingAskManage
                                         ?
                                         <ul className='userLiName'>
-                                            <li><Link to="">- 1 : 1 문의</Link></li>
+                                            <li><Link to="/AdCuSeAsk">- 1 : 1 문의</Link></li>
                                             <li><Link to="">- 자주 물어보는 질문</Link></li>
                                             <li><Link to="">- 문의 내역</Link></li>
                                         </ul>

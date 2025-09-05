@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "title": "소드 아트 온라인",
+        "infoImg": "/images/banner/SAO.png",
+        "director": "이토 토모히코",
+        "likes": 0,
+        "save": 11000,
+        "studio": "A-1 Pictures",
+        "genre": "판타지, SF",
+        "airDate": "2012-07-07",
+        "rating": "15세 이상 관람가"
+    },
+    {
+        "id": 2,
+        "title": "귀멸의 칼날",
+        "infoImg": "/images/banner/demon.png",
+        "director": "소토자키 하루오",
+        "likes": 0,
+        "save": 12000,
+        "studio": "ufotable",
+        "genre": "판타지",
+        "airDate": "2019-04-06",
+        "rating": "19세 이상 관람가"
+    }
+]
