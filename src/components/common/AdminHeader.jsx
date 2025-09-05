@@ -91,7 +91,7 @@ const AdminHeader = () => {
                                     {showingAskManage
                                         ?
                                         <ul className='userLiName'>
-                                            <li><Link to="">- 1 : 1 문의</Link></li>
+                                            <li><Link to="/AdCuSeAsk">- 1 : 1 문의</Link></li>
                                             <li><Link to="">- 자주 물어보는 질문</Link></li>
                                             <li><Link to="">- 문의 내역</Link></li>
                                         </ul>

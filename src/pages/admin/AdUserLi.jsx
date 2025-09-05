@@ -40,8 +40,6 @@ const AdUserLi = () => {
         setRealAdmins(updateAdmins.filter(updateAdmin => updateAdmin.admin === true));
     }
 
-    console.log(realAdmins)
-
     return (
         <div id="AdUserLi">
             <div className="inner">
