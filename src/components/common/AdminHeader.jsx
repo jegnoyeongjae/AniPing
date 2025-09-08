@@ -71,7 +71,7 @@ const AdminHeader = () => {
                                         <ul className='userLiName'>
                                             <li><Link to="">- 캐릭터 게시판</Link></li>
                                             <li><Link to="">- 캐릭터 명대사</Link></li>
-                                            <li><Link to="">- 성우 관리</Link></li>
+                                            <li><Link to="/AdminVA">- 성우 관리</Link></li>
                                         </ul>
                                         : null}
                                 </div>
