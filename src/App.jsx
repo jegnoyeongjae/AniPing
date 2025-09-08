@@ -16,12 +16,14 @@ import ChaPostEdit from './pages/character/ChaPost/ChaPostEdit';
 import ChaNewPost from './pages/character/ChaPost/ChaNewPost';
 import axios from 'axios';
 import { AdCuSeAsk } from './pages/admin/customerservice';
+import { AdminVA } from './pages/admin/AdminVoiceActor';
+import { AdminVALiEd } from './components/admin/AdminVoiceActor';
 import { HomePage, AniList, AniDetail } from './pages';
 import './App.css';
 import ChaPostDetail from './pages/character/ChaPost/ChaPostDetail';
 
 function App() {
-  const [type, setType] = useState('user');
+  const [type, setType] = useState('admin');
   const [searchLis, setSearchLis] = useState([]);
   const [posts, setPosts] = useState([
     {
@@ -166,7 +168,9 @@ function App() {
             <Route path="/AdminBoard" element={<AdminBoard />} />
             <Route path="/AdUserLi" element={<AdUserLi />} />
             <Route path="/AdminSetting" element={<AdminSetting />} />
+            <Route path="/AdminVA" element={<AdminVA />} />
             <Route path="/AdCuSeAsk" element={<AdCuSeAsk />} />
+            <Route path="/AdminVALiEd/:id" element={<AdminVALiEd />} />
           </Route>
         )}
 
