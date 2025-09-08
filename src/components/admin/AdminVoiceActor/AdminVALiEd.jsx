@@ -8,6 +8,7 @@ const AdminVALiEd = () => {
     const [vADetail, setVADetail] = useState(null);
     const navigate = useNavigate();
 
+
     useEffect(() => {
         fetchVoiceActorData();
     }, [id]);
