@@ -37,7 +37,6 @@ const AniInfo=()=>{
             <img src={anime.infoImg} alt={anime.title} className="aniInfoImage"/>
             <div className="aniInfoDetails">
                 <h2>{anime.title}</h2>
-                       <span>삭제예정</span>
                 <p><strong>감독:</strong>{anime.director}</p>
                 <p><strong>제작사:</strong>{anime.studio}</p>
                 <p><strong>장르:</strong>{anime.genre}</p>

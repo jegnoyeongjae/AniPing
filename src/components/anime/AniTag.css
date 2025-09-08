@@ -1,6 +1,24 @@
-/* anime branch tag작업 css */
-
-div{
-
-    
+.aniTagList {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 정확히 5개씩 */
+  
+  max-width: 1440px;
+  margin-top: 20px auto;
 }
+
+.aniTagBtn {
+  width: 200px;
+  
+  padding: 0.6rem 1rem;
+  border: 1px solid #db9151;
+  border-radius: 20px;
+  background-color: #db9151;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 1.2rem;
+}
+
+.aniTagBtn:hover {
+  background-color: #7a6443;
+}
+
