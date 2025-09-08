@@ -8,7 +8,7 @@ const ChaRankPage = () => {
       name: '리바이',
       image: '/images/levi.jpg',
       rank: '1',
-      aniname: '진격의 거인',
+      aniname: '진격의거인',
       anidate: '2025-01-01',
     },
     {
