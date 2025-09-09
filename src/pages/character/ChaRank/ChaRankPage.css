@@ -1,0 +1,26 @@
+.ChaRankPage {
+  width: 1440px;
+  margin: 0 auto;
+  padding-top: 80px;
+  background-color: #fff;
+}
+.ChaRankPage h4 {
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border: 1px solid #222;
+}
+.ChaRankPage .titleUl {
+  display: flex;
+  justify-content: space-between;
+}
+.ChaRankPage .titleUl li {
+  display: block;
+  text-align: center;
+  width: 100px;
+}
+.titleImg {
+  display: block;
+  width: 150px !important;
+}

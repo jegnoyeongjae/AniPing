@@ -1,0 +1,23 @@
+.ChaDirect {
+  border: 1px solid #222;
+  margin-bottom: 100px;
+  padding: 30px;
+  width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ChaDirect .content {
+  display: flex;
+  flex-direction: column;
+}
+.ChaDirect .content input {
+  margin-bottom: 20px;
+  width: 700px;
+  height: 30px;
+}
+.ChaDirect .content textarea {
+  width: 700px;
+  height: 250px;
+  margin-bottom: 20px;
+}

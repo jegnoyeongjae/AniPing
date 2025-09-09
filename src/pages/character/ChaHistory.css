@@ -1,0 +1,60 @@
+.ChaHistory {
+  margin-bottom: 50px;
+}
+
+.ChaHistory ul {
+  display: block;
+  width: 700px;
+  margin: 0 auto;
+  border: 1px solid #222;
+  align-items: center;
+}
+
+.ChaHistory ul li {
+  display: block;
+  width: 700px;
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid #222;
+}
+
+.historyHeader {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 32px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-right: 28px;
+
+  align-items: center;
+}
+.historyBody {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 32px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-right: 28px;
+  border-top: 1px solid #222;
+  align-items: center;
+  background-color: #ddd;
+}
+.ChaHistory ul .hisCategory {
+  display: flex;
+  gap: 232px;
+  padding-left: 50px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.historyTitle {
+  display: inline-block;
+  width: 350px;
+  padding-right: 11px;
+}
+.historyStatus {
+  padding-left: 7px;
+}
+.historyContent {
+  display: inline-block;
+  width: 350px;
+}

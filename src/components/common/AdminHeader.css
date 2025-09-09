@@ -1,0 +1,77 @@
+#AdminHeader {
+    top: 0;
+    left: 215px;
+    width: 200px;
+    height: 100vh;
+    overflow: scroll;
+    background-color: rgba(59, 71, 177, 0.438);
+    color: black;
+    padding-top: 20px;
+}
+
+#AdminHeader .inner{
+    width: 185px;
+}
+
+#AdminHeader .adminInfo {
+    width: 100%;
+    text-align: center;
+    display: block;
+    justify-items: center;
+    margin-bottom: 30px;
+}
+
+#AdminHeader .adminPhoto {
+    width: 100px;
+    height: 100px;
+    background-color: aqua;
+    border-radius: 50%;
+    margin-bottom: 3px;
+}
+
+#AdminHeader .adminEmail {
+    font-size: 11px;
+}
+
+#AdminHeader .inner .admincate {
+    padding-left: 25px;
+    width: 135px;
+}
+
+#AdminHeader .headerTitle {
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+#AdminHeader .bigTitle {
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 5px;
+    width: 100%
+}
+
+#AdminHeader .subTitle {
+    padding-left: 12px;
+    margin-bottom: 2px;
+}
+
+#AdminHeader .userLi {
+    display: flex;
+    flex-direction: column;
+}
+
+#AdminHeader .userTitle {
+    display: flex;
+    justify-content: space-between;
+}
+
+#AdminHeader .userLiName {
+    padding-left: 20px;
+    font-size: 13px;
+    margin-bottom: 4px;
+}
+
+#AdminHeader .goToMain{
+    margin-top: 30px;
+    margin-left: 120px;
+}

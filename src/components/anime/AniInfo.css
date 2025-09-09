@@ -1,0 +1,28 @@
+.aniInfo{
+    max-width: 1440px;
+    margin: 0 auto;
+    display: flex;
+    gap: 20px;
+    padding: 100px;
+}
+
+.aniInfoImage{
+    width: 400px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.aniInfoDetails{
+    flex: 1;
+}
+.aniInfoAction {
+  margin-top: 50px;
+}
+
+.likeBtn, .saveBtn {
+  margin-right: 5px;
+  padding: 8px 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}

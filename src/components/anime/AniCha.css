@@ -1,0 +1,45 @@
+.aniCha {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 100px;
+}
+
+.aniCha h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 10px;
+}
+
+.aniChaList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.aniChaCard {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.aniChaImage {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.aniChaInfo {
+  flex: 1;
+}
+
+.chaName {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.chaCv {
+  font-size: 14px;
+  color: #555;
+}
