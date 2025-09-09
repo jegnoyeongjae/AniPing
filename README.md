@@ -10,3 +10,6 @@
     2. pip install requests
     3. pip install beautifulsoup4
     4. pip install pandas
+    5. pip install webdriver-manager
+    6. python -m pip install selenium
+
