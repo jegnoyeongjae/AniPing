@@ -47,7 +47,7 @@ const Gnb = () => {
                       <Link to="/list/romance">로맨스</Link>
                     </li>
                     <li>
-                      <Link to="/list/SF">SF</Link>
+                      <Link to="/list/sf">SF</Link>
                     </li>
                     <li>
                       <Link to="/list/normal">일상</Link>

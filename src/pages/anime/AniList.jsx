@@ -6,28 +6,50 @@ import "./AniList.css";
 const AniList = () => {
   const { category } = useParams(); // URL에서 장르 가져오기
   const [items, setItems] = useState([]);
+  const [sortType, setSortType] = useState("latest"); // 기본값: 최신순
 
-   const categoryKorean = {
+  const categoryKorean = {
     fantasy: "판타지",
     romance: "로맨스",
     mystery: "미스터리",
     sf: "SF",
-    normal: "일상"
+    normal: "일상",
   };
 
   useEffect(() => {
     fetch("/data/animeData.json")
       .then((res) => res.json())
       .then((data) => {
-        // category 기준 필터링
-        setItems(data.filter(item => item.category === category));
+        let filtered = data.filter((item) => item.category === category);
+
+        // 정렬 적용
+        if (sortType === "latest") {
+          filtered = filtered.sort((a, b) => b.id - a.id); // id 큰 게 최신
+        } else if (sortType === "popular") {
+          filtered = filtered.sort((a, b) => a.id - b.id); // id 작은 게 인기
+        }
+
+        setItems(filtered);
       })
       .catch((err) => console.error("JSON 불러오기 실패:", err));
-  }, [category]);
+  }, [category, sortType]);
 
   return (
     <div className="ani-list-container">
-      <h2>{categoryKorean[category]} 애니</h2>
+      <div className="ani-list-header">
+        <h2>{categoryKorean[category]} 애니</h2>
+
+        {/* 셀렉트정렬 */}
+        <select
+          value={sortType}
+          onChange={(e) => setSortType(e.target.value)}
+          className="sort-select"
+        >
+          <option value="latest">최신순</option>
+          <option value="popular">인기순</option>
+        </select>
+      </div>
+
       <div className="ani-card-list">
         {items.map((item) => (
           <div className="ani-card" key={item.id}>
