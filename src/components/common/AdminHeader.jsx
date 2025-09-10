@@ -54,7 +54,7 @@ const AdminHeader = () => {
                                     {showingAniManage
                                         ?
                                         <ul className='userLiName'>
-                                            <li><Link to="">- 애니메이션 관리</Link></li>
+                                            <li><Link to="/AdminAni">- 애니메이션 관리</Link></li>
                                             <li><Link to="">- 애니메이션 태그 관리</Link></li>
                                         </ul>
                                         : null}
@@ -70,13 +70,12 @@ const AdminHeader = () => {
                                         ?
                                         <ul className='userLiName'>
                                             <li><Link to="">- 캐릭터 게시판</Link></li>
-                                            <li><Link to="">- 캐릭터 명대사</Link></li>
+                                            <li><Link to="/AdminChaFL">- 캐릭터 명대사</Link></li>
                                             <li><Link to="/AdminVA">- 성우 관리</Link></li>
                                         </ul>
                                         : null}
                                 </div>
                             </li>
-                            <li className='subTitle'><Link to=""> - 댓글 신고</Link></li>
                             <li className='subTitle'><Link to=""> - 공지사항</Link></li>
                         </ul>
                     </li>
@@ -99,9 +98,6 @@ const AdminHeader = () => {
                                 </div>
                             </li>
                         </ul>
-                    </li>
-                    <li className='headerTitle'>
-                        <p className='bigTitle'>about 관리자</p>
                     </li>
                 </ul>
                 <div className='goToMain'><Link to=''>나가기</Link></div>

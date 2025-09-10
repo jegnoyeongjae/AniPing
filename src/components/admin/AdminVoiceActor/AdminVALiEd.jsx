@@ -10,10 +10,10 @@ const AdminVALiEd = () => {
 
 
     useEffect(() => {
-        fetchVoiceActorData();
+        fetchData();
     }, [id]);
 
-    const fetchVoiceActorData = async () => {
+    const fetchData = async () => {
         try {
             const [mainResponse, detailResponse] = await Promise.all([
                 axios.get('/data/adminChaCVLi.json'),
