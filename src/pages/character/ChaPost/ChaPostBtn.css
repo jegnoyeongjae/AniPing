@@ -7,9 +7,9 @@
   margin-left: 30px;
 }
 
-.likeBtn,
-.deleteBtn,
-.editBtn {
+.ChaPostBtn .likeBtn,
+.ChaPostBtn .deleteBtn,
+.ChaPostBtn .editBtn {
   width: 60px;
   height: 55px;
 }

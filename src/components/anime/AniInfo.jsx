@@ -23,7 +23,7 @@ const AniInfo=()=>{
     },[id]);
 
     if(!anime)return<p>로딩중...</p>;
-
+    //s
     const handleLike=()=>{
         setLikes(likes+1)
     };
@@ -45,7 +45,7 @@ const AniInfo=()=>{
                 
                 <div className="aniInfoAction"> {/*좋아요 다시 누르면 취소되게 */}
                     <button className="likeBtn" onClick={handleLike}>
-                        ❤️ 좋아요 {likes}
+                        ❤️ {likes}
                     </button>
                     <button className="saveBtn" onClick={handleSave}>
                         {saved? "☆즐겨찾기 등록":"⭐즐겨찾기 해제"}

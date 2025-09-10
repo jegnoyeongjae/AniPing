@@ -15,7 +15,7 @@ const AniCha = () => {
       })
       .catch((err) => console.error("캐릭터 데이터 불러오기 실패:", err));
   }, [id]);
-
+  
   return (
     <div className="aniCha">
       <h2>등장인물</h2>
