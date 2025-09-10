@@ -1,7 +1,7 @@
 const AniComment=()=>{
     return(
         <div className="AniComment">
-            
+                 
         </div>
     )
 }

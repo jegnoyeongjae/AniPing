@@ -4,10 +4,13 @@
         "title": "소드 아트 온라인",
         "infoImg": "/images/banner/SAO.png",
         "director": "이토 토모히코",
-        "likes": 0,
+        "likes": 300,
         "save": 11000,
         "studio": "A-1 Pictures",
-        "genre": "판타지, SF",
+        "genre": [
+            "판타지",
+            "SF"
+        ],
         "airDate": "2012-07-07",
         "rating": "15세 이상 관람가"
     },
@@ -16,11 +19,119 @@
         "title": "귀멸의 칼날",
         "infoImg": "/images/banner/demon.png",
         "director": "소토자키 하루오",
-        "likes": 0,
+        "likes": 290,
         "save": 12000,
         "studio": "ufotable",
-        "genre": "판타지",
+        "genre": [
+            "판타지"
+        ],
         "airDate": "2019-04-06",
         "rating": "19세 이상 관람가"
+    },
+    {
+        "id": 3,
+        "title": "원피스",
+        "infoImg": "/images/banner/OneP.jpg",
+        "director": "우다 코우노스케",
+        "likes": 280,
+        "save": 12000,
+        "studio": "토에이 애니메이션",
+        "genre": [
+            "판타지"
+        ],
+        "airDate": "1999-10-20",
+        "rating": "12세 이상 관람가"
+    },
+    {
+        "id": 4,
+        "title": "장송의 프리렌",
+        "infoImg": "/images/banner/friren.jpg",
+        "director": "사이토 케이이치로",
+        "likes": 270,
+        "save": 12000,
+        "studio": "매드하우스",
+        "genre": [
+            "판타지"
+        ],
+        "airDate": "2023-09-29",
+        "rating": "15세 이상 관람가"
+    },
+    {
+        "id": 5,
+        "title": "전생했더니 슬라임이었던 건에 대하여",
+        "infoImg": "/images/banner/tensura.jpg",
+        "director": "키쿠치 야스히토",
+        "likes": 260,
+        "save": 15000,
+        "studio": "8bit",
+        "genre": ["판타지"],
+        "airDate": "2018-10-02",
+        "rating": "15세 이상 관람가"
+    },
+    {
+        "id": 6,
+        "title": "무직전생 ~이세계에 갔으면 최선을 다한다~",
+        "infoImg": "/images/banner/mushoku.png",
+        "director": "오카모토 마나부",
+        "likes": 250,
+        "save": 15000,
+        "studio": "스튜디오 바인드",
+        "genre": ["판타지"],
+        "airDate": "2021-01-11",
+        "rating": "19세 이상 관람가"
+    },
+    {
+        "id": 7,
+        "title": "일곱개의 대죄",
+        "infoImg": "/images/banner/mushoku.png",
+        "director": "오카무라 텐사이",
+        "likes": 240,
+        "save": 15000,
+        "studio": "A-1 Pictures",
+        "genre": ["판타지"],
+        "airDate": "2014-10-05",
+        "rating": "15세 이상 관람가"
+    },
+    {
+        "id": 11,
+        "title": "너의이름은",
+        "infoImg": "/images/banner/kiminawa.png",
+        "director": "신카이 마코토",
+        "likes": 500,
+        "save": 10000,
+        "studio": "코믹스 웨이브 필름",
+        "genre": [
+            "로맨스"
+        ],
+        "airDate": "2016-08-26",
+        "rating": "12세 이상 관람가"
+    },
+    {
+        "id": 12,
+        "title": "그 비스크돌은 사랑을 한다",
+        "infoImg": "/images/banner/kigae2.jpg",
+        "director": "시노하라 케이스케",
+        "likes": 490,
+        "save": 10000,
+        "studio": "Clover Works",
+        "genre": [
+            "로맨스"
+        ],
+        "airDate": "2022-01-09",
+        "rating": "15세 이상 관람가"
+    },
+    {
+        "id": 13,
+        "title": "카구야 님은 고백받고 싶어",
+        "infoImg": "/images/banner/gokuhaku.jpg",
+        "director": "하타케야마 마모루",
+        "likes": 480,
+        "save": 10000,
+        "studio": "A-1 Pictures",
+        "genre": [
+            "로맨스"
+        ],
+        "airDate": "2019-01-21",
+        "rating": "15세 이상 관람가"
     }
 ]
