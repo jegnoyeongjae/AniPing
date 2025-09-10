@@ -1,6 +1,8 @@
 import { useState } from "react";
 
-const AdCSAskLi = ({ userAsk, idx, ansTitles, setAnsTitles, anses, setAnses }) => {
+import './AdCSAskLi.css';
+
+const AdCSAskLi = ({ userAsks, userAsk, idx, setUserAsks }) => {
     const [isVisible, setIsVisible] = useState(false);
     const [ansTitleInput, setAnsTitleInput] = useState('');
     const [ansInput, setAnsInput] = useState('');
@@ -11,78 +13,87 @@ const AdCSAskLi = ({ userAsk, idx, ansTitles, setAnsTitles, anses, setAnses }) =
 
     const handleChangeAnsTitle = (e) => {
         setAnsTitleInput(e.target.value)
-        const changeAnsTitle = ansTitles.map(ansTitle =>
-            ansTitle.id === id? {...ansTitle, answerTitle: ansTitleInput} : ansTitle)
-            setAnsTitles(changeAnsTitle);
     }
 
     const handleChangeAns = (e) => {
         setAnsInput(e.target.value)
-        const changeAns = anses.map(ans =>
-            ans.id === id? {...ans, answer: ansInput} : ans)
-            setAnsInput(changeAns);
-
     }
+
+    const handleSave = () => {
+        const changeUserAsk = userAsks.map(userA =>
+            userA.id === userAsk.id
+                ? { ...userA, answerTitle: ansTitleInput, answer: ansInput, isDone: true }
+                : userA
+        )
+        setUserAsks(changeUserAsk)
+        alert('답변이 저장되었습니다.');
+    }
+
 
     return (
         <li className="AdCSAskLi" >
-            <div className="inner">
-                <div className="mustSee" onClick={visibleContent}>
-                    <p>{idx + 1}</p>
-                    <p>{userAsk.title}</p>
-                    <p>{userAsk.userId}</p>
-                    <p>{userAsk.askDate}</p>
-                    <p>{userAsk.isDone ? '처리완료' : '미완료'}</p>
-                </div>
-                {isVisible && (
-                    <div className="visibleSee">
-                        <div>
-                            <p>문의</p>
-                            <div>
-                                <div>
-                                    <p>글쓴이</p>
-                                    <p>{userAsk.userId}</p>
-                                </div>
-                                <div>
-                                    <p>제목</p>
-                                    <p>{userAsk.title}</p>
-                                </div>
-                                <div>
-                                    <p>내용</p>
-                                    <p>{userAsk.content}</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <p>답변</p>
-                            <div>
-                                <div>
-                                    <p>답변 제목</p>
-                                    <p>
-                                        <input
-                                            type="text"
-                                            placeholder="제목을 입력하세요."
-                                            value={ansTitleInput}
-                                            onChange={handleChangeAnsTitle}
-                                        />
-                                    </p>
-                                </div>
-                                <div>
-                                    <p>답변 내용</p>
-                                    <p>
-                                        <input
-                                            type="text"
-                                            placeholder="내용을 입력하세요"
-                                            value={ansInput}
-                                            onChange={handleChangeAns}
-                                        />
-                                    </p>
-                                </div>
-                            </div>
-                            <button>저장하기</button>
-                        </div>
+            <div className="inners">
+                <div>
+                    <div className="mustSee" onClick={visibleContent}>
+                        <p>{idx + 1}</p>
+                        <p>{userAsk.title}</p>
+                        <p>{userAsk.userId}</p>
+                        <p>{userAsk.askDate}</p>
+                        <p>{userAsk.isDone ? '처리완료' : '미완료'}</p>
                     </div>
-                )}
+                </div>
+                <div className="visibleSe">
+                    {isVisible && (
+                        <div className="visibleSee">
+                            <div className="visibleAsk">
+                                <h3>문의 내용</h3>
+                                <p>{userAsk.content}</p>
+                            </div>
+                            <div className="visibltAns">
+                                {userAsk.isDone
+                                    ? (
+                                        <div>
+                                            <div className="ansTitle">
+                                                <h3>답변 제목</h3>
+                                                <p>{userAsk.answerTitle}</p>
+                                            </div>
+                                            <div className="ansText">
+                                                <h3>답변 내용</h3>
+                                                <p>{userAsk.answer}</p>
+                                            </div>
+                                        </div>
+                                    )
+                                    : (
+                                        <div>
+                                            <div className="ansTitle">
+                                                <h3>답변 제목</h3>
+                                                <p>
+                                                    <input
+                                                        type="text"
+                                                        placeholder="제목을 입력하세요."
+                                                        value={ansTitleInput}
+                                                        onChange={handleChangeAnsTitle}
+                                                    />
+                                                </p>
+                                            </div>
+                                            <div className="ansText">
+                                                <h3>답변 내용</h3>
+                                                <p>
+                                                    <input
+                                                        type="text"
+                                                        placeholder="내용을 입력하세요"
+                                                        value={ansInput}
+                                                        onChange={handleChangeAns}
+                                                    />
+                                                </p>
+                                            </div>
+                                            <button onClick={handleSave}>저장하기</button>
+                                        </div>
+                                    )}
+                            </div>
+                        </div>
+                    )}
+                </div>
             </div>
         </li>
     )
