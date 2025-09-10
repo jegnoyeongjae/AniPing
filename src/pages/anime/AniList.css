@@ -5,15 +5,61 @@
   padding: 100px;
 }
 
-.ani-list-container h2 {
-  font-size: 2rem;
-  margin-bottom: 10px;
+/* 제목 + 버튼 가로 배치 */
+.ani-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
-/* 카드 리스트: 한 줄에 5개씩, 자동 줄바꿈 */
+.ani-list-header h2 {
+  font-size: 2rem;
+  margin: 0;
+}
+
+/* 정렬 버튼 */
+.sort-select {
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid #5c5a5a;
+  background: #eae0f0;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.sort-buttons {
+  display: flex;
+}
+.sort-buttons button {
+  margin-left: 5px;
+  padding: 6px 12px;
+  border: 1px solid #a18989;
+  border-radius: 10px;
+  background: #8b837b;
+  cursor: pointer;
+}
+.sort-buttons button.active {
+  background: #cbb4d4;
+  color: white;
+  font-weight: bold;
+}
+
+.sort-buttons button:hover {
+  background: #ddd;
+}
+
+.sort-buttons .active {
+  background: #333;
+  color: #fff;
+  font-weight: bold;
+}
+
+/* 카드 리스트: 한 줄에 5개씩 */
 .ani-card-list {
   display: grid;
-  grid-template-columns: repeat(5, 1fr); /* 한 줄에 5개 */
+  grid-template-columns: repeat(5, 1fr);
   gap: 20px;
 }
 
@@ -28,6 +74,9 @@
 .ani-card img {
   width: 100%;
   height: 190px;
-  object-fit:cover;
+  object-fit: cover;
   border-radius: 6px;
 }
+
+
+
