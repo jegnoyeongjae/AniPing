@@ -16,6 +16,11 @@ import ChaPostEdit from './pages/character/ChaPost/ChaPostEdit';
 import ChaNewPost from './pages/character/ChaPost/ChaNewPost';
 import axios from 'axios';
 import { AdCuSeAsk } from './pages/admin/customerservice';
+import { AdminAni } from './pages/admin/AdminAni';
+import { AdminVA } from './pages/admin/AdminVoiceActor';
+import { AdminChaFL } from './pages/admin/AdminCha';
+import { AdminChaFLLiEd } from './components/admin/AdminCha';
+import { AdminVALiEd, AdVaLiEdBtn } from './components/admin/AdminVoiceActor';
 import { HomePage, AniList, AniDetail } from './pages';
 import './App.css';
 import ChaPostDetail from './pages/character/ChaPost/ChaPostDetail';
@@ -114,7 +119,15 @@ function App() {
             <Route path="/AdminBoard" element={<AdminBoard />} />
             <Route path="/AdUserLi" element={<AdUserLi />} />
             <Route path="/AdminSetting" element={<AdminSetting />} />
+            <Route path="/AdminVA" element={<AdminVA />} />
             <Route path="/AdCuSeAsk" element={<AdCuSeAsk />} />
+            <Route path="/AdminVALiEd/:id" element={<AdminVALiEd />} />
+            <Route path="/Adedit/:id" element={<AdVaLiEdBtn />} />
+            <Route path="/AdNew" element={<AdVaLiEdBtn />} />
+            <Route path="/AdminChaFL/*" element={<AdminChaFL />} />
+            {/* <Route path="/AdChaNew" element={<AdminChaFLLiEd />} /> */}
+            <Route path="/AdCha/:id" element={<AdminChaFLLiEd />} />
+            <Route path="/AdminAni" element={<AdminAni />} />
           </Route>
         )}
 
