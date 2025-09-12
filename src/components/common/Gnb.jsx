@@ -62,28 +62,6 @@ const Gnb = () => {
           </li>
           <li className="has2" onMouseEnter={handleMouseEnterDepth1}>
             <Link to="">
-              <span>캐릭터 게시판</span>
-            </Link>
-            <div className="depth2">
-              <div className="depth2-inner">
-                <div className="depth2-menu">
-                  <ul>
-                    <li>
-                      <Link to="">나는</Link>
-                    </li>
-                    <li>
-                      <Link to="">놀러 갈테니까</Link>
-                    </li>
-                    <li>
-                      <Link to="">ㅅㄱ요~</Link>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </li>
-          <li className="has2" onMouseEnter={handleMouseEnterDepth1}>
-            <Link to="">
               <span>고객센터</span>
             </Link>
             <div className="depth2">
