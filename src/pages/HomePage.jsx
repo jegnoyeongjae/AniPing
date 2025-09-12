@@ -65,20 +65,24 @@ const HomePage = () => {
           >
             <SwiperSlide>
               <img
-                src="/images/banner/SAO.png"
-                alt="배너1"
+                src="/images/banner/SAO.png" alt="배너1"
                 onClick={() => navigate("/detail/1")}
-                style={{ cursor: "pointer" }}
-              />
+                style={{ cursor: "pointer" }} />
             </SwiperSlide>
             <SwiperSlide>
-              <img src="/images/banner/demon.png" alt="배너2" />
+              <img src="/images/banner/demon.png" alt="배너2"
+                onClick={() => navigate("/detail/2")}
+                style={{ cursor: "pointer" }} />
             </SwiperSlide>
             <SwiperSlide>
-              <img src="/images/banner/attack2.png" alt="배너3" />
+              <img src="/images/banner/attack2.png" alt="배너3"
+                onClick={() => navigate("/detail/8")}
+                style={{ cursor: "pointer" }} />
             </SwiperSlide>
             <SwiperSlide>
-              <img src="/images/banner/oshi1.png" alt="배너3" />
+              <img src="/images/banner/oshi1.png" alt="배너3"
+                onClick={() => navigate("/detail/48")}
+                style={{ cursor: "pointer" }} />
             </SwiperSlide>
           </Swiper>
         </section>
@@ -90,7 +94,6 @@ const HomePage = () => {
 
         {/* 광고 섹션 */}
         <section className="ad-section">
-          <h2>광고</h2>
           <Swiper
             spaceBetween={20}
             centeredSlides={true}
@@ -99,13 +102,49 @@ const HomePage = () => {
             className="adSwiper"
           >
             <SwiperSlide>
-              <img src="/images/banner/maple_banner.jpeg" alt="배너2" />
+              <a
+                href="https://maplestory.nexon.com/promotion/event/2025/20250607/event01"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div className="ad-card">
+                <img
+                  src="/images/banner/ad/maple.png"
+                  alt="광고1"
+                  style={{ cursor: "pointer",height: "100%", width: "1000px", objectFit: "contain" }}
+                />
+                </div>
+              </a>
             </SwiperSlide>
             <SwiperSlide>
-              <div className="ad-card">광고 2</div>
+              <a
+                href="https://www.worldjob.or.kr/new_index.do"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div className="ad-card">
+                <img
+                  src="/images/banner/ad/job.jpg"
+                  alt="광고2"
+                  style={{ cursor: "pointer" }}
+                />
+                </div>
+              </a>
             </SwiperSlide>
             <SwiperSlide>
-              <div className="ad-card">광고 3</div>
+              <a
+                href="https://www.jlpt.or.kr/html/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div className="ad-card">
+                <img
+                  src="/images/banner/ad/jlpt.jpg"
+                  alt="광고3"
+                  style={{ cursor: "pointer"}}
+                />
+                </div>
+              </a>
             </SwiperSlide>
           </Swiper>
         </section>
