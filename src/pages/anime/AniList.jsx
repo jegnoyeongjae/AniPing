@@ -8,6 +8,7 @@ const AniList = () => {
   const [items, setItems] = useState([]);
   const [sortType, setSortType] = useState("latest"); // 기본값: 최신순
 
+  // 제이슨 데이터 제거예정
   const categoryKorean = {
     fantasy: "판타지",
     romance: "로맨스",
@@ -16,6 +17,7 @@ const AniList = () => {
     normal: "일상",
   };
 
+  
   useEffect(() => {
     fetch("/data/animeData.json")
       .then((res) => res.json())
