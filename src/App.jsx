@@ -25,7 +25,8 @@ import { HomePage, AniList, AniDetail } from './pages';
 import './App.css';
 import ChaPostDetail from './pages/character/ChaPost/ChaPostDetail';
 import UserList from './pages/user/UserList';
-import SmartEditor from './components/common/SmartEditor';
+import { UserLogin } from './pages/user';
+
 
 function App() {
   const [type, setType] = useState('user');
@@ -166,6 +167,7 @@ function App() {
               path="/chaPostDetail/:id"
               element={<ChaPostDetail posts={posts} setPosts={setPosts} />}
             />
+            <Route path='/login' element={<UserLogin />}></Route>
           </Route>
         )}
 

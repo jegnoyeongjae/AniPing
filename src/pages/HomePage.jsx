@@ -47,67 +47,69 @@ const HomePage = () => {
       </Swiper>
     </section>
   );
-  const navigate=useNavigate();
+  const navigate = useNavigate();
 
   return (
     <div className="homePageWrapper">
-    <div className="homepage">
-      {/* Hero 배너 */}
-      <section className="hero">
-        <Swiper
-          spaceBetween={30}
-          centeredSlides={true}
-          autoplay={{ delay: 4000, disableOnInteraction: false }}
-          pagination={{ clickable: true }}
-          navigation={true}
-          modules={[Autoplay, Pagination, Navigation]}
-          className="heroSwiper"
-        >
-          <SwiperSlide>
-            <img 
-            src="/images/banner/SAO.png" alt="배너1"
-            onClick={()=>navigate("/detail/1")}
-            style={{cursor:"pointer"}} />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img src="/images/banner/demon.png" alt="배너2" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img src="/images/banner/attack2.png" alt="배너3" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img src="/images/banner/oshi1.png" alt="배너3" />
-          </SwiperSlide>
-        </Swiper>
-      </section>
+      <div className="homepage">
+        {/* Hero 배너 */}
+        <section className="hero">
+          <Swiper
+            spaceBetween={30}
+            centeredSlides={true}
+            autoplay={{ delay: 4000, disableOnInteraction: false }}
+            pagination={{ clickable: true }}
+            navigation={true}
+            modules={[Autoplay, Pagination, Navigation]}
+            className="heroSwiper"
+          >
+            <SwiperSlide>
+              <img
+                src="/images/banner/SAO.png"
+                alt="배너1"
+                onClick={() => navigate("/detail/1")}
+                style={{ cursor: "pointer" }}
+              />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img src="/images/banner/demon.png" alt="배너2" />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img src="/images/banner/attack2.png" alt="배너3" />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img src="/images/banner/oshi1.png" alt="배너3" />
+            </SwiperSlide>
+          </Swiper>
+        </section>
 
-      {/* 카테고리별 캐러셀 */}
-      {renderCategory("fantasy", "판타지 애니")}
-      {renderCategory("romance", "로맨스 애니")}
-      {renderCategory("mystery", "미스터리 애니")}
+        {/* 카테고리별 캐러셀 */}
+        {renderCategory("fantasy", "판타지 애니")}
+        {renderCategory("romance", "로맨스 애니")}
+        {renderCategory("mystery", "미스터리 애니")}
 
-      {/* 광고 섹션 */}
-      <section className="ad-section">
-        <h2>광고</h2>
-        <Swiper
-          spaceBetween={20}
-          centeredSlides={true}
-          autoplay={{ delay: 5000, disableOnInteraction: false }}
-          modules={[Autoplay]}
-          className="adSwiper"
-        >
-          <SwiperSlide>
-            <div className="ad-card">광고 1</div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="ad-card">광고 2</div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="ad-card">광고 3</div>
-          </SwiperSlide>
-        </Swiper>
-      </section>
-    </div>
+        {/* 광고 섹션 */}
+        <section className="ad-section">
+          <h2>광고</h2>
+          <Swiper
+            spaceBetween={20}
+            centeredSlides={true}
+            autoplay={{ delay: 5000, disableOnInteraction: false }}
+            modules={[Autoplay]}
+            className="adSwiper"
+          >
+            <SwiperSlide>
+              <img src="/images/banner/maple_banner.jpeg" alt="배너2" />
+            </SwiperSlide>
+            <SwiperSlide>
+              <div className="ad-card">광고 2</div>
+            </SwiperSlide>
+            <SwiperSlide>
+              <div className="ad-card">광고 3</div>
+            </SwiperSlide>
+          </Swiper>
+        </section>
+      </div>
     </div>
   );
 };

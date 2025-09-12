@@ -27,7 +27,7 @@ const Gnb = () => {
     <div id="Gnb" ref={gnbRef}>
       <h1 className="logo">
         <Link to="/">
-          <img src="/images/nike.png" alt="애니핑" className="logoImage" />
+          <img src="/images/AniPing_candidate1.png" alt="애니핑" className="logoImage" />
         </Link>
       </h1>
       <nav className="gnb" onMouseLeave={handleMouseLeaveGnb}>

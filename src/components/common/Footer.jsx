@@ -8,8 +8,7 @@ const Footer = () => {
         <footer className="footer">
             <div className="footer-container">
                 <div className="footer-section">
-                    <p className="footer-logo">AniPing</p>
-                    <img src="../../public/images/nike.png" alt="애니핑" className="footerLogo" />
+                    <img src="../../public/images/AniPing_candidate1.png" alt="애니핑" className="footerLogo" />
                 </div>
                 <div className="footer-section">
                     <p>서면 삼정옆 M아카데미</p>

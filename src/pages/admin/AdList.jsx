@@ -1,5 +1,3 @@
-
-
 import './AdList.css'
 
 const AdList = () => {
