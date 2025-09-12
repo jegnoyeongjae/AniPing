@@ -24,9 +24,10 @@ import { AdminVALiEd, AdVaLiEdBtn } from './components/admin/AdminVoiceActor';
 import { HomePage, AniList, AniDetail } from './pages';
 import './App.css';
 import ChaPostDetail from './pages/character/ChaPost/ChaPostDetail';
+import { AdminAniLiEd } from './components/admin/AdminAni';
 
 function App() {
-  const [type, setType] = useState('user');
+  const [type, setType] = useState('admin');
   const [searchLis, setSearchLis] = useState([]);
   const [posts, setPosts] = useState([
     {
@@ -180,6 +181,7 @@ function App() {
             {/* <Route path="/AdChaNew" element={<AdminChaFLLiEd />} /> */}
             <Route path="/AdCha/:id" element={<AdminChaFLLiEd />} />
             <Route path="/AdminAni" element={<AdminAni />} />
+            <Route path="/AdminAniLiEd/:id" element={<AdminAniLiEd />} />
           </Route>
         )}
 
