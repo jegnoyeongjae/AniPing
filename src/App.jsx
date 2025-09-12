@@ -29,7 +29,7 @@ import { AdminAniLiEd } from './components/admin/AdminAni';
 
 
 function App() {
-  const [type, setType] = useState('admin');
+  const [type, setType] = useState('user');
   const [searchLis, setSearchLis] = useState([]);
   const [posts, setPosts] = useState([
     {

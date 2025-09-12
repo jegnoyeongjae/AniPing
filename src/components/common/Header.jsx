@@ -25,7 +25,7 @@ const Header = ({ headerProps }) => {
                         <li><Link to=''>LogOut</Link></li>
                     </ul> :
                     <ul>
-                        <li><Link to=''>LOGIN</Link></li>
+                        <li><Link to='/login'>LOGIN</Link></li>
                         <li><Link to=''>JOIN</Link></li>
                     </ul>}
                 <li className="open-search">
