@@ -65,7 +65,7 @@ const ChaRankPage = () => {
       name: '에키드나',
       image: '/images/Echidna.png',
       rank: 8,
-      aniname: '장송의 프리렌',
+      aniname: 'Re:제로부터 시작하는 이세계 생활',
       anidate: '2025-01-01',
     },
     {

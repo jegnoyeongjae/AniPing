@@ -5,7 +5,7 @@ import './ChaPost.css';
 const postItem = [
   {
     id: '1',
-    title: '제목11111111111111111111111111111111111111',
+    title: '제목1',
     writer: '작성자1',
     date: '2025.08.01',
     content: '123',
