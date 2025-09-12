@@ -24,8 +24,10 @@ import { AdminVALiEd, AdVaLiEdBtn } from './components/admin/AdminVoiceActor';
 import { HomePage, AniList, AniDetail } from './pages';
 import './App.css';
 import ChaPostDetail from './pages/character/ChaPost/ChaPostDetail';
+import UserList from './pages/user/UserList';
 import { UserLogin } from './pages/user';
 import { AdminAniLiEd } from './components/admin/AdminAni';
+
 
 
 function App() {
@@ -92,6 +94,7 @@ function App() {
             <Route index element={<HomePage Data={''} />} />
             <Route path="/list/:category" element={<AniList />} />
             <Route path="/new" element={''} />
+            <Route path="/user" element={<UserList/>} />
             <Route path="/edit/:id" element={''} />
             {/* <Route path="/edit/:id" element={<EditPage todos={todos} onUpdateTodo={onUpdateTodo} />} /> */}
 

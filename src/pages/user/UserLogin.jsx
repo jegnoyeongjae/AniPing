@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import "./UserLogin.css";
 import { Link } from "react-router-dom";
 const User = {
-    email: 'abc@naver.com',
-    pw: 'System2000!!'
-}
+  email: "abc@naver.com",
+  pw: "System2000!!",
+};
 const UserLogin = () => {
   const [email, setEmail] = useState("");
   const [pw, setPw] = useState("");
@@ -52,7 +52,7 @@ const UserLogin = () => {
   }, [emailValid, pwValid]);
 
   return (
-    <div className="page">
+    <div className="loginPage">
       <div className="titleWrap">
         <br />
         로그인
@@ -103,6 +103,17 @@ const UserLogin = () => {
         >
           로그인
         </button>
+        <div className="socialbtn">
+          <button className="googleBtn">
+            <img src="../../images/btnLogin/web_light_sq_SU@1x.png" alt="" />
+          </button>
+          <button className="googleBtn">
+            <img
+              src="../../images/btnLogin/kakao_login_medium_narrow.png"
+              alt=""
+            />
+          </button>
+        </div>
       </div>
       <hr nonshade />
       <div className="registerWrap">
