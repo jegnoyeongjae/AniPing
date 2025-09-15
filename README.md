@@ -22,8 +22,7 @@
 domain : com.store.Aniping
 각각 기능별 [관리자 , 유저 , 자유게시판, 관리자]로 구분
 <details>
-<summary>토글 접기/펼치기</summary>
-  <div markdown="1">
+<summary>프로젝트 구조 보기</summary>
 📦ANIPING  
  ┣ 📂node_modules  
  ┣ 📂public  
@@ -59,8 +58,8 @@ domain : com.store.Aniping
  ┃ ┃ ┗ 📂user  
  ┃ ┗ 📂router  
  ┗ 📂.git  
-</div>
 </details>
+
 프로젝트 구조 보기
 
 
