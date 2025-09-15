@@ -23,6 +23,8 @@ domain : com.store.Aniping
 각각 기능별 [관리자 , 유저 , 자유게시판, 관리자]로 구분
 <details>
 <summary>프로젝트 구조 보기</summary>
+
+<pre>
 📦ANIPING  
  ┣ 📂node_modules  
  ┣ 📂public  
@@ -58,7 +60,9 @@ domain : com.store.Aniping
  ┃ ┃ ┗ 📂user  
  ┃ ┗ 📂router  
  ┗ 📂.git  
+</pre>
 </details>
+
 
 프로젝트 구조 보기
 
