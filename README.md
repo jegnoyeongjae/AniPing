@@ -20,7 +20,9 @@ logo
 1️⃣ 프로젝트 구조
 domain : com.store.goguma
 각각 기능별 [관리자 , 유저 , 자유게시판 ...]로 구분
-<summary>
+<details>
+<summary>토글 접기/펼치기</summary>
+  <div markdown="1">
 📦src
  ┣ 📂main
  ┃ ┣ 📂java
@@ -678,7 +680,8 @@ domain : com.store.goguma
  ┃ ┃ ┃ ┗ 📂store
  ┃ ┃ ┃ ┃ ┗ 📂goguma
  ┃ ┃ ┃ ┃ ┃ ┗ 📜GogumaApplicationTests.java
-토글 접기/펼치기</summary>
+</div>
+</details>
 프로젝트 구조 보기
 
 
