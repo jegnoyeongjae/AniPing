@@ -1,26 +1,47 @@
 .ChaRankPage {
   width: 1440px;
   margin: 0 auto;
-  padding-top: 80px;
+  padding-top: 120px;
   background-color: #fff;
+  font-family: 'Noto Sans KR', sans-serif;
 }
-.ChaRankPage h4 {
-  padding-left: 50px;
-  padding-right: 50px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  border: 1px solid #222;
+
+.tableHeader {
+  padding: 12px 50px;
+  border-bottom: 2px solid #22222214;
 }
-.ChaRankPage .titleUl {
+
+.headerUl {
   display: flex;
   justify-content: space-between;
 }
-.ChaRankPage .titleUl li {
-  display: block;
+
+.headerUl li {
   text-align: center;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.headerImg {
+  width: 150px !important;
+}
+
+.headerRank,
+.headerCha,
+.headerAni,
+.headerDate {
   width: 100px;
 }
-.titleImg {
-  display: block;
-  width: 150px !important;
+
+.tableBody {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ChaRankPage h2{
+  font-size: 1.6rem;
+  margin-bottom: 30px;
+  border-left: 4px solid #6c5ce7;
+  padding-left: 12px;
 }

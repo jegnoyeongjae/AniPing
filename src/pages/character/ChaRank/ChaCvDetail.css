@@ -1,7 +1,10 @@
 .ChaCvDetail {
-  width: 1440px;
+  max-width: 1080px;
   margin: 0 auto;
-  padding-top: 80px;
-  background-color: #f9f9f9;
-  padding-bottom: 80px;
+  padding: 80px 20px;
+  background-color: #f7f8fa;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }

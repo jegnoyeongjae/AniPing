@@ -2,6 +2,7 @@
 import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./AniList.css";
+import { Paging } from "../../components/common/Paging";
 
 const AniList = () => {
   const { category } = useParams(); // URL에서 장르 가져오기
@@ -17,7 +18,6 @@ const AniList = () => {
     normal: "일상",
   };
 
-  
   useEffect(() => {
     fetch("/data/animeData.json")
       .then((res) => res.json())
@@ -62,6 +62,7 @@ const AniList = () => {
           </div>
         ))}
       </div>
+        <Paging/>
     </div>
   );
 };

@@ -832,20 +832,20 @@ const ChaRankPage = () => {
     // },
   ];
   const sorted = [...characters].sort((a, b) => a.rank - b.rank);
-  return (
+ return (
     <div className="ChaRankPage">
-      <div>
-        <h4>
-          <ul className="titleUl">
-            <li className="titleRank">순위</li>
-            <li className="titleImg">이미지 </li>
-            <li className="titleCha">캐릭터 </li>
-            <li className="titleAni">애니메이션</li>
-            <li className="titleDate">방영일</li>
-          </ul>
-        </h4>
+      <h2>캐릭터 랭킹</h2>
+      <div className="tableHeader">
+        <ul className="headerUl">
+          <li className="headerRank">순위</li>
+          <li className="headerImg">이미지</li>
+          <li className="headerCha">캐릭터</li>
+          <li className="headerAni">애니메이션</li>
+          <li className="headerDate">방영일</li>
+        </ul>
       </div>
-      <ul>
+
+      <ul className="tableBody">
         {sorted.map((character) => (
           <ChaRankItem key={character.id} character={character} />
         ))}

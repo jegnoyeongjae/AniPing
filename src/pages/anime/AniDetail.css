@@ -1,7 +1,30 @@
-/* src/pages/anime/AniDetail.css */
+/* AniDetail.css */
 .ani-detail-container {
   width: 100%;
-  max-width: 1440px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 60px 20px;
+  background-color: #f7f8fa;
+}
+
+.ani-detail-card {
+  background: #fff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+.ani-detail-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 20px;
+  border-left: 4px solid #6c5ce7;
+  padding-left: 12px;
+}
+
+.ani-detail-content {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #444;
 }

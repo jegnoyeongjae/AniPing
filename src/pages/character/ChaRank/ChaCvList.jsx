@@ -1,4 +1,3 @@
-import ChaCvDetail from './ChaCvDetail';
 import ChaCvListItem from './ChaCvListItem';
 
 import './ChaCvList.css';
@@ -70,11 +69,7 @@ const ChaCvList = () => {
   return (
     <div className="ChaCvList">
       <div>
-        <h4>
-          <span className="rank">순위</span>
-          <span className="cv">성우</span>
-          <span className="aniList">최근 참여작품</span>
-        </h4>
+        <h2> 성우 순위 </h2>
       </div>
       <ul>
         {cvList.map((cv) => (
