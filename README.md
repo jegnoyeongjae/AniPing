@@ -5,6 +5,7 @@
     3. npm install react-router-dom
     4. npm install axios --save
     5. npm install tailwindcss @tailwindcss/vite
+    6. npm install tw-animate-css
   
   - python
     1. pip install laftel
