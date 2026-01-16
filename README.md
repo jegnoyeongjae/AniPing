@@ -4,6 +4,7 @@
     2. npm i swiper
     3. npm install react-router-dom
     4. npm install axios --save
+    5. npm install tailwindcss @tailwindcss/vite
   
   - python
     1. pip install laftel
