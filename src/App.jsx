@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, data, Route, Routes } from 'react-router-dom';
 import AppRoute from './router/AppRouter';
 import AdminRouter from './router/AdminRouter';
 import { AdminBoard, AdUserLi, AdminSetting } from './pages/admin';
@@ -10,7 +10,6 @@ import {
   ChaCvList,
   ChaCvDetail,
 } from './pages/character/chracter';
-
 import ChaPost from './pages/character/ChaPost/ChaPost';
 import ChaPostEdit from './pages/character/ChaPost/ChaPostEdit';
 import ChaNewPost from './pages/character/ChaPost/ChaNewPost';
