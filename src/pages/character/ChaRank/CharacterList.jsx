@@ -3,6 +3,7 @@ import './CharacterList.css';
 const CharacterList = ({ aniList }) => {
   return (
     <div className="CharacterList">
+      <h2>맡은인물</h2>
       <div className="listBox">
         {aniList.map((ani, idx) => (
           <div key={idx} className="aniBox">

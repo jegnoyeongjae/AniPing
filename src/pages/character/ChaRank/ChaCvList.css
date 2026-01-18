@@ -1,21 +1,34 @@
 .ChaCvList {
-  width: 1440px;
+  max-width: 1440px;
   margin: 0 auto;
-  padding-top: 80px;
+  padding: 120px 20px;
   background-color: #fff;
 }
-.ChaCvList h4 {
+
+.ChaCvList h2{
+  font-size: 1.6rem;
+  margin-bottom: 16px;
+  border-left: 4px solid #6c5ce7;
+  padding-left: 12px;
+}
+
+.listHeader h4 {
   display: flex;
   font-size: 20px;
   font-weight: bold;
   margin-bottom: 20px;
-  padding-left: 50px;
-  padding-right: 50px;
-  border: 1px solid #222;
+  padding: 15px 50px;
+  border-bottom: 2px solid #222;
 }
-.ChaCvList .cv {
-  margin-left: 180px;
+
+.listHeader .rank {
+  width: 80px;
 }
-.ChaCvList .aniList {
-  margin-left: 500px;
+.listHeader .cv {
+  width: 200px;
+  margin-left: 50px;
+}
+.listHeader .aniList {
+  flex-grow: 1;
+  margin-left: 20px;
 }

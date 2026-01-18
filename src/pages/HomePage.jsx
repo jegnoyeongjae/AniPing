@@ -97,7 +97,7 @@ const HomePage = () => {
           <Swiper
             spaceBetween={20}
             centeredSlides={true}
-            autoplay={{ delay: 5000, disableOnInteraction: false }}
+            autoplay={{ delay: 50000000, disableOnInteraction: false }}
             modules={[Autoplay]}
             className="adSwiper"
           >
@@ -109,7 +109,7 @@ const HomePage = () => {
               >
                 <div className="ad-card">
                 <img
-                  src="/images/banner/ad/maple.png"
+                  src="/images/banner/ad/maple2.png"
                   alt="광고1"
                   style={{ cursor: "pointer",height: "100%", width: "1000px", objectFit: "contain" }}
                 />
@@ -124,7 +124,7 @@ const HomePage = () => {
               >
                 <div className="ad-card">
                 <img
-                  src="/images/banner/ad/job.jpg"
+                  src="/images/banner/ad/job2.jpg"
                   alt="광고2"
                   style={{ cursor: "pointer" }}
                 />
@@ -139,7 +139,7 @@ const HomePage = () => {
               >
                 <div className="ad-card">
                 <img
-                  src="/images/banner/ad/jlpt.jpg"
+                  src="/images/banner/ad/jlpt2.jpg"
                   alt="광고3"
                   style={{ cursor: "pointer"}}
                 />

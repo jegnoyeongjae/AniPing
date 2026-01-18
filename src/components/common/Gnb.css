@@ -3,6 +3,8 @@
     gap: 80px;
     padding-left: 40px;
     background-color: #fff;
+    max-width: 3000px;
+    margin: 0 auto;
 }
 #Gnb .logo{
     height: 18px;
