@@ -1,25 +1,31 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import './ChaPostBtn.css';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { Heart, Edit, Trash2 } from 'lucide-react';
 
 const ChaPostBtn = ({ id, handleLikeClick, heartStyle, onDelete }) => {
-  const navigate = useNavigate();
-  const handleEditClick = () => {
-    navigate(`/chaPostEdit/${id}`);
-  };
   return (
-    <div className="ChaPostBtn">
-      <button style={heartStyle} onClick={handleLikeClick} className="likeBtn">
-        &#x2764;
+    <div className="flex items-center justify-between mt-8">
+      <button 
+        onClick={handleLikeClick} 
+        className="flex items-center gap-2 px-6 py-3 rounded-full bg-pink-50 text-accent font-bold hover:bg-pink-100 transition-colors"
+      >
+        <Heart 
+            size={20} 
+            fill={heartStyle.fontVariationSettings === "'FILL' 1" ? "currentColor" : "none"} 
+            className={heartStyle.color === 'red' ? 'text-red-500' : ''}
+        />
+        <span>Like</span>
       </button>
-      <button onClick={onDelete} className="deleteBtn">
-        삭제
-      </button>
-      <button onClick={handleEditClick} className="editBtn">
-        수정
-      </button>
-      {/* <Link to={`/chaPostEdit/${id}`}>수정</Link> */}
+
+      <div className="flex items-center gap-3">
+        <Link to={`/chaPostEdit/${id}`} className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-slate-100 text-slate-600 font-bold hover:bg-slate-200 transition-colors text-sm">
+            <Edit size={16} />
+            Edit
+        </Link>
+        <button onClick={onDelete} className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-red-50 text-red-500 font-bold hover:bg-red-100 transition-colors text-sm">
+            <Trash2 size={16} />
+            Delete
+        </button>
+      </div>
     </div>
   );
 };

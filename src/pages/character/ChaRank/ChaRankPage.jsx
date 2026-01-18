@@ -1,5 +1,5 @@
 import ChaRankItem from './ChaRankItem';
-import './ChaRankPage.css';
+import { Trophy } from 'lucide-react';
 
 const ChaRankPage = () => {
   const characters = [
@@ -766,90 +766,38 @@ const ChaRankPage = () => {
       aniname: '유희왕GX',
       anidate: '2025-01-01',
     },
-    // {
-    //   id: 94,
-    //   name: '',
-    //   image: '/images/',
-    //   rank: 94,
-    //   aniname: '',
-    //   anidate: '2025-01-01',
-    // },
-    // {
-    //   id: 9,
-    //   name: '',
-    //   image: '/images/',
-    //   rank: 9,
-    //   aniname: '',
-    //   anidate: '2025-01-01',
-    // },
-    // {
-    //   id: 95,
-    //   name: '',
-    //   image: '/images/',
-    //   rank: 95,
-    //   aniname: '',
-    //   anidate: '2025-01-01',
-    // },
-    // {
-    //   id: 96,
-    //   name: '',
-    //   image: '/images/',
-    //   rank: 96,
-    //   aniname: '',
-    //   anidate: '2025-01-01',
-    // },
-    // {
-    //   id: 97,
-    //   name: '',
-    //   image: '/images/',
-    //   rank: 97,
-    //   aniname: '',
-    //   anidate: '2025-01-01',
-    // },
-    // {
-    //   id: 98,
-    //   name: '',
-    //   image: '/images/',
-    //   rank: 98,
-    //   aniname: '',
-    //   anidate: '2025-01-01',
-    // },
-    // {
-    //   id: 99,
-    //   name: '',
-    //   image: '/images/',
-    //   rank: 99,
-    //   aniname: '',
-    //   anidate: '2025-01-01',
-    // },
-    // {
-    //   id: 100,
-    //   name: '',
-    //   image: '/images/',
-    //   rank: 100,
-    //   aniname: '',
-    //   anidate: '2025-01-01',
-    // },
   ];
   const sorted = [...characters].sort((a, b) => a.rank - b.rank);
  return (
-    <div className="ChaRankPage">
-      <h2>캐릭터 랭킹</h2>
-      <div className="tableHeader">
-        <ul className="headerUl">
-          <li className="headerRank">순위</li>
-          <li className="headerImg">이미지</li>
-          <li className="headerCha">캐릭터</li>
-          <li className="headerAni">애니메이션</li>
-          <li className="headerDate">방영일</li>
-        </ul>
-      </div>
+    <div className="min-h-screen bg-background pt-24 pb-20 px-6 md:px-12">
+      <div className="max-w-[1440px] mx-auto">
+        <div className="flex items-center gap-4 mb-12">
+            <div className="w-1.5 h-10 bg-primary rounded-full"></div>
+            <div>
+                <h2 className="text-3xl font-black text-slate-800 tracking-tight flex items-center gap-2">
+                    Character Ranking
+                    <Trophy className="text-yellow-400 fill-yellow-400" size={24} />
+                </h2>
+                <p className="text-sm font-medium text-slate-400 tracking-wide uppercase">Weekly Best Characters</p>
+            </div>
+        </div>
 
-      <ul className="tableBody">
-        {sorted.map((character) => (
-          <ChaRankItem key={character.id} character={character} />
-        ))}
-      </ul>
+        <div className="bg-white rounded-[2rem] shadow-sm border border-blue-50/50 overflow-hidden">
+            <div className="grid grid-cols-12 gap-4 p-6 bg-slate-50/50 border-b border-blue-50 text-sm font-bold text-slate-500 uppercase tracking-wider text-center">
+                <div className="col-span-1">Rank</div>
+                <div className="col-span-2">Image</div>
+                <div className="col-span-3 text-left pl-4">Character</div>
+                <div className="col-span-4 text-left">Animation</div>
+                <div className="col-span-2">Date</div>
+            </div>
+
+            <ul className="divide-y divide-blue-50">
+                {sorted.map((character) => (
+                <ChaRankItem key={character.id} character={character} />
+                ))}
+            </ul>
+        </div>
+      </div>
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import ChaLineItem from './ChaLineItem';
-import './ChaLine.css';
+import { Quote } from 'lucide-react';
 
 const ChaLine = () => {
   const lines = [
@@ -102,153 +102,27 @@ const ChaLine = () => {
       title: '나루토',
       likeCount: 7719
     },
-    // {
-    //   id: 15,
-    //   image: '/images/',
-    //   content: '',
-    //   title: '',
-    // },
-    // {
-    //   id: 16,
-    //   image: '/images/',
-    //   content: '',
-    //   title: '',
-    // },
-    // {
-    //   id: 17,
-    //   image: '/images/',
-    //   content: '',
-    //   title: '',
-    // },
-    // {
-    //   id: 18,
-    //   image: '/images/',
-    //   content: '',
-    //   title: '',
-    // },
-    // {
-    //   id: 19,
-    //   image: '/images/',
-    //   content: '',
-    //   title: '',
-    // },
-    // {
-    //   id: 20,
-    //   image: '/images/',
-    //   content: '',
-    //   title: '',
-    // },
-    // {
-    //   id: 21,
-    //   image: '/images/',
-    //   content: '',
-    //   title: '',
-    // },
-    // {
-    //   id: 22,
-    //   image: '/images/',
-    //   content: '',
-    //   title: '',
-    // },
-    // {
-    //   id: 23,
-    //   image: '/images/',
-    //   content: '',
-    //   title: '',
-    // },
-    // {
-    //   id: 24,
-    //   image: '/images/',
-    //   content: '',
-    //   title: '',
-    // },
-    // {
-    //   id: 25,
-    //   image: '/images/',
-    //   content: '',
-    //   title: '',
-    // },
-    // {
-    //   id: 26,
-    //   image: '/images/',
-    //   content: '',
-    //   title: '',
-    // },
-    // {
-    //   id: 27,
-    //   image: '/images/',
-    //   content: '',
-    //   title: '',
-    // },
-    // {
-    //   id: 28,
-    //   image: '/images/',
-    //   content: '',
-    //   title: '',
-    // },
-    // {
-    //   id: 29,
-    //   image: '/images/',
-    //   content: '',
-    //   title: '',
-    // },
-    // {
-    //   id: 30,
-    //   image: '/images/',
-    //   content: '',
-    //   title: '',
-    // },
-    // {
-    //   id: 31,
-    //   image: '/images/',
-    //   content: '',
-    //   title: '',
-    // },
-    // {
-    //   id: 32,
-    //   image: '/images/',
-    //   content: '',
-    //   title: '',
-    // },
-    // {
-    //   id: 33,
-    //   image: '/images/',
-    //   content: '',
-    //   title: '',
-    // },
-    // {
-    //   id: 34,
-    //   image: '/images/',
-    //   content: '',
-    //   title: '',
-    // },
-    // {
-    //   id: 35,
-    //   image: '/images/',
-    //   content: '',
-    //   title: '',
-    // },
-    // {
-    //   id: 36,
-    //   image: '/images/',
-    //   content: '',
-    //   title: '',
-    // },
-    // {
-    //   id: 37,
-    //   image: '/images/',
-    //   content: '',
-    //   title: '',
-    // },
   ];
   return (
-    <div className="ChaLine">
-      <h2>명대사</h2>
-      <ul>
-        {lines.map((line) => (
-          <ChaLineItem key={line.id} line={line} />
-        ))}
-      </ul>
+    <div className="min-h-screen bg-background pt-24 pb-20 px-6 md:px-12">
+      <div className="max-w-[1440px] mx-auto">
+        <div className="flex items-center gap-4 mb-12">
+            <div className="w-1.5 h-10 bg-primary rounded-full"></div>
+            <div>
+                <h2 className="text-3xl font-black text-slate-800 tracking-tight flex items-center gap-2">
+                    Famous Lines
+                    <Quote className="text-primary" size={24} />
+                </h2>
+                <p className="text-sm font-medium text-slate-400 tracking-wide uppercase">Unforgettable Moments</p>
+            </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {lines.map((line) => (
+            <ChaLineItem key={line.id} line={line} />
+            ))}
+        </div>
+      </div>
     </div>
   );
 };
