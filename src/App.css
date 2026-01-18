@@ -33,7 +33,7 @@ li {
 }
 
 /* 버튼 공통 스타일 */
-button {
+/* button {
   padding: 6px 14px;
   margin: 4px;
   border: none;
@@ -47,7 +47,7 @@ button {
 
 button:hover {
   background-color: #3730a3;
-}
+} */
 
 /* DetailPage 스타일 */
 .DetailPage {
