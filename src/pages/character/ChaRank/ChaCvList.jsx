@@ -1,70 +1,38 @@
+import { useState, useEffect } from 'react';
 import ChaCvListItem from './ChaCvListItem';
 import { Mic2 } from 'lucide-react';
 
 const ChaCvList = () => {
-  const cvList = [
-    {
-      id: 1001,
-      image: '/images/kouki0.jpg',
-      rank: 1,
-      name: '우치야마 코우키',
-      aniImage: [
-        '/images/kouki1.png',
-        '/images/kouki2.png',
-        '/images/kouki3.jpg',
-        '/images/kouki4.png',
-      ],
-    },
-    {
-      id: 1002,
-      image: '/images/sayumi0.jpg',
-      rank: 2,
-      name: '스즈시로 사유미',
-      aniImage: [
-        '/images/sayumi1.jpg',
-        '/images/sayumi2.png',
-        '/images/sayumi3.jpg',
-        '/images/sayumi4.jpg',
-      ],
-    },
-    {
-      id: 1003,
-      image: '/images/taka.jpg',
-      rank: 3,
-      name: '타카하시 리에',
-      aniImage: [
-        '/images/taka1.jpg',
-        '/images/taka2.jpg',
-        '/images/taka3.jpg',
-        '/images/taka4.jpg',
-        '/images/taka5.jpg',
-      ],
-    },
-    {
-      id: 1004,
-      image: '/images/kenjiro0.jpg',
-      rank: 4,
-      name: '츠다 켄지로',
-      aniImage: [
-        '/images/kenjiro1.png',
-        '/images/kenjiro3.jpg',
-        '/images/kenjiro4.jpg',
-        '/images/kenjiro5.png',
-        '/images/kenjiro6.jpg',
-      ],
-    },
-    {
-      id: 1005,
-      image: '/images/junya0.jpg',
-      rank: 5,
-      name: '에노키 쥰야',
-      aniImage: [
-        '/images/junya1.jpg',
-        '/images/junya2.jpg',
-        '/images/junya3.png',
-      ],
-    },
-  ];
+  const [cvList, setCvList] = useState([]);
+
+  useEffect(() => {
+    fetch("/data/onnadaCvList.json")
+      .then((res) => res.json())
+      .then((data) => {
+        // 데이터 매핑 및 가공
+        const mappedData = data.map((item, index) => {
+          // id를 기반으로 일관된 좋아요 수 생성
+          const seed = parseInt(item.id.toString().replace(/\D/g, '')) || 0;
+          const likes = (seed * 9301 + 49297) % 4900 + 100;
+
+          return {
+            id: item.id,
+            rank: index + 1,
+            name: item.name,
+            image: item.image?.thumb || item.image?.full || "/images/no-image.png",
+            // works 배열에서 이미지가 있는 것만 최대 10개 추출
+            aniImage: item.works
+              .map(work => work.thumb_image || work.full_image)
+              .filter(img => img)
+              .slice(0, 10),
+            likes: likes
+          };
+        });
+        setCvList(mappedData);
+      })
+      .catch((err) => console.error("성우 데이터 로딩 실패:", err));
+  }, []);
+
   return (
     <div className="min-h-screen bg-background pt-24 pb-20 px-6 md:px-12">
       <div className="max-w-[1440px] mx-auto">

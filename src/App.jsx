@@ -25,7 +25,7 @@ import './App.css';
 import ChaPostDetail from './pages/character/ChaPost/ChaPostDetail';
 import UserList from './pages/user/UserList';
 import { UserLogin } from './pages/user';
-import { AdminAniLiEd } from './components/admin/AdminAni';
+import { AdminAniLiEd, AdminAniEdit } from './components/admin/AdminAni';
 
 
 
@@ -136,6 +136,7 @@ function App() {
             <Route path="/AdCha/:id" element={<AdminChaFLLiEd />} />
             <Route path="/AdminAni" element={<AdminAni />} />
             <Route path="/AdminAniLiEd/:id" element={<AdminAniLiEd />} />
+            <Route path="/AdminAni/edit/:id" element={<AdminAniEdit />} />
           </Route>
         )}
 

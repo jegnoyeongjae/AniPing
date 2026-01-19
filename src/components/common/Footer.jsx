@@ -8,7 +8,7 @@ const Footer = () => {
             <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row justify-between items-start gap-12">
                 <div className="space-y-8 max-w-sm">
                     <div className="flex items-center gap-2">
-                        <img src="/images/AniPing_candidate1.png" alt="애니핑" className="h-10 w-auto" />
+                        <img src="/images/AnipingLogoNoBack.png" alt="애니핑" className="h-20 w-auto mix-blend-multiply" />
                         <Sparkles className="text-primary animate-pulse" size={16} />
                     </div>
                     <div className="space-y-2 font-medium leading-relaxed">

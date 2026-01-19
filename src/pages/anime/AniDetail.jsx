@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import "./AniDetail.css";
 import { AniCha, AniComment, AniInfo, AniPv, AniTag } from "../../components/anime";
@@ -43,18 +42,35 @@ const AniDetail = () => {
   }
   return (
     <div className="ani-detail-container">
-      <AniInfo />
-      <AniCha />
-      <AniPv />
-      <AniTag />
-      {/* 기존에 있던 <AniComment />를 삭제하거나 주석 처리하고 아래 Comment 컴포넌트를 사용하세요 */}
-      <Comment
-        comments={comments}
-        onAddComment={onAddComment}
-        commentText={commentText}
-        setCommentText={setCommentText}
-        onDeleteComment={handleDeleteComment}
-      />
+      <div className="ani-section-card">
+        <AniInfo />
+      </div>
+      
+      <div className="ani-section-card">
+        <h3 className="ani-detail-title">등장인물</h3>
+        <AniCha />
+      </div>
+
+      <div className="ani-section-card">
+        <h3 className="ani-detail-title">PV / 예고편</h3>
+        <AniPv />
+      </div>
+
+      <div className="ani-section-card">
+        <h3 className="ani-detail-title">태그 정보</h3>
+        <AniTag />
+      </div>
+
+      <div className="ani-section-card">
+        <h3 className="ani-detail-title">댓글</h3>
+        <Comment
+          comments={comments}
+          onAddComment={onAddComment}
+          commentText={commentText}
+          setCommentText={setCommentText}
+          onDeleteComment={handleDeleteComment}
+        />
+      </div>
     </div>
   );
 };

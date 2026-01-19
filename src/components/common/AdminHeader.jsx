@@ -71,14 +71,6 @@ const AdminHeader = ({ isCollapsed, toggleSidebar }) => {
         <aside 
             className={`bg-white shadow-lg flex flex-col h-screen fixed top-0 left-0 z-50 transition-all duration-300 ease-in-out ${isCollapsed ? 'w-20' : 'w-64'}`}
         >
-            {/* Logo */}
-            <div className="p-4 border-b border-slate-100 flex items-center justify-center h-20">
-                <Link to="/AdminBoard" className="flex items-center gap-2 group">
-                    <img src="/images/AniPing_candidate1.png" alt="AniPing" className={`h-8 w-auto transition-transform duration-300 ${isCollapsed ? 'scale-100' : 'scale-105'}`} />
-                    {!isCollapsed && <Sparkles className="text-primary transition-opacity duration-200" size={16} />}
-                </Link>
-            </div>
-
             {/* Admin Info */}
             <div className={`p-4 border-b border-slate-100 text-center transition-all duration-300 overflow-hidden ${isCollapsed ? 'h-0 p-0 opacity-0' : 'h-auto p-6 opacity-100'}`}>
                 <UserCircle size={48} className="text-slate-400 mx-auto mb-2" />

@@ -60,7 +60,7 @@ const Header = () => {
                 <div className="flex-1">
                     <Link to="/">
                         <div className="flex items-center gap-2 cursor-pointer group">
-                            <img src="/images/AniPing_candidate1.png" alt="AniPing" className="h-9 w-auto transition-transform group-hover:scale-105" />
+                            <img src="/images/AnipingLogoNoBack.png" alt="AniPing" className="h-20 w-auto transition-transform group-hover:scale-105 mix-blend-multiply" />
                             <Sparkles className="text-primary opacity-0 group-hover:opacity-100 transition-opacity" size={16} />
                         </div>
                     </Link>

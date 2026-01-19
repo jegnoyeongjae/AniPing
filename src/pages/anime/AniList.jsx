@@ -79,9 +79,9 @@ const AniList = () => {
                     <Star size={12} fill="currentColor" />
                     {item.score || "N/A"}
                   </div>
-                  <div className="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
-                    <div className="w-14 h-14 rounded-full bg-white/90 backdrop-blur-md flex items-center justify-center shadow-2xl scale-50 group-hover:scale-100 transition-transform duration-500">
-                      <Play className="text-primary ml-1" size={24} fill="currentColor" />
+                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
+                    <div className="px-6 py-3 bg-white/90 backdrop-blur-md rounded-full shadow-2xl scale-50 group-hover:scale-100 transition-transform duration-300">
+                      <span className="text-primary font-bold text-sm whitespace-nowrap">상세페이지로</span>
                     </div>
                   </div>
                 </div>

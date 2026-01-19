@@ -1,16 +1,25 @@
 import './CharacterList.css';
 
-const CharacterList = ({ aniList }) => {
+const CharacterList = ({ works }) => {
+  if (!works || works.length === 0) {
+    return <div className="no-works">출연 작품 정보가 없습니다.</div>;
+  }
+
   return (
     <div className="CharacterList">
-      <h2>맡은인물</h2>
       <div className="listBox">
-        {aniList.map((ani, idx) => (
+        {works.map((work, idx) => (
           <div key={idx} className="aniBox">
-            <img src={ani.aniImg} alt={ani.anititle} />
+            <div className="img-wrapper">
+              <img 
+                src={work.thumb_image || work.full_image || "/images/no-image.png"} 
+                alt={work.character_name} 
+                onError={(e) => {e.target.src = "/images/no-image.png"}}
+              />
+            </div>
             <div className="aniList">
-              <p className="aniTitle">{ani.aniTitle}</p>
-              <p className="aniName">{ani.aniName}</p>
+              <p className="charName">{work.character_name}</p>
+              <p className="aniTitle">{work.anime_title}</p>
             </div>
           </div>
         ))}
