@@ -30,7 +30,7 @@ import { AdminAniLiEd } from './components/admin/AdminAni';
 
 
 function App() {
-  const [type, setType] = useState('user');
+  const [type, setType] = useState('admin');
   const [searchLis, setSearchLis] = useState([]);
   const [posts, setPosts] = useState([
     {
@@ -122,6 +122,7 @@ function App() {
 
         {type === 'admin' && (
           <Route path="/" element={<AdminRouter />}>
+            <Route index element={<AdminBoard />} />
             <Route path="/AdminBoard" element={<AdminBoard />} />
             <Route path="/AdUserLi" element={<AdUserLi />} />
             <Route path="/AdminSetting" element={<AdminSetting />} />

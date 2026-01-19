@@ -27,10 +27,19 @@ body {
     display: flex;
         flex-direction: column;
 } */
+
+/* 
+  아래 li 스타일은 프로젝트 전역에 영향을 주어
+  사이드바 메뉴와 같은 다른 컴포넌트의 레이아웃을 깨뜨리는 원인이 됩니다.
+  Tailwind CSS와 같은 유틸리티 우선 프레임워크를 사용할 때는
+  이러한 전역 태그 스타일을 피하는 것이 좋습니다.
+*/
+/* 
 li {
   display: flex;
   justify-content: space-between;
-}
+} 
+*/
 
 /* 버튼 공통 스타일 */
 /* button {

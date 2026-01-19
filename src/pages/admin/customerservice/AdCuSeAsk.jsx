@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { AdCSAskLi } from "../../../components/admin/customerservice";
-
-import './AdCuSeAsk.css';
+import { ShieldQuestion } from 'lucide-react';
 
 const AdCuSeAsk = () => {
     const [userAsks, setUserAsks] = useState([]);
@@ -21,19 +20,30 @@ const AdCuSeAsk = () => {
         }
     }
 
-
     return (
-        <div id="AdCuSeAsk">
-            <div className="inner">
-                <ul className="askUl">
-                    <div className="askTitle">
-                        <h2></h2>
-                        <h2>제목</h2>
-                        <h2>글쓴이</h2>
-                        <h2>문의일자</h2>
-                        <h2>처리상태</h2>
-                    </div>
+        <div className="min-h-screen bg-slate-50 p-8">
+            <div className="max-w-7xl mx-auto">
+                <div className="flex items-center gap-4 mb-10">
+                    <div className="w-1.5 h-10 bg-primary rounded-full"></div>
                     <div>
+                        <h2 className="text-3xl font-black text-slate-800 tracking-tight flex items-center gap-2">
+                            Customer Inquiries
+                            <ShieldQuestion className="text-primary" size={28} />
+                        </h2>
+                        <p className="text-sm font-medium text-slate-400 tracking-wide uppercase">1:1 문의 관리</p>
+                    </div>
+                </div>
+
+                <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+                    <div className="grid grid-cols-12 gap-4 p-5 bg-slate-100/80 text-sm font-bold text-slate-500 uppercase tracking-wider text-left">
+                        <div className="col-span-1 text-center">No</div>
+                        <div className="col-span-5">Title</div>
+                        <div className="col-span-2">User</div>
+                        <div className="col-span-2">Date</div>
+                        <div className="col-span-2 text-center">Status</div>
+                    </div>
+
+                    <ul className="divide-y divide-slate-100">
                         {userAsks.map((userAsk, idx) => (
                             <AdCSAskLi
                                 key={userAsk.id}
@@ -43,8 +53,8 @@ const AdCuSeAsk = () => {
                                 setUserAsks={setUserAsks}
                             />
                         ))}
-                    </div>
-                </ul>
+                    </ul>
+                </div>
             </div>
         </div>
     )
