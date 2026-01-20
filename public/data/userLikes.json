@@ -1,0 +1,17 @@
+[
+  { "id": 1, "title": "소드아트온라인", "category": "fantasy", "img": "/images/banner/SAO.png", "likedDate": "2024-01-15" },
+  { "id": 2, "title": "귀멸의칼날", "category": "fantasy", "img": "/images/banner/demon2.png", "likedDate": "2024-02-20" },
+  { "id": 11, "title": "너의이름은", "category": "romance", "img": "/images/banner/kiminawa.png", "likedDate": "2024-03-10" },
+  { "id": 21, "title": "슈타인즈 게이트", "category": "sf", "img": "/images/banner/shutage.png", "likedDate": "2024-01-05" },
+  { "id": 31, "title": "봇치 더 록!", "category": "normal", "img": "/images/banner/bocchi.jpg", "likedDate": "2024-04-01" },
+  { "id": 41, "title": "데스노트", "category": "mystery", "img": "/images/banner/note.jpg", "likedDate": "2023-12-25" },
+  { "id": 3, "title": "원피스", "category": "fantasy", "img": "/images/banner/OneP.jpg", "likedDate": "2024-02-15" },
+  { "id": 12, "title": "그 비스크돌은 사랑을 한다", "category": "romance", "img": "/images/banner/kigae2.jpg", "likedDate": "2024-03-20" },
+  { "id": 22, "title": "길티크라운", "category": "sf", "img": "/images/banner/gilty.jpg", "likedDate": "2024-01-10" },
+  { "id": 32, "title": "스파이 패밀리", "category": "normal", "img": "/images/banner/spy.jpg", "likedDate": "2024-04-05" },
+  { "id": 42, "title": "어서오세요 실력지상주의 교실에", "category": "mystery", "img": "/images/banner/jitsu.jpg", "likedDate": "2024-01-01" },
+  { "id": 4, "title": "장송의 프리렌", "category": "fantasy", "img": "/images/banner/friren.jpg", "likedDate": "2024-02-25" },
+  { "id": 13, "title": "카구야 님은 고백받고 싶어", "category": "romance", "img": "/images/banner/gokuhaku.jpg", "likedDate": "2024-03-25" },
+  { "id": 23, "title": "86 -에이티식스-", "category": "sf", "img": "/images/banner/86six.jpg", "likedDate": "2024-01-20" },
+  { "id": 33, "title": "귀엽기만 한게 아닌 시키모리양", "category": "normal", "img": "/images/banner/mori.jpg", "likedDate": "2024-04-10" }
+]

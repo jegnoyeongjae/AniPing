@@ -67,12 +67,13 @@
 }
 .socialbtn{
   display: flex;
-  
+  height: 70px;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .googleBtn {
   background-color: transparent !important;
-  width: 100%;
   background-size: cover;
   display: inline-block;
 }

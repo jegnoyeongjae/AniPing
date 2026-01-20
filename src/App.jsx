@@ -24,13 +24,14 @@ import { HomePage, AniList, AniDetail } from './pages';
 import './App.css';
 import ChaPostDetail from './pages/character/ChaPost/ChaPostDetail';
 import UserList from './pages/user/UserList';
-import { UserLogin } from './pages/user';
+import { UserLogin, UserJoin, UserMyPage } from './pages/user';
 import { AdminAniLiEd, AdminAniEdit } from './components/admin/AdminAni';
+import { useUser } from './context/UserContext'; // Context Hook Import
 
 
 
 function App() {
-  const [type, setType] = useState('admin');
+  const { userType } = useUser(); // Context에서 userType 가져오기
   const [searchLis, setSearchLis] = useState([]);
   const [posts, setPosts] = useState([
     {
@@ -88,7 +89,12 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {type === 'user' && (
+        {/* 로그인/회원가입은 type과 무관하게 접근 가능하도록 분리 */}
+        <Route path='/login' element={<UserLogin />} />
+        <Route path='/join' element={<UserJoin />} />
+
+        {/* userType이 'admin'이 아닐 때 (guest, user)는 사용자 라우트 렌더링 */}
+        {userType !== 'admin' && (
           <Route path="/" element={<AppRoute />}>
             <Route index element={<HomePage Data={''} />} />
             <Route path="/list/:category" element={<AniList />} />
@@ -116,11 +122,12 @@ function App() {
               path="/chaPostDetail/:id"
               element={<ChaPostDetail posts={posts} setPosts={setPosts} />}
             />
-            <Route path='/login' element={<UserLogin />}></Route>
+            <Route path="/mypage" element={<UserMyPage />} />
           </Route>
         )}
 
-        {type === 'admin' && (
+        {/* userType이 'admin'일 때 관리자 라우트 렌더링 */}
+        {userType === 'admin' && (
           <Route path="/" element={<AdminRouter />}>
             <Route index element={<AdminBoard />} />
             <Route path="/AdminBoard" element={<AdminBoard />} />
@@ -140,7 +147,8 @@ function App() {
           </Route>
         )}
 
-        {type !== 'user' && type !== 'admin' && (
+        {/* 예외 처리: userType이 유효하지 않을 때 */}
+        {userType !== 'guest' && userType !== 'user' && userType !== 'admin' && (
           <Route path="/" element={<p>정상적이지 않은 접근 입니다.</p>} />
         )}
       </Routes>
