@@ -1,13 +1,10 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState } from "react";
-import { Search, X, User, ChevronDown, Sparkles, ArrowRight, LayoutDashboard } from "lucide-react";
+import { Search, X, User, ChevronDown, Sparkles, ArrowRight } from "lucide-react";
 import './Header.css';
 
 const Header = () => {
-    const navigate = useNavigate();
-    // [테스트용 상태] 'guest', 'user', 'admin' 중 하나로 설정
-    const [userType, setUserType] = useState('guest'); 
-    
+    const [isLogin, setIsLogin] = useState(false);
     const [isOpenSearch, setIsOpenSearch] = useState(false);
     const [activeDropdown, setActiveDropdown] = useState(null);
     const [searchTerm, setSearchTerm] = useState("");
@@ -52,32 +49,18 @@ const Header = () => {
         e.preventDefault();
         if (searchTerm.trim()) {
             console.log("검색 요청:", searchTerm);
-            // 여기에 실제 검색 로직 추가
+            // 여기에 실제 검색 로직 추가 (예: 페이지 이동)
+            // navigate(`/search?q=${searchTerm}`);
         }
-    };
-
-    const handleLogout = () => {
-        // 로그아웃 로직 (토큰 삭제 등)
-        alert("로그아웃 되었습니다.");
-        setUserType('guest'); // 테스트용: 로그아웃 시 게스트로 변경
-        navigate('/');
     };
 
     return (
         <>
-            {/* [개발용 테스트 컨트롤러] - 실제 배포 시 제거 */}
-            <div className="fixed top-24 right-4 z-[9999] bg-black/80 text-white p-3 rounded-xl shadow-2xl flex flex-col gap-2 text-xs">
-                <p className="font-bold text-center border-b border-white/20 pb-1 mb-1">Header Test</p>
-                <button onClick={() => setUserType('guest')} className={`px-2 py-1 rounded ${userType === 'guest' ? 'bg-primary' : 'bg-gray-700'}`}>Guest 모드</button>
-                <button onClick={() => setUserType('user')} className={`px-2 py-1 rounded ${userType === 'user' ? 'bg-primary' : 'bg-gray-700'}`}>User 모드</button>
-                <button onClick={() => setUserType('admin')} className={`px-2 py-1 rounded ${userType === 'admin' ? 'bg-primary' : 'bg-gray-700'}`}>Admin 모드</button>
-            </div>
-
             <header className="fixed top-0 left-0 w-full h-20 glass-panel z-[500] flex items-center px-6 md:px-12 border-b border-blue-50/50">
                 <div className="flex-1">
                     <Link to="/">
                         <div className="flex items-center gap-2 cursor-pointer group">
-                            <img src="/images/AnipingLogoNoBack.png" alt="AniPing" className="h-20 w-auto transition-transform group-hover:scale-105 mix-blend-multiply" />
+                            <img src="/images/AniPing_candidate1.png" alt="AniPing" className="h-9 w-auto transition-transform group-hover:scale-105" />
                             <Sparkles className="text-primary opacity-0 group-hover:opacity-100 transition-opacity" size={16} />
                         </div>
                     </Link>
@@ -114,27 +97,15 @@ const Header = () => {
 
                 <div className="flex-1 flex justify-end items-center space-x-6">
                     <div className="hidden lg:flex items-center space-x-6 text-[13px] font-bold">
-                        {/* Guest Mode */}
-                        {userType === 'guest' && (
+                        {isLogin ? (
+                            <ul className="flex items-center space-x-6">
+                                <li><Link to="/user" className="text-slate-600 hover:text-primary transition-colors flex items-center gap-2"><User size={16} /> MyPage</Link></li>
+                                <li><button onClick={() => setIsLogin(false)} className="text-slate-600 hover:text-primary transition-colors bg-transparent">LogOut</button></li>
+                            </ul>
+                        ) : (
                             <ul className="flex items-center space-x-6">
                                 <li><Link to="/login" className="text-slate-500 hover:text-primary transition-colors uppercase tracking-wider">LOGIN</Link></li>
-                                <li><Link to="/join" className="bg-primary text-white px-7 py-2.5 rounded-full hover:shadow-[0_10px_20px_-5px_rgba(125,211,252,0.5)] hover:-translate-y-0.5 transition-all uppercase tracking-wider">JOIN</Link></li>
-                            </ul>
-                        )}
-
-                        {/* User Mode */}
-                        {userType === 'user' && (
-                            <ul className="flex items-center space-x-6">
-                                <li><Link to="/mypage" className="text-slate-600 hover:text-primary transition-colors flex items-center gap-2"><User size={16} /> MyPage</Link></li>
-                                <li><button onClick={handleLogout} className="text-slate-600 hover:text-primary transition-colors bg-transparent">LogOut</button></li>
-                            </ul>
-                        )}
-
-                        {/* Admin Mode */}
-                        {userType === 'admin' && (
-                            <ul className="flex items-center space-x-6">
-                                <li><Link to="/AdminBoard" className="text-slate-600 hover:text-primary transition-colors flex items-center gap-2"><LayoutDashboard size={16} /> Admin Page</Link></li>
-                                <li><button onClick={handleLogout} className="text-slate-600 hover:text-primary transition-colors bg-transparent">LogOut</button></li>
+                                <li><Link to="#" className="bg-primary text-white px-7 py-2.5 rounded-full hover:shadow-[0_10px_20px_-5px_rgba(125,211,252,0.5)] hover:-translate-y-0.5 transition-all uppercase tracking-wider">JOIN</Link></li>
                             </ul>
                         )}
                     </div>

@@ -1,4 +1,4 @@
-import { BrowserRouter, data, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, data, Route, Routes, Navigate } from 'react-router-dom';
 import AppRoute from './router/AppRouter';
 import AdminRouter from './router/AdminRouter';
 import { AdminBoard, AdUserLi, AdminSetting } from './pages/admin';
@@ -23,8 +23,8 @@ import { AdminVALiEd, AdVaLiEdBtn } from './components/admin/AdminVoiceActor';
 import { HomePage, AniList, AniDetail } from './pages';
 import './App.css';
 import ChaPostDetail from './pages/character/ChaPost/ChaPostDetail';
-import UserList from './pages/user/UserList';
 import { UserLogin, UserJoin, UserMyPage } from './pages/user';
+import { MyInfo, MyLikes, MyPosts, MyInquiries } from './components/user/mypage';
 import { AdminAniLiEd, AdminAniEdit } from './components/admin/AdminAni';
 import { useUser } from './context/UserContext'; // Context Hook Import
 
@@ -33,26 +33,8 @@ import { useUser } from './context/UserContext'; // Context Hook Import
 function App() {
   const { userType } = useUser(); // Context에서 userType 가져오기
   const [searchLis, setSearchLis] = useState([]);
-  const [posts, setPosts] = useState([
-    {
-      id: 1,
-      title: '집가고싶다',
-      writer: '작성자1',
-      date: '2025.08.01',
-      content: '피곤하다',
-      views: 131,
-      like: 10,
-    },
-    {
-      id: 2,
-      title: '배고프다',
-      writer: '작성자2',
-      date: '2025.08.01',
-      content: '맛있는거 먹고싶다',
-      views: 333,
-      like: 31,
-    },
-  ]);
+  const [posts, setPosts] = useState([]); // 초기값을 빈 배열로 변경
+
   // const handleSavePost = (newPost) => {
   //   setPosts((prevPosts) => [newPost, ...prevPosts]);
   // };
@@ -63,28 +45,31 @@ function App() {
     const newPost = {
       id: newId,
       ...newPostData,
-      writer: '새 작성자',
-      title: newPostData.title,
-      content: newPostData.content,
+      writer: '새 작성자', // 실제로는 로그인 유저 정보 사용
       date: new Date().toISOString().slice(0, 10),
       views: 0,
-      like: 1,
+      likes: 0,
     };
     setPosts((prevPosts) => [newPost, ...prevPosts]);
   };
+  
   useEffect(() => {
-    fetchData();
-  }, []);
+    // 유저 정보 로드
+    axios.get('/data/userInfo.json')
+      .then(res => setSearchLis(res.data.userInfo))
+      .catch(e => console.error('유저 정보 로드 실패:', e));
 
-  const fetchData = async () => {
-    try {
-      const response = await axios.get('/data/userInfo.json');
-      const data = response.data.userInfo;
-      setSearchLis(data);
-    } catch (e) {
-      console.error('데이터 로드에 실패했습니다.');
-    }
-  };
+    // 게시글 정보 로드
+    axios.get('/data/userPosts.json')
+      .then(res => {
+        const postsWithWriter = res.data.map(post => ({
+          ...post,
+          writer: post.writer || '익명' // writer가 없다면 '익명'으로 표시
+        }));
+        setPosts(postsWithWriter);
+      })
+      .catch(e => console.error('게시글 정보 로드 실패:', e));
+  }, []);
 
   return (
     <BrowserRouter>
@@ -99,14 +84,8 @@ function App() {
             <Route index element={<HomePage Data={''} />} />
             <Route path="/list/:category" element={<AniList />} />
             <Route path="/new" element={''} />
-            <Route path="/user" element={<UserList/>} />
             <Route path="/edit/:id" element={''} />
-            {/* <Route path="/edit/:id" element={<EditPage todos={todos} onUpdateTodo={onUpdateTodo} />} /> */}
-
             <Route path="/detail/:id" element={<AniDetail />} />
-            {/* <Route path="/detail/:id" element={
-            isLoaded ? <DetailPage todos={todos} onRemove={onRemove} changeIsDone={changeIsDone} /> : <p>데이터 로딩 중...</p>
-          } /> */}
             <Route path="/service" element={<ChaService />} />
             <Route path="/chaRankPage" element={<ChaRankPage />} />
             <Route path="/chaLine" element={<ChaLine />} />
@@ -122,7 +101,16 @@ function App() {
               path="/chaPostDetail/:id"
               element={<ChaPostDetail posts={posts} setPosts={setPosts} />}
             />
-            <Route path="/mypage" element={<UserMyPage />} />
+            
+            {/* 마이페이지 라우트 설정 */}
+            <Route path="/user" element={<UserMyPage />}>
+                <Route index element={<Navigate to="profile" replace />} />
+                <Route path="profile" element={<MyInfo />} />
+                <Route path="wishlist" element={<MyLikes />} />
+                <Route path="posts" element={<MyPosts />} />
+                <Route path="inquiry" element={<MyInquiries />} />
+                {/* lines 등 추가 가능 */}
+            </Route>
           </Route>
         )}
 
@@ -139,7 +127,6 @@ function App() {
             <Route path="/Adedit/:id" element={<AdVaLiEdBtn />} />
             <Route path="/AdNew" element={<AdVaLiEdBtn />} />
             <Route path="/AdminChaFL/*" element={<AdminChaFL />} />
-            {/* <Route path="/AdChaNew" element={<AdminChaFLLiEd />} /> */}
             <Route path="/AdCha/:id" element={<AdminChaFLLiEd />} />
             <Route path="/AdminAni" element={<AdminAni />} />
             <Route path="/AdminAniLiEd/:id" element={<AdminAniLiEd />} />
