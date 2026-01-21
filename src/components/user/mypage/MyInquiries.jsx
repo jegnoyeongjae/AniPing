@@ -1,103 +1,130 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { HelpCircle, ChevronDown, CheckCircle, Clock, AlertCircle } from 'lucide-react';
+import { ChevronDown, Search } from 'lucide-react';
+import { Paging } from '../../../components/common/Paging';
 
 const MyInquiries = () => {
-  const [inquiries, setInquiries] = useState([]);
-  const [openId, setOpenId] = useState(null);
+  const [allInquiries, setAllInquiries] = useState([]);
+  const [filteredInquiries, setFilteredInquiries] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [openInquiry, setOpenInquiry] = useState(null);
+  
+  const [searchTerm, setSearchTerm] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 5;
 
   useEffect(() => {
     axios.get('/data/userInquiries.json')
-      .then(res => setInquiries(res.data))
-      .catch(err => console.error("Failed to load inquiries data", err));
+      .then(res => {
+        setAllInquiries(res.data);
+        setFilteredInquiries(res.data);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error("Failed to load user inquiries", err);
+        setLoading(false);
+      });
   }, []);
 
-  const toggleAccordion = (id) => {
-    setOpenId(openId === id ? null : id);
+  useEffect(() => {
+    let inquiries = [...allInquiries];
+    if (searchTerm) {
+      inquiries = inquiries.filter(inquiry => 
+        inquiry.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        inquiry.content.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        (inquiry.answer && inquiry.answer.toLowerCase().includes(searchTerm.toLowerCase()))
+      );
+    }
+    setFilteredInquiries(inquiries);
+    setCurrentPage(1);
+  }, [searchTerm, allInquiries]);
+
+  const toggleInquiry = (id) => {
+    setOpenInquiry(openInquiry === id ? null : id);
   };
 
-  const getStatusBadge = (status) => {
-    if (status === '답변완료') {
-      return (
-        <span className="flex items-center gap-1 text-xs font-bold text-green-600 bg-green-100 px-2.5 py-1 rounded-full">
-          <CheckCircle size={14} /> 답변완료
-        </span>
-      );
-    } else if (status === '처리중') {
-      return (
-        <span className="flex items-center gap-1 text-xs font-bold text-blue-600 bg-blue-100 px-2.5 py-1 rounded-full">
-          <Clock size={14} /> 처리중
-        </span>
-      );
-    } else {
-      return (
-        <span className="flex items-center gap-1 text-xs font-bold text-slate-500 bg-slate-100 px-2.5 py-1 rounded-full">
-          <AlertCircle size={14} /> 대기중
-        </span>
-      );
+  const getStatusChip = (status) => {
+    switch (status) {
+      case 'ANSWERED':
+        return <span className="px-2 py-1 text-xs font-bold text-green-800 bg-green-100 rounded-full">답변 완료</span>;
+      case 'WAITING':
+        return <span className="px-2 py-1 text-xs font-bold text-orange-800 bg-orange-100 rounded-full">답변 대기</span>;
+      default:
+        return <span className="px-2 py-1 text-xs font-bold text-slate-800 bg-slate-100 rounded-full">{status}</span>;
     }
   };
 
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = filteredInquiries.slice(indexOfFirstItem, indexOfLastItem);
+  const totalPages = Math.ceil(filteredInquiries.length / itemsPerPage);
+
+  if (loading) {
+    return <div className="bg-white p-8 rounded-2xl shadow-sm border border-blue-50 text-center text-slate-500">로딩 중...</div>;
+  }
+
   return (
-    <div className="bg-white p-8 rounded-[2.5rem] shadow-sm border border-blue-50">
-      <div className="flex flex-col md:flex-row justify-between items-end gap-4 mb-8 pb-4 border-b border-slate-100">
-        <div>
-            <h3 className="text-2xl font-black text-slate-800 flex items-center gap-2">
-                <HelpCircle className="text-primary" /> My Inquiries
-            </h3>
-            <p className="text-slate-500 font-medium mt-1 ml-1">총 {inquiries.length}건의 문의 내역이 있습니다.</p>
-        </div>
+    <div className="bg-white p-8 rounded-2xl shadow-sm border border-blue-50">
+      <h3 className="text-2xl font-black text-slate-800 mb-8">문의사항</h3>
+      
+      <div className="relative flex-1 mb-6">
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
+        <input 
+          type="text"
+          placeholder="제목, 내용, 답변으로 검색..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="w-full pl-10 pr-4 py-2 rounded-lg border border-slate-200"
+        />
       </div>
 
-      {inquiries.length > 0 ? (
-        <div className="space-y-4">
-          {inquiries.map((item) => (
-            <div key={item.id} className="border border-slate-200 rounded-2xl overflow-hidden transition-all hover:border-primary/30">
-              <button
-                onClick={() => toggleAccordion(item.id)}
-                className={`w-full flex items-center justify-between p-6 text-left bg-white transition-colors ${openId === item.id ? 'bg-slate-50' : 'hover:bg-slate-50'}`}
-              >
-                <div className="flex-1 pr-4">
-                  <div className="flex items-center gap-3 mb-2">
-                    {getStatusBadge(item.status)}
-                    <span className="text-xs text-slate-400 font-medium">{item.date}</span>
-                  </div>
-                  <h4 className="font-bold text-slate-800 text-lg">{item.title}</h4>
-                </div>
-                <ChevronDown 
-                  className={`text-slate-400 transition-transform duration-300 ${openId === item.id ? 'rotate-180' : ''}`} 
-                />
-              </button>
-              
-              <div 
-                className={`transition-all duration-300 ease-in-out overflow-hidden ${openId === item.id ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}
-              >
-                <div className="p-6 bg-slate-50 border-t border-slate-100 space-y-6">
-                  <div>
-                    <p className="text-sm font-bold text-slate-500 mb-2">문의 내용</p>
-                    <p className="text-slate-700 leading-relaxed bg-white p-4 rounded-xl border border-slate-200">
-                      {item.content}
-                    </p>
-                  </div>
-                  
-                  {item.answer && (
-                    <div>
-                      <p className="text-sm font-bold text-primary mb-2">답변 내용</p>
-                      <div className="text-slate-700 leading-relaxed bg-blue-50/50 p-4 rounded-xl border border-blue-100">
-                        {item.answer}
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+      {filteredInquiries.length === 0 ? (
+        <p className="text-slate-500 text-center py-10">작성한 문의가 없습니다.</p>
       ) : (
-        <div className="text-center py-32 bg-slate-50 rounded-3xl border border-dashed border-slate-200">
-          <HelpCircle size={48} className="mx-auto text-slate-300 mb-4" />
-          <p className="text-slate-500 font-bold text-lg">문의 내역이 없습니다.</p>
-        </div>
+        <>
+          <div className="space-y-2">
+            {currentItems.map((inquiry) => (
+              <div key={inquiry.id} className="border border-slate-100 rounded-lg">
+                <button 
+                  onClick={() => toggleInquiry(inquiry.id)}
+                  className="w-full flex items-center justify-between p-4 text-left"
+                >
+                  <div className="flex items-center gap-4">
+                    {getStatusChip(inquiry.status)}
+                    <span className="font-bold text-slate-800">{inquiry.title}</span>
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <span className="text-sm text-slate-500">{new Date(inquiry.createdAt).toLocaleDateString()}</span>
+                    <ChevronDown 
+                      size={20} 
+                      className={`text-slate-400 transition-transform duration-300 ${openInquiry === inquiry.id ? 'rotate-180' : ''}`} 
+                    />
+                  </div>
+                </button>
+                
+                {openInquiry === inquiry.id && (
+                  <div className="px-6 pb-6 pt-2 border-t border-slate-100 animate-fadeIn">
+                    <div className="space-y-4">
+                      <div className="text-sm text-slate-600 leading-relaxed bg-slate-50 p-4 rounded-md">
+                        <p className="font-bold mb-2 text-slate-700">[문의 내용]</p>
+                        {inquiry.content}
+                      </div>
+                      {inquiry.answer && (
+                        <div className="text-sm text-slate-800 leading-relaxed bg-blue-50 p-4 rounded-md">
+                          <p className="font-bold mb-2 text-primary">[답변 내용]</p>
+                          {inquiry.answer}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+          <div className="mt-8">
+            <Paging page={currentPage} totalPage={totalPages} setPage={setCurrentPage} />
+          </div>
+        </>
       )}
     </div>
   );

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import ChaCvListItem from './ChaCvListItem';
 import { Mic2 } from 'lucide-react';
+import { generateConsistentLikes } from '../../../utils/likes'; // 유틸리티 함수 import
 
 const ChaCvList = () => {
   const [cvList, setCvList] = useState([]);
@@ -9,25 +10,17 @@ const ChaCvList = () => {
     fetch("/data/onnadaCvList.json")
       .then((res) => res.json())
       .then((data) => {
-        // 데이터 매핑 및 가공
-        const mappedData = data.map((item, index) => {
-          // id를 기반으로 일관된 좋아요 수 생성
-          const seed = parseInt(item.id.toString().replace(/\D/g, '')) || 0;
-          const likes = (seed * 9301 + 49297) % 4900 + 100;
-
-          return {
-            id: item.id,
-            rank: index + 1,
-            name: item.name,
-            image: item.image?.thumb || item.image?.full || "/images/no-image.png",
-            // works 배열에서 이미지가 있는 것만 최대 10개 추출
-            aniImage: item.works
-              .map(work => work.thumb_image || work.full_image)
-              .filter(img => img)
-              .slice(0, 10),
-            likes: likes
-          };
-        });
+        const mappedData = data.map((item, index) => ({
+          id: item.id,
+          rank: index + 1,
+          name: item.name,
+          image: item.image?.thumb || item.image?.full || "/images/no-image.png",
+          aniImage: item.works
+            .map(work => work.thumb_image || work.full_image)
+            .filter(img => img)
+            .slice(0, 10),
+          likes: generateConsistentLikes(item.id) // 일관된 좋아요 수 생성
+        }));
         setCvList(mappedData);
       })
       .catch((err) => console.error("성우 데이터 로딩 실패:", err));

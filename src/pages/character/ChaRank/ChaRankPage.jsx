@@ -1,801 +1,141 @@
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
 import ChaRankItem from './ChaRankItem';
-import { Trophy } from 'lucide-react';
+import { Paging } from '../../../components/common/Paging';
+import { Trophy, Plus, Search } from 'lucide-react';
 
 const ChaRankPage = () => {
-  const characters = [
-    {
-      id: 1,
-      name: '리바이',
-      image: '/images/levi.jpg',
-      rank: '1',
-      aniname: '진격의거인',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 2,
-      name: '무이치로',
-      image: '/images/mu.jpg',
-      rank: 2,
-      aniname: '귀멸의 칼날',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 3,
-      name: '나구모',
-      image: '/images/nagumo.jpg',
-      rank: '3',
-      aniname: '사카모토 데이즈',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 4,
-      name: '아카자',
-      image: '/images/akaja.jpg',
-      rank: 4,
-      aniname: '귀멸의 칼날',
-      anidate: '2025-01-01',
-    },
+  const [allCharacters, setAllCharacters] = useState([]);
+  const [filteredCharacters, setFilteredCharacters] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-    {
-      id: 5,
-      name: '포치타',
-      image: '/images/pochita.jpg',
-      rank: 5,
-      aniname: '체인소 맨',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 6,
-      name: '짤랑이',
-      image: '/images/dokin.jpg',
-      rank: 6,
-      aniname: '호빵맨',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 7,
-      name: '힘멜',
-      image: '/images/him.jpg',
-      rank: 7,
-      aniname: '장송의 프리렌',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 8,
-      name: '에키드나',
-      image: '/images/Echidna.png',
-      rank: 8,
-      aniname: 'Re:제로부터 시작하는 이세계 생활',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 9,
-      name: '리무루 템페스트(슬라임)',
-      image: '/images/rimuru.jpg',
-      rank: 9,
-      aniname: '전생했더니 슬라임이었던 건에 대하여 3',
-      anidate: '2025-01-01',
-    },
+  const [searchTerm, setSearchTerm] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
 
-    {
-      id: 10,
-      name: '블라디레나 밀리제',
-      image: '/images/rena.jpg',
-      rank: 10,
-      aniname: '에이티식스',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 11,
-      name: '신에이 노우젠',
-      image: '/images/noujen.jpg',
-      rank: 11,
-      aniname: '에이티식스',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 12,
-      name: '아냐 포저',
-      image: '/images/ana.png',
-      rank: 12,
-      aniname: '스파이 패밀리',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 13,
-      name: '카게야마 토비오',
-      image: '/images/tobio.png',
-      rank: 13,
-      aniname: '하이큐',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 14,
-      name: '고죠 사토루',
-      image: '/images/gojo.jpg',
-      rank: 14,
-      aniname: '주술회전',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 15,
-      name: '사카모토 타로',
-      image: '/images/taro.png',
-      rank: 15,
-      aniname: '사카모토 데이즈',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 16,
-      name: '록시 미굴디아',
-      image: '/images/roxi.jpg',
-      rank: 16,
-      aniname: '무직전생 ~이세계에 갔으면 최선을 다한다~ ',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 17,
-      name: '덴지',
-      image: '/images/denji.png',
-      rank: 17,
-      aniname: '체인소 맨',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 18,
-      name: '렌고쿠 쿄주로',
-      image: '/images/ren.png',
-      rank: 18,
-      aniname: '귀멸의 칼날',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 19,
-      name: '일레이나',
-      image: '/images/Elaina.png',
-      rank: 19,
-      aniname: '마녀의 여행',
-      anidate: '2025-01-01',
-    },
+  useEffect(() => {
+    // 두 개의 JSON 파일을 동시에 불러옵니다.
+    Promise.all([
+      axios.get('/data/animeChaData.json'),
+      axios.get('/data/animeData.json')
+    ])
+      .then(([chaRes, aniRes]) => {
+        const animeMap = {};
+        aniRes.data.forEach(ani => {
+          animeMap[ani.id] = ani.title;
+        });
 
-    {
-      id: 20,
-      name: '미스터 포테이토 헤드',
-      image: '/images/head.jpg',
-      rank: 20,
-      aniname: '토이스토리4',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 21,
-      name: '류구지 켄',
-      image: '/images/dra.png',
-      rank: 21,
-      aniname: '도쿄 리벤저스',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 22,
-      name: '키르아 조르딕',
-      image: '/images/kirua.jpg',
-      rank: 22,
-      aniname: '헌터x헌터',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 23,
-      name: '인도우 히카루',
-      image: '/images/hikaru.jpg',
-      rank: 23,
-      aniname: '히카루가 죽은 여름',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 24,
-      name: '츠지나카 요시키',
-      image: '/images/yosiki.jpg',
-      rank: 24,
-      aniname: '히카루가 죽은 여름',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 25,
-      name: '이치카와 레노',
-      image: '/images/reno.jpg',
-      rank: 25,
-      aniname: '괴수 8호',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 26,
-      name: '미야 오사무',
-      image: '/images/osamu.jpg',
-      rank: 26,
-      aniname: '하이큐',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 27,
-      name: '카네키 켄',
-      image: '/images/kaneki.jpg',
-      rank: 27,
-      aniname: '도쿄 구울',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 28,
-      name: '하시비라 이노스케',
-      image: '/images/ino.jpg',
-      rank: 28,
-      aniname: '귀멸의 칼날',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 29,
-      name: '우즈이 텐겐',
-      image: '/images/tengen.jpg',
-      rank: 29,
-      aniname: '귀멸의 칼날',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 30,
-      name: '히소카',
-      image: '/images/hisoka.jpg',
-      rank: 30,
-      aniname: '헌터x헌터',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 31,
-      name: '토미오카 기유',
-      image: '/images/giyu.jpg',
-      rank: 31,
-      aniname: '귀멸의 칼날',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 32,
-      name: '키부츠지 무잔',
-      image: '/images/mujan.jpg',
-      rank: 32,
-      aniname: '귀멸의 칼날',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 33,
-      name: '세바 나츠키',
-      image: '/images/natuki.jpg',
-      rank: 33,
-      aniname: '사카모토 데이즈',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 34,
-      name: '우즈키 케이(슬러)',
-      image: '/images/kei.jpg',
-      rank: 34,
-      aniname: '사카모토 데이즈',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 35,
-      name: '스나 린타로',
-      image: '/images/sna.jpg',
-      rank: 35,
-      aniname: '하이큐',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 36,
-      name: '진우',
-      image: '/images/jinu.jpg',
-      rank: 36,
-      aniname: '케이팝 데몬 헌터스',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 37,
-      name: 'L',
-      image: '/images/l.jpg',
-      rank: 37,
-      aniname: '데스노트',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 38,
-      name: '이누마키 토게',
-      image: '/images/inumaki.jpg',
-      rank: 38,
-      aniname: '주술회전',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 39,
-      name: 'Mr.2 봉쿠레',
-      image: '/images/bong.jpg',
-      rank: 39,
-      aniname: '원피스',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 40,
-      name: '하야카와 아키',
-      image: '/images/aki.jpg',
-      rank: 40,
-      aniname: '체인소 맨',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 41,
-      name: '사카타 긴토키',
-      image: '/images/gintoki.jpg',
-      rank: 41,
-      aniname: '은혼',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 42,
-      name: '햐키마루',
-      image: '/images/hakimaru.jpg',
-      rank: 42,
-      aniname: '도로로',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 43,
-      name: '셋쇼마루',
-      image: '/images/setsho.jpg',
-      rank: 43,
-      aniname: '이누야샤',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 44,
-      name: '고죠 와카나',
-      image: '/images/wakana.jpg',
-      rank: 44,
-      aniname: '그 비스크돌은 사랑을 한다',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 45,
-      name: '키타가와 마린',
-      image: '/images/marin.jpg',
-      rank: 45,
-      aniname: '그 비스크돌은 사랑을 한다',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 46,
-      name: '하쿠',
-      image: '/images/haku.jpg',
-      rank: 46,
-      aniname: '센과 치히로의 행방불명',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 47,
-      name: '하울',
-      image: '/images/haul.jpg',
-      rank: 47,
-      aniname: '하울의 움직이는 성',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 48,
-      name: '루시나 쿠시나다',
-      image: '/images/rusi.jpg',
-      rank: 48,
-      aniname: '사이버 펑크 엣지 러너',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 49,
-      name: '음속의 소닉',
-      image: '/images/sonic.jpg',
-      rank: 49,
-      aniname: '원펀맨',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 50,
-      name: '야옹 선생',
-      image: '/images/cat.jpg',
-      rank: 50,
-      aniname: '나츠메 우인장',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 51,
-      name: '나기 세이시로',
-      image: '/images/nagi.jpg',
-      rank: 51,
-      aniname: '블루 록',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 52,
-      name: '나츠메 타카시',
-      image: '/images/natume.jpg',
-      rank: 52,
-      aniname: '나츠메 우인장',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 53,
-      name: '란스 크라운',
-      image: '/images/rans.jpg',
-      rank: 53,
-      aniname: '마슐',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 54,
-      name: '쟈바미 유메코',
-      image: '/images/yumeko.jpg',
-      rank: 54,
-      aniname: '카케 구루이',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 55,
-      name: '나기사 카오루',
-      image: '/images/kaoru.jpg',
-      rank: 55,
-      aniname: '에반게리온',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 56,
-      name: '아키라',
-      image: '/images/akira.jpg',
-      rank: 56,
-      aniname: '괴물사변',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 57,
-      name: '로이 머스탱',
-      image: '/images/mustang.jpg',
-      rank: 57,
-      aniname: '강철의 연금술사',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 58,
-      name: '프리렌',
-      image: '/images/free.jpg',
-      rank: 58,
-      aniname: '장송의 프리렌',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 59,
-      name: '슈타르크',
-      image: '/images/suta.jpg',
-      rank: 59,
-      aniname: '장송의 프리렌',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 60,
-      name: '스킵과 로퍼',
-      image: '/images/sima.jpg',
-      rank: 60,
-      aniname: '시마 소스케',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 61,
-      name: '인덱스',
-      image: '/images/index.jpg',
-      rank: 61,
-      aniname: '어떤 마술의 금서목록',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 62,
-      name: '스오 하야토',
-      image: '/images/suo.jpg',
-      rank: 62,
-      aniname: '윈드 브레이커',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 6,
-      name: '스가와라 코시',
-      image: '/images/sgawara.jpg',
-      rank: 6,
-      aniname: '하이큐',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 63,
-      name: '미야무라 이즈미',
-      image: '/images/miyamura.jpg',
-      rank: 63,
-      aniname: '호리미야',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 64,
-      name: '히츠가야 토시로',
-      image: '/images/tosiro.jpg',
-      rank: 6,
-      aniname: '블리치',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 6,
-      name: '하나코 군',
-      image: '/images/hanako.jpg',
-      rank: 64,
-      aniname: '지박소년 하나코 군',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 65,
-      name: '알폰스 엘릭',
-      image: '/images/alphonse.jpg',
-      rank: 65,
-      aniname: '강철의 연금술사',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 66,
-      name: '상디',
-      image: '/images/sangdi.jpg',
-      rank: 66,
-      aniname: '원피스',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 67,
-      name: '야토',
-      image: '/images/yato.jpg',
-      rank: 67,
-      aniname: '노라가미',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 68,
-      name: '시노미야 카구야',
-      image: '/images/kaguya.jpg',
-      rank: 68,
-      aniname: '카구야 님은 고백받고 싶어',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 69,
-      name: '후지와라 치카',
-      image: '/images/chika.jpg',
-      rank: 69,
-      aniname: '카구야 님은 고백받고 싶어',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 70,
-      name: '미코시바 미코토',
-      image: '/images/mikosiba.jpg',
-      rank: 70,
-      aniname: '월간순정 노자키',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 71,
-      name: '쿠라마',
-      image: '/images/kurama.jpg',
-      rank: 71,
-      aniname: '유유백서',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 72,
-      name: '히에이',
-      image: '/images/hia.jpg',
-      rank: 72,
-      aniname: '유유백서',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 73,
-      name: '코엔마',
-      image: '/images/koenma.jpg',
-      rank: 73,
-      aniname: '유유백서',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 74,
-      name: '우라메시 유스케',
-      image: '/images/uske.jpg',
-      rank: 74,
-      aniname: '유유백서',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 75,
-      name: '멜리오다스',
-      image: '/images/melriodas.jpg',
-      rank: 75,
-      aniname: '일곱 개의 대죄',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 76,
-      name: '다가 이케테루',
-      image: '/images/daga.jpg',
-      rank: 76,
-      aniname: '우라미치 선생님',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 77,
-      name: '크라피카',
-      image: '/images/pika.jpg',
-      rank: 77,
-      aniname: '헌터 x 헌터',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 78,
-      name: '클로로 루실후르',
-      image: '/images/roro.jpg',
-      rank: 78,
-      aniname: '헌터 x 헌터',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 79,
-      name: '이토시 린',
-      image: '/images/rin.jpg',
-      rank: 79,
-      aniname: '블루 록',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 80,
-      name: '하루카제 도레미',
-      image: '/images/doremi.jpg',
-      rank: 80,
-      aniname: '꼬마마법사 레미 ',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 81,
-      name: '쿠도 신이치',
-      image: '/images/kudo.jpg',
-      rank: 81,
-      aniname: '명탐정 코난',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 82,
-      name: '괴도 키드',
-      image: '/images/kid.jpg',
-      rank: 82,
-      aniname: '명탐정 코난',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 83,
-      name: '쿠로코 테츠야',
-      image: '/images/kuroko.jpg',
-      rank: 83,
-      aniname: '쿠로코의 농구',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 84,
-      name: '트라팔가 로',
-      image: '/images/trapalga.jpg',
-      rank: 84,
-      aniname: '원피스',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 85,
-      name: '카츠라기 미사토',
-      image: '/images/misato.jpg',
-      rank: 85,
-      aniname: '에반게리온',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 86,
-      name: '아야나미 레이',
-      image: '/images/ray.jpg',
-      rank: 86,
-      aniname: '에반게리온',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 87,
-      name: '소류 아스카 랑그레이',
-      image: '/images/aska.jpg',
-      rank: 87,
-      aniname: '에반게리온',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 88,
-      name: '이카리 신지',
-      image: '/images/sinji.jpg',
-      rank: 88,
-      aniname: '에반게리온',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 89,
-      name: '포트거스 D.에이스',
-      image: '/images/ace.jpg',
-      rank: 89,
-      aniname: '원피스',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 90,
-      name: '사보',
-      image: '/images/sabo.jpg',
-      rank: 90,
-      aniname: '원피스',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 91,
-      name: '유우키 아스나',
-      image: '/images/asuna.jpg',
-      rank: 91,
-      aniname: '소드 아트 온라인',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 92,
-      name: '나키리 아리스',
-      image: '/images/aris.jpg',
-      rank: 92,
-      aniname: '식극의 소마',
-      anidate: '2025-01-01',
-    },
-    {
-      id: 93,
-      name: '유우키 쥬다이',
-      image: '/images/judai.jpg',
-      rank: 93,
-      aniname: '유희왕GX',
-      anidate: '2025-01-01',
-    },
-  ];
-  const sorted = [...characters].sort((a, b) => a.rank - b.rank);
- return (
+        const flattenedCharacters = chaRes.data.flatMap(anime => 
+          anime.characters.map((char, index) => {
+            // 고유 ID 생성 (문자열)
+            const uniqueId = `${anime.animeId}-${char.nameKr}`;
+            
+            // ID를 기반으로 시드 생성 (문자열의 각 문자 코드를 더함)
+            let seed = 0;
+            for (let i = 0; i < uniqueId.length; i++) {
+              seed += uniqueId.charCodeAt(i);
+            }
+            
+            // 시드를 기반으로 고정된 좋아요 수 생성 (100 ~ 5000)
+            // 간단한 선형 합동 생성기(LCG)와 유사한 방식 사용
+            const likes = (seed * 9301 + 49297) % 4900 + 100;
+
+            return {
+              id: uniqueId,
+              name: char.nameKr,
+              image: char.image,
+              aniname: animeMap[anime.animeId] || "알 수 없음",
+              likes: likes,
+            };
+          })
+        );
+        setAllCharacters(flattenedCharacters);
+        setFilteredCharacters(flattenedCharacters);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error("데이터 로딩 실패:", err);
+        setLoading(false);
+      });
+  }, []);
+
+  useEffect(() => {
+    let characters = [...allCharacters];
+
+    if (searchTerm) {
+      characters = characters.filter(char => 
+        char.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        char.aniname.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
+    setFilteredCharacters(characters);
+    setCurrentPage(1);
+  }, [searchTerm, allCharacters]);
+
+  const sortedCharacters = [...filteredCharacters].sort((a, b) => b.likes - a.likes);
+
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = sortedCharacters.slice(indexOfFirstItem, indexOfLastItem);
+  const totalPages = Math.ceil(sortedCharacters.length / itemsPerPage);
+
+  if (loading) {
+    return <div className="text-center p-10">로딩 중...</div>;
+  }
+
+  return (
     <div className="min-h-screen bg-background pt-24 pb-20 px-6 md:px-12">
       <div className="max-w-[1440px] mx-auto">
-        <div className="flex items-center gap-4 mb-12">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6">
+          <div className="flex items-center gap-4">
             <div className="w-1.5 h-10 bg-primary rounded-full"></div>
             <div>
-                <h2 className="text-3xl font-black text-slate-800 tracking-tight flex items-center gap-2">
-                    Character Ranking
-                    <Trophy className="text-yellow-400 fill-yellow-400" size={24} />
-                </h2>
-                <p className="text-sm font-medium text-slate-400 tracking-wide uppercase">Weekly Best Characters</p>
+              <h2 className="text-3xl font-black text-slate-800 tracking-tight flex items-center gap-2">
+                Character Ranking
+                <Trophy className="text-yellow-400 fill-yellow-400" size={24} />
+              </h2>
+              <p className="text-sm font-medium text-slate-400 tracking-wide uppercase">Weekly Best Characters</p>
             </div>
+          </div>
+          <div className="flex gap-4 w-full md:w-auto">
+            <div className="relative flex-1">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
+              <input 
+                type="text"
+                placeholder="캐릭터 또는 작품명 검색..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-slate-200"
+              />
+            </div>
+            <Link 
+              to="/chaRankPage/add"
+              className="flex items-center gap-2 bg-primary text-white px-5 py-2.5 rounded-lg font-bold shadow hover:shadow-lg hover:-translate-y-0.5 transition-all"
+            >
+              <Plus size={18} />
+              <span>캐릭터 추가</span>
+            </Link>
+          </div>
         </div>
 
         <div className="bg-white rounded-[2rem] shadow-sm border border-blue-50/50 overflow-hidden">
-            <div className="grid grid-cols-12 gap-4 p-6 bg-slate-50/50 border-b border-blue-50 text-sm font-bold text-slate-500 uppercase tracking-wider text-center">
-                <div className="col-span-1">Rank</div>
-                <div className="col-span-2">Image</div>
-                <div className="col-span-3 text-left pl-4">Character</div>
-                <div className="col-span-4 text-left">Animation</div>
-                <div className="col-span-2">Date</div>
-            </div>
+          <div className="grid grid-cols-12 gap-4 p-6 bg-slate-50/50 border-b border-blue-50 text-sm font-bold text-slate-500 uppercase tracking-wider text-center">
+            <div className="col-span-1">Rank</div>
+            <div className="col-span-2">Image</div>
+            <div className="col-span-3 text-left pl-4">Character</div>
+            <div className="col-span-4 text-left">Animation</div>
+            <div className="col-span-2">Likes</div>
+          </div>
 
-            <ul className="divide-y divide-blue-50">
-                {sorted.map((character) => (
-                <ChaRankItem key={character.id} character={character} />
-                ))}
-            </ul>
+          <ul className="divide-y divide-blue-50">
+            {currentItems.map((character, index) => (
+              <ChaRankItem key={character.id} character={{...character, rank: indexOfFirstItem + index + 1}} />
+            ))}
+          </ul>
+        </div>
+        <div className="mt-12">
+          <Paging page={currentPage} totalPage={totalPages} setPage={setCurrentPage} />
         </div>
       </div>
     </div>

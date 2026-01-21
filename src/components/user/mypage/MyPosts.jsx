@@ -1,169 +1,150 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { FileText, Search, Eye, Heart, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Paging } from '../../../components/common/Paging';
+import { Search, Trash2 } from 'lucide-react';
 
 const MyPosts = () => {
-  const [posts, setPosts] = useState([]);
+  const [allPosts, setAllPosts] = useState([]);
   const [filteredPosts, setFilteredPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
   
-  // Filter States
   const [searchTerm, setSearchTerm] = useState('');
-  
-  // Pagination States
+  const [selectedPosts, setSelectedPosts] = useState(new Set());
+
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(10);
+  const itemsPerPage = 10; // 고정
 
   useEffect(() => {
     axios.get('/data/userPosts.json')
       .then(res => {
-        setPosts(res.data);
+        setAllPosts(res.data);
         setFilteredPosts(res.data);
+        setLoading(false);
       })
-      .catch(err => console.error("Failed to load posts data", err));
+      .catch(err => {
+        console.error("Failed to load user posts", err);
+        setLoading(false);
+      });
   }, []);
 
-  // 필터링 로직
   useEffect(() => {
-    let result = posts;
-
-    // 검색어 필터
+    let posts = [...allPosts];
     if (searchTerm) {
-      result = result.filter(item => 
-        item.title.toLowerCase().includes(searchTerm.toLowerCase())
-      );
+      posts = posts.filter(post => post.title.toLowerCase().includes(searchTerm.toLowerCase()));
     }
+    setFilteredPosts(posts);
+    setCurrentPage(1);
+  }, [searchTerm, allPosts]);
 
-    setFilteredPosts(result);
-    setCurrentPage(1); // 필터 변경 시 1페이지로 리셋
-  }, [posts, searchTerm]);
+  const handleSelect = (postId) => {
+    const newSelection = new Set(selectedPosts);
+    if (newSelection.has(postId)) {
+      newSelection.delete(postId);
+    } else {
+      newSelection.add(postId);
+    }
+    setSelectedPosts(newSelection);
+  };
 
-  // 페이지네이션 로직
+  const handleSelectAll = (e) => {
+    if (e.target.checked) {
+      setSelectedPosts(new Set(currentItems.map(post => post.id)));
+    } else {
+      setSelectedPosts(new Set());
+    }
+  };
+
+  const handleDelete = () => {
+    if (selectedPosts.size === 0) {
+      alert("삭제할 게시글을 선택해주세요.");
+      return;
+    }
+    if (window.confirm(`${selectedPosts.size}개의 게시글을 삭제하시겠습니까?`)) {
+      const updatedPosts = allPosts.filter(post => !selectedPosts.has(post.id));
+      setAllPosts(updatedPosts);
+      setSelectedPosts(new Set());
+      alert("삭제되었습니다.");
+    }
+  };
+
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = filteredPosts.slice(indexOfFirstItem, indexOfLastItem);
   const totalPages = Math.ceil(filteredPosts.length / itemsPerPage);
 
-  const handlePageChange = (pageNumber) => {
-    setCurrentPage(pageNumber);
-    window.scrollTo(0, 0);
-  };
+  if (loading) {
+    return <div className="text-center p-10">로딩 중...</div>;
+  }
 
   return (
-    <div className="bg-white p-8 rounded-[2.5rem] shadow-sm border border-blue-50">
-      <div className="flex flex-col md:flex-row justify-between items-end gap-4 mb-8 pb-4 border-b border-slate-100">
-        <div>
-            <h3 className="text-2xl font-black text-slate-800 flex items-center gap-2">
-                <FileText className="text-primary" /> My Posts
-            </h3>
-            <p className="text-slate-500 font-medium mt-1 ml-1">총 {filteredPosts.length}개의 게시글을 작성했습니다.</p>
-        </div>
-      </div>
-
-      {/* 필터 및 검색 영역 */}
-      <div className="flex flex-col md:flex-row justify-between items-center gap-4 mb-8">
-        <div className="relative w-full md:w-80">
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
+    <div className="bg-white p-8 rounded-2xl shadow-sm border border-blue-50">
+      <h3 className="text-2xl font-black text-slate-800 mb-8">내가 쓴 글</h3>
+      
+      <div className="flex flex-col md:flex-row gap-4 mb-6">
+        <div className="relative flex-1">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
           <input 
-            type="text" 
-            placeholder="제목으로 검색..." 
+            type="text"
+            placeholder="제목으로 검색..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-12 pr-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all font-medium text-sm"
+            className="w-full pl-10 pr-4 py-2 rounded-lg border border-slate-200"
           />
         </div>
-
-        <div className="flex gap-3 w-full md:w-auto">
-          <select 
-            value={itemsPerPage} 
-            onChange={(e) => setItemsPerPage(Number(e.target.value))}
-            className="px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-sm font-bold text-slate-600 focus:outline-none focus:border-primary cursor-pointer"
-          >
-            <option value={5}>5개씩</option>
-            <option value={10}>10개씩</option>
-            <option value={15}>15개씩</option>
-          </select>
-        </div>
+        <button 
+          onClick={handleDelete}
+          className="flex items-center justify-center gap-2 px-4 py-2 bg-red-50 text-red-600 font-bold text-sm rounded-lg hover:bg-red-100 transition-colors"
+        >
+          <Trash2 size={16} />
+          <span>선택 삭제</span>
+        </button>
       </div>
 
-      {/* 리스트 영역 */}
-      {currentItems.length > 0 ? (
-        <div className="overflow-x-auto">
-            <table className="min-w-full bg-white rounded-2xl border border-slate-100 shadow-sm table-fixed">
-                <thead>
-                    <tr className="bg-slate-50/80 border-b border-slate-100 text-sm font-bold text-slate-500 uppercase tracking-wider text-center">
-                        <th className="px-4 py-4 text-left w-1/2">제목</th>
-                        <th className="px-4 py-4 w-32">게시판</th>
-                        <th className="px-4 py-4 w-28">작성일</th>
-                        <th className="px-4 py-4 w-20">조회수</th>
-                        <th className="px-4 py-4 w-20">추천</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {currentItems.map((post) => (
-                        <tr key={post.id} className="border-b border-slate-100 last:border-b-0 hover:bg-slate-50/50 transition-colors">
-                            <td className="px-4 py-4 text-slate-800 font-medium truncate">
-                                <Link to={`/chaPostDetail/${post.id}`} className="hover:text-primary transition-colors block w-full truncate">
-                                    {post.title}
-                                </Link>
-                            </td>
-                            <td className="px-4 py-4 text-slate-600 text-sm text-center">{post.board}</td>
-                            <td className="px-4 py-4 text-slate-500 text-sm text-center">{post.date}</td>
-                            <td className="px-4 py-4 text-slate-500 text-sm text-center">
-                                <div className="flex items-center justify-center gap-1">
-                                    <Eye size={14} /> {post.views}
-                                </div>
-                            </td>
-                            <td className="px-4 py-4 text-slate-500 text-sm text-center">
-                                <div className="flex items-center justify-center gap-1">
-                                    <Heart size={14} /> {post.likes}
-                                </div>
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-        </div>
-      ) : (
-        <div className="text-center py-32 bg-slate-50 rounded-3xl border border-dashed border-slate-200 mb-8">
-          <FileText size={48} className="mx-auto text-slate-300 mb-4" />
-          <p className="text-slate-500 font-bold text-lg">작성한 게시글이 없습니다.</p>
-        </div>
+      <div className="overflow-x-auto">
+        <table className="w-full text-sm text-left text-slate-500">
+          <thead className="text-xs text-slate-700 uppercase bg-slate-50">
+            <tr>
+              <th scope="col" className="p-4">
+                <input 
+                  type="checkbox" 
+                  onChange={handleSelectAll}
+                  checked={selectedPosts.size > 0 && selectedPosts.size === currentItems.length}
+                />
+              </th>
+              <th scope="col" className="px-6 py-3">제목</th>
+              <th scope="col" className="px-6 py-3">게시판</th>
+              <th scope="col" className="px-6 py-3">작성일</th>
+              <th scope="col" className="px-6 py-3 text-center">조회/추천</th>
+            </tr>
+          </thead>
+          <tbody>
+            {currentItems.map((post) => (
+              <tr key={post.id} className="bg-white border-b hover:bg-slate-50">
+                <td className="p-4">
+                  <input 
+                    type="checkbox" 
+                    checked={selectedPosts.has(post.id)}
+                    onChange={() => handleSelect(post.id)}
+                  />
+                </td>
+                <th scope="row" className="px-6 py-4 font-bold text-slate-900 whitespace-nowrap">
+                  <Link to={`/chaPostDetail/${post.id}`} className="hover:underline">{post.title}</Link>
+                </th>
+                <td className="px-6 py-4">{post.board}</td>
+                <td className="px-6 py-4">{new Date(post.createdAt).toLocaleDateString()}</td>
+                <td className="px-6 py-4 text-center">{post.views} / {post.likes}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      {filteredPosts.length === 0 && (
+        <p className="text-slate-500 text-center py-10">작성한 글이 없습니다.</p>
       )}
-
-      {/* 페이지네이션 */}
-      {totalPages > 1 && (
-        <div className="flex justify-center gap-2 mt-8">
-          <button 
-            onClick={() => handlePageChange(currentPage - 1)}
-            disabled={currentPage === 1}
-            className="p-2 rounded-lg border border-slate-200 text-slate-500 hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-          >
-            <ChevronLeft size={20} />
-          </button>
-          
-          {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
-            <button
-              key={page}
-              onClick={() => handlePageChange(page)}
-              className={`w-10 h-10 rounded-lg font-bold text-sm transition-all
-                ${currentPage === page 
-                  ? 'bg-primary text-white shadow-md scale-105' 
-                  : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-50'}`}
-            >
-              {page}
-            </button>
-          ))}
-
-          <button 
-            onClick={() => handlePageChange(currentPage + 1)}
-            disabled={currentPage === totalPages}
-            className="p-2 rounded-lg border border-slate-200 text-slate-500 hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-          >
-            <ChevronRight size={20} />
-          </button>
-        </div>
-      )}
+      <div className="mt-8">
+        <Paging page={currentPage} totalPage={totalPages} setPage={setCurrentPage} />
+      </div>
     </div>
   );
 };

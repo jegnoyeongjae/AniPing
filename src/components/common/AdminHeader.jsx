@@ -2,17 +2,56 @@ import { Link, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import {
     LayoutDashboard, Users, Clapperboard, Mic, ShieldQuestion, Settings, LogOut,
-    ChevronDown, Sparkles, UserCircle, ChevronsLeft, ChevronsRight
+    ChevronDown, UserCircle, ChevronsLeft, ChevronsRight
 } from 'lucide-react';
-import './AdminHeader.css'; // This file is empty as styles are handled by Tailwind
+import './AdminHeader.css';
 
 const AdminHeader = ({ isCollapsed, toggleSidebar }) => {
     const location = useLocation();
     const [openMenus, setOpenMenus] = useState({});
 
+    const navItems = [
+        { name: "대시보드", icon: <LayoutDashboard size={20} />, path: "/admin/board", subItems: [] },
+        {
+            name: "사용자 관리",
+            icon: <Users size={20} />,
+            subItems: [
+                { name: "사용자 목록", path: "/admin/user-list" },
+                { name: "운영진 설정", path: "/admin/setting" },
+            ]
+        },
+        {
+            name: "애니메이션 관리",
+            icon: <Clapperboard size={20} />,
+            subItems: [
+                { name: "애니메이션 관리", path: "/admin/ani" },
+                { name: "애니메이션 태그 관리", path: "#" },
+            ]
+        },
+        {
+            name: "캐릭터 관리",
+            icon: <Mic size={20} />,
+            subItems: [
+                { name: "캐릭터 게시판", path: "#" },
+                { name: "캐릭터 명대사", path: "/admin/cha-fl" },
+                { name: "성우 관리", path: "/admin/va" },
+            ]
+        },
+        {
+            name: "고객센터 관리",
+            icon: <ShieldQuestion size={20} />,
+            subItems: [
+                { name: "1:1 문의", path: "/admin/cs" },
+                { name: "자주 묻는 질문", path: "#" },
+                { name: "문의 내역", path: "#" },
+            ]
+        },
+        { name: "공지사항", icon: <Settings size={20} />, path: "#", subItems: [] }
+    ];
+    
     useEffect(() => {
         const currentMenu = navItems.find(item => 
-            item.subItems?.some(sub => sub.path === location.pathname)
+            item.path === location.pathname || item.subItems?.some(sub => sub.path === location.pathname)
         );
         if (currentMenu) {
             setOpenMenus(prev => ({ ...prev, [currentMenu.name]: true }));
@@ -27,45 +66,6 @@ const AdminHeader = ({ isCollapsed, toggleSidebar }) => {
             }));
         }
     };
-
-    const navItems = [
-        { name: "대시보드", icon: <LayoutDashboard size={20} />, path: "/AdminBoard", subItems: [] },
-        {
-            name: "사용자 관리",
-            icon: <Users size={20} />,
-            subItems: [
-                { name: "사용자 목록", path: "/AdUserLi" },
-                { name: "운영진 설정", path: "/AdminSetting" },
-            ]
-        },
-        {
-            name: "애니메이션 관리",
-            icon: <Clapperboard size={20} />,
-            subItems: [
-                { name: "애니메이션 관리", path: "/AdminAni" },
-                { name: "애니메이션 태그 관리", path: "#" },
-            ]
-        },
-        {
-            name: "캐릭터 관리",
-            icon: <Mic size={20} />,
-            subItems: [
-                { name: "캐릭터 게시판", path: "#" },
-                { name: "캐릭터 명대사", path: "/AdminChaFL" },
-                { name: "성우 관리", path: "/AdminVA" },
-            ]
-        },
-        {
-            name: "고객센터 관리",
-            icon: <ShieldQuestion size={20} />,
-            subItems: [
-                { name: "1:1 문의", path: "/AdCuSeAsk" },
-                { name: "자주 묻는 질문", path: "#" },
-                { name: "문의 내역", path: "#" },
-            ]
-        },
-        { name: "공지사항", icon: <Settings size={20} />, path: "#", subItems: [] }
-    ];
 
     return (
         <aside 
