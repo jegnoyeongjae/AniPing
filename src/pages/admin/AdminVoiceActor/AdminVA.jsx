@@ -23,7 +23,7 @@ const AdminVA = () => {
     }
 
     const handleCreateClick = () => {
-        navigate('/AdNew');
+        navigate('/admin/va-new');
     }
 
     return (

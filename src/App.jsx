@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import AppRoute from './router/AppRouter';
 import AdminRouter from './router/AdminRouter';
-import { AdminBoard } from './pages/admin';
+import { AdminBoard, AdUserLi, AdminSetting } from './pages/admin';
 import { useState, useEffect } from 'react';
 import {
   ChaService,
@@ -11,7 +11,7 @@ import {
   ChaCvDetail,
   ChaLineAdd,
   ChaLineEdit,
-  ChaAdd, // 추가
+  ChaAdd,
 } from './pages/character/chracter';
 import ChaPost from './pages/character/ChaPost/ChaPost';
 import ChaPostEdit from './pages/character/ChaPost/ChaPostEdit';
@@ -29,7 +29,7 @@ import { AdminAniLiEd, AdminAniEdit } from './components/admin/AdminAni';
 import { AdCuSeAsk } from './pages/admin/customerservice';
 import { useUser } from './context/UserContext';
 
-function App() {
+function MainRoutes() {
   const { userType } = useUser();
   const [posts, setPosts] = useState([]);
   
@@ -55,51 +55,63 @@ function App() {
   };
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path='/login' element={<UserLogin />} />
-        <Route path='/join' element={<UserJoin />} />
-        
-        {userType !== 'admin' ? (
-          <Route path="/" element={<AppRoute />}>
-            <Route index element={<HomePage />} />
-            <Route path="list/:category" element={<AniList />} />
-            <Route path="detail/:id" element={<AniDetail />} />
-            <Route path="user/profile" element={<UserMyPage />} />
-            <Route path="service" element={<ChaService />} />
-            <Route path="chaRankPage" element={<ChaRankPage />} />
-            <Route path="chaRankPage/add" element={<ChaAdd />} /> {/* 추가 */}
-            <Route path="chaLine" element={<ChaLine />} />
-            <Route path="chaLine/add" element={<ChaLineAdd />} />
-            <Route path="chaLine/edit/:id" element={<ChaLineEdit />} />
-            <Route path="chaCvList" element={<ChaCvList />} />
-            <Route path="chaCvDetail/:id" element={<ChaCvDetail />} />
-            <Route path="chaPost" element={<ChaPost posts={posts} />} />
-            <Route path="chaNewPost" element={<ChaNewPost onSavePost={handleSavePost} />} />
-            <Route path="chaPostDetail/:id" element={<ChaPostDetail posts={posts} setPosts={setPosts} />} />
-            <Route path="chaPostEdit/:id" element={<ChaPostEdit />} />
-          </Route>
-        ) : (
-          <Route path="/admin" element={<AdminRouter />}>
-            <Route index element={<AdminBoard />} />
-            <Route path="board" element={<AdminBoard />} />
-            <Route path="user-list" element={<AdUserLi />} />
-            <Route path="setting" element={<AdminSetting />} />
-            <Route path="va" element={<AdminVA />} />
-            <Route path="cs" element={<AdCuSeAsk />} />
-            <Route path="va-detail/:id" element={<AdminVALiEd />} />
-            <Route path="va-edit/:id" element={<AdVaLiEdBtn />} />
-            <Route path="va-new" element={<AdVaLiEdBtn />} />
-            <Route path="cha-fl" element={<AdminChaFL />} />
-            <Route path="cha-edit/:id" element={<AdminChaFLLiEd />} />
-            <Route path="ani" element={<AdminAni />} />
-            <Route path="ani-detail/:id" element={<AdminAniLiEd />} />
-            <Route path="ani-edit/:id" element={<AdminAniEdit />} />
-          </Route>
-        )}
+    <Routes>
+      {/* 공용 라우트 (로그인, 회원가입) */}
+      <Route path='/login' element={<UserLogin />} />
+      <Route path='/join' element={<UserJoin />} />
 
-        <Route path="*" element={<div>페이지를 찾을 수 없습니다.</div>} />
-      </Routes>
+      {/* 사용자 및 게스트 라우트 */}
+      {userType !== 'admin' && (
+        <Route path="/" element={<AppRoute />}>
+          <Route index element={<HomePage />} />
+          <Route path="list/:category" element={<AniList />} />
+          <Route path="detail/:id" element={<AniDetail />} />
+          <Route path="user/profile" element={<UserMyPage />} />
+          <Route path="service" element={<ChaService />} />
+          <Route path="chaRankPage" element={<ChaRankPage />} />
+          <Route path="chaRankPage/add" element={<ChaAdd />} />
+          <Route path="chaLine" element={<ChaLine />} />
+          <Route path="chaLine/add" element={<ChaLineAdd />} />
+          <Route path="chaLine/edit/:id" element={<ChaLineEdit />} />
+          <Route path="chaCvList" element={<ChaCvList />} />
+          <Route path="chaCvDetail/:id" element={<ChaCvDetail />} />
+          <Route path="chaPost" element={<ChaPost posts={posts} />} />
+          <Route path="chaNewPost" element={<ChaNewPost onSavePost={handleSavePost} />} />
+          <Route path="chaPostDetail/:id" element={<ChaPostDetail posts={posts} setPosts={setPosts} />} />
+          <Route path="chaPostEdit/:id" element={<ChaPostEdit />} />
+        </Route>
+      )}
+
+      {/* 관리자 라우트 */}
+      {userType === 'admin' && (
+        <Route path="/admin" element={<AdminRouter />}> {/* path를 /admin으로 변경 */}
+          <Route index element={<AdminBoard />} />
+          <Route path="board" element={<AdminBoard />} />
+          <Route path="user-list" element={<AdUserLi />} />
+          <Route path="setting" element={<AdminSetting />} />
+          <Route path="va" element={<AdminVA />} />
+          <Route path="cs" element={<AdCuSeAsk />} />
+          <Route path="va-detail/:id" element={<AdminVALiEd />} />
+          <Route path="va-edit/:id" element={<AdVaLiEdBtn />} />
+          <Route path="va-new" element={<AdVaLiEdBtn />} />
+          <Route path="cha-fl" element={<AdminChaFL />} />
+          <Route path="cha-edit/:id" element={<AdminChaFLLiEd />} />
+          <Route path="ani" element={<AdminAni />} />
+          <Route path="ani-detail/:id" element={<AdminAniLiEd />} />
+          <Route path="ani-edit/:id" element={<AdminAniEdit />} />
+        </Route>
+      )}
+      
+      {/* 404 Not Found - 모든 라우트가 매칭되지 않을 때 */}
+      <Route path="*" element={<div>페이지를 찾을 수 없습니다.</div>} />
+    </Routes>
+  );
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <MainRoutes />
     </BrowserRouter>
   );
 }

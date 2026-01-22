@@ -1,8 +1,9 @@
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { AdminChaFLLi, AdminChaFLLiEd } from "../../../components/admin/AdminCha";
+import { AdminChaFLLi } from "../../../components/admin/AdminCha";
 import { Quote, PlusCircle } from 'lucide-react';
+import { Link } from "react-router-dom";
 
 const AdminChaFL = () => {
     const [chaFLs, setChaFLs] = useState([]);
@@ -21,10 +22,6 @@ const AdminChaFL = () => {
         }
     };
 
-    const handleNClick = () => {
-        navigate('/AdCha/new'); // 새 명대사 추가 페이지로 라우팅
-    };
-
     return (
         <div className="min-h-screen bg-slate-50 p-8">
             <div className="max-w-7xl mx-auto">
@@ -39,10 +36,10 @@ const AdminChaFL = () => {
                             <p className="text-sm font-medium text-slate-400 tracking-wide uppercase">캐릭터 명대사 관리</p>
                         </div>
                     </div>
-                    <button onClick={handleNClick} className="flex items-center gap-2 bg-primary text-white px-5 py-2.5 rounded-lg font-bold shadow hover:shadow-lg hover:-translate-y-0.5 transition-all">
+                    <Link to="/admin/cha-edit/new" className="flex items-center gap-2 bg-primary text-white px-5 py-2.5 rounded-lg font-bold shadow hover:shadow-lg hover:-translate-y-0.5 transition-all">
                         <PlusCircle size={18} />
                         <span>신규 등록</span>
-                    </button>
+                    </Link>
                 </div>
 
                 <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">

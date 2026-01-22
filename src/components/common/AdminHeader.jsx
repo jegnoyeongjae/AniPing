@@ -11,7 +11,7 @@ const AdminHeader = ({ isCollapsed, toggleSidebar }) => {
     const [openMenus, setOpenMenus] = useState({});
 
     const navItems = [
-        { name: "대시보드", icon: <LayoutDashboard size={20} />, path: "/admin/board", subItems: [] },
+        { name: "대시보드", icon: <LayoutDashboard size={20} />, path: "/admin", subItems: [] },
         {
             name: "사용자 관리",
             icon: <Users size={20} />,

@@ -31,11 +31,11 @@ const AdminAniLiEd = () => {
     }
 
     const handleEditClick = () => {
-        navigate(`/AdminAni/edit/${id}`);
+        navigate(`/admin/ani-edit/${id}`);
     }
 
     const handleGoBack = () => {
-        navigate(-1);
+        navigate('/admin/ani');
     }
 
     return (
@@ -43,7 +43,7 @@ const AdminAniLiEd = () => {
             <div className="flex justify-between items-center mb-10">
                 <button onClick={handleGoBack} className="flex items-center gap-2 text-slate-500 font-bold hover:text-primary transition-colors">
                     <ArrowLeft size={20} />
-                    <span>뒤로가기</span>
+                    <span>목록으로</span>
                 </button>
                 <h2 className="text-3xl font-black text-slate-800 tracking-tight truncate max-w-2xl">{thisAni.title} 상세 정보</h2>
                 <button onClick={handleEditClick} className="flex items-center gap-2 bg-primary text-white px-5 py-2.5 rounded-lg font-bold shadow hover:shadow-lg hover:-translate-y-0.5 transition-all">
@@ -87,12 +87,6 @@ const AdminAniLiEd = () => {
                                 </span>
                             </div>
                         </div>
-                        
-                        {/* You can add more details here if available, e.g., synopsis */}
-                        {/* <div className="pt-4 border-t border-slate-200">
-                            <h4 className="font-bold text-slate-800 mb-2">시놉시스</h4>
-                            <p className="text-slate-600 leading-relaxed">{thisAni.synopsis || "시놉시스 정보가 없습니다."}</p>
-                        </div> */}
                     </div>
                 </div>
             </div>

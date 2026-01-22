@@ -6,6 +6,7 @@ import { Save, ArrowLeft } from 'lucide-react';
 const AdminAniEdit = () => {
     const { id } = useParams();
     const navigate = useNavigate();
+    const isEditing = id !== 'new';
 
     const [formData, setFormData] = useState({
         title: '',
@@ -18,20 +19,15 @@ const AdminAniEdit = () => {
     });
 
     useEffect(() => {
-        fetchData();
-    }, [id]);
-
-    const fetchData = async () => {
-        try {
-            const response = await axios.get('/data/animeInfoData.json');
-            const data = response.data.find(item => item.id === Number(id));
-            if (data) {
-                setFormData(data);
-            }
-        } catch (e) {
-            console.error("데이터 로드에 실패했습니다.", e);
+        if (isEditing) {
+            axios.get('/data/animeInfoData.json')
+                .then(res => {
+                    const data = res.data.find(item => item.id.toString() === id);
+                    if (data) setFormData(data);
+                })
+                .catch(e => console.error("데이터 로드 실패:", e));
         }
-    };
+    }, [id, isEditing]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -40,15 +36,13 @@ const AdminAniEdit = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // 여기서 실제 데이터 수정 로직을 수행합니다 (예: API 호출).
-        // 지금은 로컬 JSON 파일을 사용하므로, 수정된 내용을 콘솔에 출력하고 이전 페이지로 이동합니다.
-        console.log("수정된 데이터:", formData);
-        alert("수정되었습니다.");
-        navigate(`/AdminAniLiEd/${id}`); // 수정 후 상세 페이지로 이동
+        console.log("수정/등록된 데이터:", formData);
+        alert(isEditing ? "수정되었습니다." : "등록되었습니다.");
+        navigate('/admin/ani');
     };
 
     const handleGoBack = () => {
-        navigate(-1);
+        navigate('/admin/ani');
     }
 
     const inputClass = "w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition";
@@ -59,10 +53,10 @@ const AdminAniEdit = () => {
             <div className="flex justify-between items-center mb-10">
                  <button onClick={handleGoBack} className="flex items-center gap-2 text-slate-500 font-bold hover:text-primary transition-colors">
                     <ArrowLeft size={20} />
-                    <span>뒤로가기</span>
+                    <span>목록으로</span>
                 </button>
                 <h2 className="text-3xl font-black text-slate-800 tracking-tight">
-                    "{formData.title}" 정보 수정
+                    {isEditing ? `"${formData.title}" 정보 수정` : '신규 애니메이션 등록'}
                 </h2>
                 <div className="w-24"></div>
             </div>
@@ -102,7 +96,7 @@ const AdminAniEdit = () => {
                 <div className="flex justify-end pt-6 border-t">
                     <button type="submit" className="flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-lg font-bold shadow hover:shadow-lg hover:-translate-y-0.5 transition-all">
                         <Save size={18} />
-                        수정 완료
+                        {isEditing ? '수정 완료' : '등록하기'}
                     </button>
                 </div>
             </form>

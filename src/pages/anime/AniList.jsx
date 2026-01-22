@@ -1,15 +1,17 @@
-// src/pages/AniList.jsx
 import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Paging } from "../../components/common/Paging";
-import { Star, Play } from "lucide-react";
+import { Star } from "lucide-react";
 
 const AniList = () => {
-  const { category } = useParams(); // URL에서 장르 가져오기
-  const [items, setItems] = useState([]);
-  const [sortType, setSortType] = useState("latest"); // 기본값: 최신순
+  const { category } = useParams();
+  const [allItems, setAllItems] = useState([]);
+  const [filteredItems, setFilteredItems] = useState([]);
+  const [sortType, setSortType] = useState("latest");
+  
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10; // 한 페이지에 10개씩 표시
 
-  // 제이슨 데이터 제거예정
   const categoryKorean = {
     fantasy: "판타지",
     romance: "로맨스",
@@ -22,19 +24,30 @@ const AniList = () => {
     fetch("/data/animeData.json")
       .then((res) => res.json())
       .then((data) => {
-        let filtered = data.filter((item) => item.category === category);
-
-        // 정렬 적용
-        if (sortType === "latest") {
-          filtered = filtered.sort((a, b) => b.id - a.id); // id 큰 게 최신
-        } else if (sortType === "popular") {
-          filtered = filtered.sort((a, b) => a.id - b.id); // id 작은 게 인기
-        }
-
-        setItems(filtered);
+        const categoryItems = data.filter((item) => item.category === category);
+        setAllItems(categoryItems);
+        setFilteredItems(categoryItems);
       })
       .catch((err) => console.error("JSON 불러오기 실패:", err));
-  }, [category, sortType]);
+  }, [category]);
+
+  useEffect(() => {
+    let sorted = [...allItems];
+    if (sortType === "latest") {
+      sorted.sort((a, b) => b.id - a.id);
+    } else if (sortType === "popular") {
+      // 'score'가 없으므로 임의의 인기도(likes)를 만들어 정렬하거나, id 역순으로 정렬
+      sorted.sort((a, b) => a.id - b.id); 
+    }
+    setFilteredItems(sorted);
+    setCurrentPage(1); // 정렬 변경 시 1페이지로
+  }, [sortType, allItems]);
+
+  // Pagination Logic
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = filteredItems.slice(indexOfFirstItem, indexOfLastItem);
+  const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
 
   return (
     <div className="min-h-screen bg-background pt-24 pb-20 px-6 md:px-12">
@@ -49,7 +62,6 @@ const AniList = () => {
             </p>
           </div>
 
-          {/* 셀렉트정렬 */}
           <div className="relative">
             <select
               value={sortType}
@@ -66,7 +78,7 @@ const AniList = () => {
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 md:gap-8">
-          {items.map((item) => (
+          {currentItems.map((item) => (
             <div className="anime-card rounded-[2rem] overflow-hidden border border-blue-50/50 group" key={item.id}>
               <Link to={`/detail/${item.id}`}>
                 <div className="relative aspect-[3/4.2] overflow-hidden">
@@ -100,7 +112,7 @@ const AniList = () => {
           ))}
         </div>
         <div className="mt-16 flex justify-center">
-            <Paging/>
+            <Paging page={currentPage} totalPage={totalPages} setPage={setCurrentPage} />
         </div>
       </div>
     </div>

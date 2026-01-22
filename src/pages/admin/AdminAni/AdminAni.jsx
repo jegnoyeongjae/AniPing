@@ -35,7 +35,7 @@ const AdminAni = () => {
                             <p className="text-sm font-medium text-slate-400 tracking-wide uppercase">애니메이션 목록 관리</p>
                         </div>
                     </div>
-                    <Link to="/AdminAniLiEd/new" className="flex items-center gap-2 bg-primary text-white px-5 py-2.5 rounded-lg font-bold shadow hover:shadow-lg hover:-translate-y-0.5 transition-all">
+                    <Link to="/admin/ani-edit/new" className="flex items-center gap-2 bg-primary text-white px-5 py-2.5 rounded-lg font-bold shadow hover:shadow-lg hover:-translate-y-0.5 transition-all">
                         <PlusCircle size={18} />
                         <span>신규 등록</span>
                     </Link>

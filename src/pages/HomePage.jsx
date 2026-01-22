@@ -163,7 +163,7 @@ const HomePage = () => {
                           <h3 className="text-4xl md:text-5xl font-black text-slate-800 leading-tight">SPECIAL<br/><span className="text-primary underline decoration-primary/20">PARTNERSHIP</span></h3>
                           <p className="text-lg font-medium text-slate-500 max-w-md">애니핑이 제안하는 이번 주의 특별한 소식을 만나보세요.</p>
                       </div>
-                      <div className="flex-[1.5] w-full">
+                      <div className="flex-[1.5] w-[68%] mx-auto">
                           <Swiper
                               spaceBetween={20}
                               centeredSlides={true}
@@ -174,14 +174,14 @@ const HomePage = () => {
                               <SwiperSlide>
                                   <a href="https://maplestory.nexon.com/promotion/event/2025/20250607/event01" target="_blank" rel="noopener noreferrer" className="block w-full h-full bg-white group">
                                       <div className="flex items-center justify-center h-full p-8 transition-transform group-hover:scale-95">
-                                          <img src="/images/banner/ad/maple2.png" alt="광고1" className="max-h-full max-w-full object-contain" onError={(e) => { (e.target).src = 'https://api.iconify.design/logos:nexon.svg' }} />
+                                          <img src="/images/mainBanner/BannerSect1.png" alt="광고1" className="w-full h-full object-cover" onError={(e) => { (e.target).src = 'https://api.iconify.design/logos:nexon.svg' }} />
                                       </div>
                                   </a>
                               </SwiperSlide>
                               <SwiperSlide>
                                   <a href="https://www.worldjob.or.kr/new_index.do" target="_blank" rel="noopener noreferrer" className="block w-full h-full bg-white group">
                                       <div className="flex items-center justify-center h-full p-8 transition-transform group-hover:scale-95">
-                                          <img src="/images/banner/ad/job2.jpg" alt="광고2" className="max-h-full max-w-full object-contain" onError={(e) => { (e.target).src = 'https://api.iconify.design/logos:google.svg' }} />
+                                          <img src="/images/mainBanner/BannerSect2.png" alt="광고2" className="w-full h-full object-cover" onError={(e) => { (e.target).src = 'https://api.iconify.design/logos:google.svg' }} />
                                       </div>
                                   </a>
                               </SwiperSlide>

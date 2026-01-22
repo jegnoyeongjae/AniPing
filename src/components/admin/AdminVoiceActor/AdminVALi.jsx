@@ -6,18 +6,20 @@ const AdminVALi = ({ vCList }) => {
 
     const handleDetailClick = (e) => {
         e.stopPropagation();
-        navigate(`/AdminVALiEd/${vCList.id}`);
+        navigate(`/admin/va-detail/${vCList.id}`);
     }
 
     const handleEditClick = (e) => {
         e.stopPropagation();
-        navigate(`/Adedit/${vCList.id}`);
+        navigate(`/admin/va-edit/${vCList.id}`);
     }
 
     const handleDelete = (e) => {
         e.stopPropagation();
         if (confirm(`'${vCList.name}' 성우 정보를 정말 삭제하시겠습니까?`)) {
             console.log("삭제 처리:", vCList.id);
+            alert("삭제되었습니다.");
+            // 여기에 실제 삭제 로직 추가 (상위 컴포넌트에서 상태 업데이트 필요)
         }
     }
 
