@@ -1,8 +1,9 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import axios from "axios";
 import { ChevronLeft, Save } from 'lucide-react';
 
-const AdminChaFLLiEd = ({ chaFLs, setChaFLs }) => {
+const AdminChaFLLiEd = () => {
     const { id } = useParams();
     const navigate = useNavigate();
     const isNew = id === 'new';
@@ -10,17 +11,38 @@ const AdminChaFLLiEd = ({ chaFLs, setChaFLs }) => {
     const [chaFLLiEd, setChaFLLiEd] = useState({
         image: '',
         title: '',
-        content: ''
+        content: '',
+        user:'',
+        date:'',
+        status
     });
 
     useEffect(() => {
-        if (!isNew && Array.isArray(chaFLs) && chaFLs.length > 0) {
-            const target = chaFLs.find(item => item.id === Number(id));
-            if (target) {
-                setChaFLLiEd(target);
+        const loadData = async () => {
+            let chaFLs = [];
+            const storedChaFLs = localStorage.getItem('admin_chaFLs');
+            
+            if (storedChaFLs) {
+                chaFLs = JSON.parse(storedChaFLs);
+            } else {
+                try {
+                    const response = await axios.get('/data/adminChaLine.json');
+                    chaFLs = response.data;
+                    localStorage.setItem('admin_chaFLs', JSON.stringify(chaFLs));
+                } catch (e) {
+                    console.error(e);
+                }
             }
-        }
-    }, [chaFLs, id, isNew]);
+
+            if (!isNew) {
+                const target = chaFLs.find(item => item.id === Number(id));
+                if (target) {
+                    setChaFLLiEd(target);
+                }
+            }
+        };
+        loadData();
+    }, [id, isNew]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -29,20 +51,22 @@ const AdminChaFLLiEd = ({ chaFLs, setChaFLs }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        
+        const storedChaFLs = localStorage.getItem('admin_chaFLs');
+        let chaFLs = storedChaFLs ? JSON.parse(storedChaFLs) : [];
+
         if (isNew) {
-            // 새 항목 추가 로직
-            const newId = Math.max(...chaFLs.map(item => item.id)) + 1;
-            setChaFLs(prev => [...prev, { ...chaFLLiEd, id: newId }]);
+            const newId = chaFLs.length > 0 ? Math.max(...chaFLs.map(item => item.id)) + 1 : 1;
+            chaFLs.push({ ...chaFLLiEd, id: newId });
             alert('새 명대사가 추가되었습니다.');
         } else {
-            // 기존 항목 수정 로직
-            setChaFLs(prev =>
-                prev.map(item =>
-                    item.id === Number(id) ? chaFLLiEd : item
-                )
+            chaFLs = chaFLs.map(item =>
+                item.id === Number(id) ? { ...chaFLLiEd, id: Number(id) } : item
             );
             alert('명대사가 수정되었습니다.');
         }
+
+        localStorage.setItem('admin_chaFLs', JSON.stringify(chaFLs));
         navigate('/AdminChaFL');
     };
 

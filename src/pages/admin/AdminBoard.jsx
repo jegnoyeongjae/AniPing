@@ -4,10 +4,10 @@ import { Users, Clapperboard, Mic, ShieldQuestion, ArrowRight, Bell, CheckCircle
 const AdminBoard = () => {
 
     const mainCards = [
-        { title: "사용자 관리", icon: <Users />, link: "/admin/user-list", items: ["신규 가입자", "운영진 설정"] },
-        { title: "애니메이션 관리", icon: <Clapperboard />, link: "/admin/ani", items: ["애니메이션 리스트", "태그 관리"] },
-        { title: "캐릭터 관리", icon: <Mic />, link: "/admin/cha-fl", items: ["캐릭터 관리", "성우 관리"] },
-        { title: "고객센터 관리", icon: <ShieldQuestion />, link: "/admin/cs", items: ["1:1 문의 관리", "자주 묻는 질문"] },
+        { title: "사용자 관리", icon: <Users />, link: "/AdUserLi", items: ["신규 가입자", "운영진 설정"] },
+        { title: "애니메이션 관리", icon: <Clapperboard />, link: "/AdminAni", items: ["애니메이션 리스트", "태그 관리"] },
+        { title: "캐릭터 관리", icon: <Mic />, link: "/AdminChaBoard", items: ["캐릭터 신청", "명대사 관리", "성우 관리"] },
+        { title: "고객센터 관리", icon: <ShieldQuestion />, link: "/AdCuSeAsk", items: ["1:1 문의 관리", "자주 묻는 질문"] },
     ];
 
     return (
@@ -57,7 +57,7 @@ const AdminBoard = () => {
                         <div className="bg-white p-6 rounded-2xl shadow-sm">
                             <div className='flex justify-between items-center mb-4'>
                                 <h2 className="text-lg font-bold text-slate-800">공지사항</h2>
-                                <Link to="#" className="text-sm font-bold text-primary hover:underline">더보기</Link>
+                                <Link to="/AdminNotice" className="text-sm font-bold text-primary hover:underline">더보기</Link>
                             </div>
                             <div className='space-y-3 text-slate-600'>
                                 <p className="truncate">- 시스템 점검 안내 (08/15)</p>

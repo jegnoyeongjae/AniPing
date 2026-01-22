@@ -1,25 +1,23 @@
 import { useNavigate } from "react-router-dom";
 import { Edit, Trash2, FileText } from 'lucide-react';
 
-const AdminVALi = ({ vCList }) => {
+const AdminVALi = ({ vCList, onDelete }) => {
     const navigate = useNavigate();
 
     const handleDetailClick = (e) => {
         e.stopPropagation();
-        navigate(`/admin/va-detail/${vCList.id}`);
+        navigate(`/AdminVALiEd/${vCList.id}`);
     }
 
     const handleEditClick = (e) => {
         e.stopPropagation();
-        navigate(`/admin/va-edit/${vCList.id}`);
+        navigate(`/Adedit/${vCList.id}`);
     }
 
     const handleDelete = (e) => {
         e.stopPropagation();
         if (confirm(`'${vCList.name}' 성우 정보를 정말 삭제하시겠습니까?`)) {
-            console.log("삭제 처리:", vCList.id);
-            alert("삭제되었습니다.");
-            // 여기에 실제 삭제 로직 추가 (상위 컴포넌트에서 상태 업데이트 필요)
+            onDelete();
         }
     }
 

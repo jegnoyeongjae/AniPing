@@ -10,28 +10,45 @@ const AdminVALiEd = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetchData();
-    }, [id]);
+        const loadData = async () => {
+            // 1. 메인 리스트 데이터 로드
+            let mainData = [];
+            const storedVCLists = localStorage.getItem('admin_vCLists');
+            if (storedVCLists) {
+                mainData = JSON.parse(storedVCLists);
+            } else {
+                try {
+                    const response = await axios.get('/data/adminChaCVLi.json');
+                    mainData = response.data;
+                    localStorage.setItem('admin_vCLists', JSON.stringify(mainData));
+                } catch (e) {
+                    console.error(e);
+                }
+            }
 
-    const fetchData = async () => {
-        try {
-            const [mainResponse, detailResponse] = await Promise.all([
-                axios.get('/data/adminChaCVLi.json'),
-                axios.get('/data/adminVoiceActor.json')
-            ]);
-
-            const mainData = mainResponse.data;
-            const detailData = detailResponse.data;
+            // 2. 상세 데이터 로드
+            let detailData = [];
+            const storedVADetails = localStorage.getItem('admin_vADetails');
+            if (storedVADetails) {
+                detailData = JSON.parse(storedVADetails);
+            } else {
+                try {
+                    const response = await axios.get('/data/adminVoiceActor.json');
+                    detailData = response.data;
+                    localStorage.setItem('admin_vADetails', JSON.stringify(detailData));
+                } catch (e) {
+                    console.error(e);
+                }
+            }
 
             const foundActor = mainData.find(actor => actor.id === Number(id));
             setVoiceActor(foundActor);
 
             const foundDetail = detailData.find(vC => vC.id === Number(id));
             setVADetail(foundDetail);
-        } catch (e) {
-            console.error(e);
-        }
-    };
+        };
+        loadData();
+    }, [id]);
 
     if (!voiceActor || !vADetail) {
         return (

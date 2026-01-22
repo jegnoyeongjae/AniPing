@@ -22,42 +22,59 @@ const AdVaLiEdBtn = () => {
     });
 
     useEffect(() => {
-        if (isEditing) {
-            fetchData();
-        }
-    }, [id, isEditing]);
-
-    const fetchData = async () => {
-        try {
-            const [mainResponse, detailResponse] = await Promise.all([
-                axios.get('/data/adminChaCVLi.json'),
-                axios.get('/data/adminVoiceActor.json')
-            ]);
-
-            const mainData = mainResponse.data;
-            const detailData = detailResponse.data;
-
-            const foundMain = mainData.find(actor => actor.id === Number(id));
-            const foundDetail = detailData.find(vC => vC.id === Number(id));
-
-            if (foundMain && foundDetail) {
-                setFormData({
-                    rank: foundMain.rank,
-                    image: foundMain.image,
-                    name: foundDetail.name,
-                    birth: foundDetail.birth,
-                    stature: foundDetail.stature,
-                    blood: foundDetail.blood,
-                    agency: foundDetail.agency,
-                    profile: foundDetail.profile,
-                    aniList: foundDetail.aniList,
-                    aniimage: foundMain.aniimage
-                });
+        const loadData = async () => {
+            // 1. 메인 리스트 데이터 로드
+            let mainData = [];
+            const storedVCLists = localStorage.getItem('admin_vCLists');
+            if (storedVCLists) {
+                mainData = JSON.parse(storedVCLists);
+            } else {
+                try {
+                    const response = await axios.get('/data/adminChaCVLi.json');
+                    mainData = response.data;
+                    localStorage.setItem('admin_vCLists', JSON.stringify(mainData));
+                } catch (e) {
+                    console.error(e);
+                }
             }
-        } catch (e) {
-            console.error(e);
-        }
-    };
+
+            // 2. 상세 데이터 로드
+            let detailData = [];
+            const storedVADetails = localStorage.getItem('admin_vADetails');
+            if (storedVADetails) {
+                detailData = JSON.parse(storedVADetails);
+            } else {
+                try {
+                    const response = await axios.get('/data/adminVoiceActor.json');
+                    detailData = response.data;
+                    localStorage.setItem('admin_vADetails', JSON.stringify(detailData));
+                } catch (e) {
+                    console.error(e);
+                }
+            }
+
+            if (isEditing) {
+                const foundMain = mainData.find(actor => actor.id === Number(id));
+                const foundDetail = detailData.find(vC => vC.id === Number(id));
+
+                if (foundMain && foundDetail) {
+                    setFormData({
+                        rank: foundMain.rank,
+                        image: foundMain.image,
+                        name: foundDetail.name,
+                        birth: foundDetail.birth,
+                        stature: foundDetail.stature,
+                        blood: foundDetail.blood,
+                        agency: foundDetail.agency,
+                        profile: foundDetail.profile,
+                        aniList: foundDetail.aniList,
+                        aniimage: foundMain.aniimage
+                    });
+                }
+            }
+        };
+        loadData();
+    }, [id, isEditing]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -85,11 +102,60 @@ const AdVaLiEdBtn = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        
+        const storedVCLists = localStorage.getItem('admin_vCLists');
+        const storedVADetails = localStorage.getItem('admin_vADetails');
+        let mainData = storedVCLists ? JSON.parse(storedVCLists) : [];
+        let detailData = storedVADetails ? JSON.parse(storedVADetails) : [];
+
+        // aniimage 배열 생성 (aniList의 aniImg만 추출)
+        const newAniImages = formData.aniList.map(item => item.aniImg).filter(img => img);
+
         if (isEditing) {
+            // 메인 데이터 업데이트
+            mainData = mainData.map(item => 
+                item.id === Number(id) 
+                ? { ...item, rank: formData.rank, image: formData.image, name: formData.name, aniimage: newAniImages } 
+                : item
+            );
+            // 상세 데이터 업데이트
+            detailData = detailData.map(item => 
+                item.id === Number(id) 
+                ? { ...item, name: formData.name, birth: formData.birth, stature: formData.stature, blood: formData.blood, agency: formData.agency, profile: formData.profile, aniList: formData.aniList } 
+                : item
+            );
             alert("수정되었습니다.");
+        } else {
+            // 신규 등록
+            const newId = mainData.length > 0 ? Math.max(...mainData.map(item => item.id)) + 1 : 1001;
+            
+            mainData.push({
+                id: newId,
+                rank: formData.rank,
+                image: formData.image,
+                name: formData.name,
+                aniimage: newAniImages
+            });
+
+            detailData.push({
+                id: newId,
+                name: formData.name,
+                birth: formData.birth,
+                stature: formData.stature,
+                blood: formData.blood,
+                agency: formData.agency,
+                profile: formData.profile,
+                aniList: formData.aniList
+            });
+            alert("추가되었습니다.");
+        }
+
+        localStorage.setItem('admin_vCLists', JSON.stringify(mainData));
+        localStorage.setItem('admin_vADetails', JSON.stringify(detailData));
+
+        if (isEditing) {
             navigate(`/AdminVALiEd/${id}`);
         } else {
-            alert("추가되었습니다.");
             navigate(`/AdminVA`);
         }
     };

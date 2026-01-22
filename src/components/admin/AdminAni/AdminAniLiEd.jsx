@@ -9,18 +9,29 @@ const AdminAniLiEd = () => {
     const [thisAni, setThisAni] = useState(null);
 
     useEffect(() => {
-        fetchData();
-    }, [id])
+        const loadData = async () => {
+            // 1. 로컬 스토리지에서 데이터 확인
+            const storedAnis = localStorage.getItem('admin_anis');
+            let anis = [];
+            
+            if (storedAnis) {
+                anis = JSON.parse(storedAnis);
+            } else {
+                // 2. 없으면 JSON 파일에서 로드
+                try {
+                    const response = await axios.get('/data/animeInfoData.json');
+                    anis = response.data;
+                    localStorage.setItem('admin_anis', JSON.stringify(anis));
+                } catch (e) {
+                    console.error(e);
+                }
+            }
 
-    const fetchData = async () => {
-        try {
-            const response = await axios.get('/data/animeInfoData.json');
-            const data = response.data.find(item => item.id === Number(id))
+            const data = anis.find(item => item.id === Number(id));
             setThisAni(data);
-        } catch (e) {
-            console.error(e);
-        }
-    }
+        };
+        loadData();
+    }, [id])
 
     if (!thisAni) {
         return (
@@ -31,11 +42,11 @@ const AdminAniLiEd = () => {
     }
 
     const handleEditClick = () => {
-        navigate(`/admin/ani-edit/${id}`);
+        navigate(`/AdminAni/edit/${id}`);
     }
 
     const handleGoBack = () => {
-        navigate('/admin/ani');
+        navigate('/AdminAni');
     }
 
     return (

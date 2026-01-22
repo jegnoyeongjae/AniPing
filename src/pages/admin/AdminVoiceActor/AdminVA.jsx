@@ -9,22 +9,32 @@ const AdminVA = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetchData();
+        const loadData = async () => {
+            const storedVCLists = localStorage.getItem('admin_vCLists');
+            if (storedVCLists) {
+                setVCLists(JSON.parse(storedVCLists));
+            } else {
+                try {
+                    const response = await axios.get('/data/adminChaCVLi.json');
+                    setVCLists(response.data);
+                    localStorage.setItem('admin_vCLists', JSON.stringify(response.data));
+                } catch (e) {
+                    console.error(e);
+                }
+            }
+        };
+        loadData();
     }, []);
 
-    const fetchData = async () => {
-        try {
-            const response = await axios.get('/data/adminChaCVLi.json');
-            const data = response.data;
-            setVCLists(data);
-        } catch (e) {
-            console.error(e);
-        }
+    const handleCreateClick = () => {
+        navigate('/AdNew');
     }
 
-    const handleCreateClick = () => {
-        navigate('/admin/va-new');
-    }
+    const handleDelete = (id) => {
+        const newVCLists = vCLists.filter(item => item.id !== id);
+        setVCLists(newVCLists);
+        localStorage.setItem('admin_vCLists', JSON.stringify(newVCLists));
+    };
 
     return (
         <div className="min-h-screen bg-slate-50 p-8">
@@ -59,6 +69,7 @@ const AdminVA = () => {
                             <AdminVALi
                                 vCList={vCList}
                                 key={vCList.id}
+                                onDelete={() => handleDelete(vCList.id)}
                             /> 
                         ))}
                     </ul>

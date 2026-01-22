@@ -2,56 +2,19 @@ import { Link, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import {
     LayoutDashboard, Users, Clapperboard, Mic, ShieldQuestion, Settings, LogOut,
-    ChevronDown, UserCircle, ChevronsLeft, ChevronsRight
+    ChevronDown, UserCircle, ChevronsLeft, ChevronsRight, Megaphone
 } from 'lucide-react';
-import './AdminHeader.css';
+import { useUser } from '../../context/UserContext'; // UserContext import
+import './AdminHeader.css'; // This file is empty as styles are handled by Tailwind
 
 const AdminHeader = ({ isCollapsed, toggleSidebar }) => {
+    const { setUserType } = useUser(); // setUserType 가져오기
     const location = useLocation();
     const [openMenus, setOpenMenus] = useState({});
 
-    const navItems = [
-        { name: "대시보드", icon: <LayoutDashboard size={20} />, path: "/admin", subItems: [] },
-        {
-            name: "사용자 관리",
-            icon: <Users size={20} />,
-            subItems: [
-                { name: "사용자 목록", path: "/admin/user-list" },
-                { name: "운영진 설정", path: "/admin/setting" },
-            ]
-        },
-        {
-            name: "애니메이션 관리",
-            icon: <Clapperboard size={20} />,
-            subItems: [
-                { name: "애니메이션 관리", path: "/admin/ani" },
-                { name: "애니메이션 태그 관리", path: "#" },
-            ]
-        },
-        {
-            name: "캐릭터 관리",
-            icon: <Mic size={20} />,
-            subItems: [
-                { name: "캐릭터 게시판", path: "#" },
-                { name: "캐릭터 명대사", path: "/admin/cha-fl" },
-                { name: "성우 관리", path: "/admin/va" },
-            ]
-        },
-        {
-            name: "고객센터 관리",
-            icon: <ShieldQuestion size={20} />,
-            subItems: [
-                { name: "1:1 문의", path: "/admin/cs" },
-                { name: "자주 묻는 질문", path: "#" },
-                { name: "문의 내역", path: "#" },
-            ]
-        },
-        { name: "공지사항", icon: <Settings size={20} />, path: "#", subItems: [] }
-    ];
-    
     useEffect(() => {
         const currentMenu = navItems.find(item => 
-            item.path === location.pathname || item.subItems?.some(sub => sub.path === location.pathname)
+            item.subItems?.some(sub => sub.path === location.pathname) || item.path === location.pathname
         );
         if (currentMenu) {
             setOpenMenus(prev => ({ ...prev, [currentMenu.name]: true }));
@@ -67,11 +30,54 @@ const AdminHeader = ({ isCollapsed, toggleSidebar }) => {
         }
     };
 
+    const handleLogout = () => {
+        setUserType('guest'); // userType을 guest로 변경
+        // window.location.href = '/'; // App.jsx에서 userType 변경 감지하여 라우팅 처리
+    };
+
+    const navItems = [
+        { name: "대시보드", icon: <LayoutDashboard size={20} />, path: "/AdminBoard", subItems: [] },
+        {
+            name: "사용자 관리",
+            icon: <Users size={20} />,
+            subItems: [
+                { name: "사용자 목록", path: "/AdUserLi" },
+                { name: "운영진 설정", path: "/AdminSetting" },
+            ]
+        },
+        {
+            name: "애니메이션 관리",
+            icon: <Clapperboard size={20} />,
+            subItems: [
+                { name: "애니메이션 관리", path: "/AdminAni" },
+                { name: "애니메이션 태그 관리", path: "/AdminAni/tag" },
+            ]
+        },
+        {
+            name: "캐릭터 관리",
+            icon: <Mic size={20} />,
+            subItems: [
+                { name: "캐릭터 게시판", path: "/AdminChaBoard" },
+                { name: "캐릭터 명대사", path: "/AdminChaFL" },
+                { name: "성우 관리", path: "/AdminVA" },
+            ]
+        },
+        {
+            name: "고객센터 관리",
+            icon: <ShieldQuestion size={20} />,
+            subItems: [
+                { name: "1:1 문의", path: "/AdCuSeAsk" },
+                { name: "자주 묻는 질문", path: "/AdFAQ" },
+            ]
+        },
+        { name: "공지사항", icon: <Megaphone size={20} />, path: "/AdminNotice", subItems: [] }
+    ];
+
     return (
         <aside 
             className={`bg-white shadow-lg flex flex-col h-screen fixed top-0 left-0 z-50 transition-all duration-300 ease-in-out ${isCollapsed ? 'w-20' : 'w-64'}`}
         >
-            {/* Admin Info */}
+            {/* Admin Info (Logo removed) */}
             <div className={`p-4 border-b border-slate-100 text-center transition-all duration-300 overflow-hidden ${isCollapsed ? 'h-0 p-0 opacity-0' : 'h-auto p-6 opacity-100'}`}>
                 <UserCircle size={48} className="text-slate-400 mx-auto mb-2" />
                 <p className="font-bold text-slate-800 whitespace-nowrap">Admin Name</p>
@@ -137,13 +143,13 @@ const AdminHeader = ({ isCollapsed, toggleSidebar }) => {
                 >
                     {isCollapsed ? <ChevronsRight size={20} /> : <ChevronsLeft size={20} />}
                 </button>
-                <Link
-                    to="/"
+                <button
+                    onClick={handleLogout} // Link 대신 button으로 변경하고 onClick 핸들러 연결
                     className={`flex items-center gap-2 w-full p-3 mt-1 rounded-lg bg-red-50 text-red-600 font-bold hover:bg-red-100 transition-colors ${isCollapsed ? 'justify-center' : ''}`}
                 >
                     <LogOut size={20} />
-                    {!isCollapsed && <span className="whitespace-nowrap">나가기</span>}
-                </Link>
+                    {!isCollapsed && <span className="whitespace-nowrap">로그아웃</span>}
+                </button>
             </div>
         </aside>
     );

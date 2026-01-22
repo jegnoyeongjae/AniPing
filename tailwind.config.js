@@ -46,6 +46,11 @@ export default {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      height: { // height 속성 확장
+        '12': '3rem', // 기존 h-12 (3rem)
+        '16': '4rem', // 새로운 h-16 (4rem)
+        '20': '5rem', // h-20 (5rem)
+      }
     },
   },
   plugins: [],

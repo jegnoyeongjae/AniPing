@@ -1,13 +1,11 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState } from "react";
-import { Search, X, User, ChevronDown, Sparkles, ArrowRight, LayoutDashboard } from "lucide-react";
-import { useUser } from '../../context/UserContext'; // UserContext import
+import { Search, X, User, ChevronDown, Sparkles, ArrowRight, Users, Shield } from "lucide-react";
+import { useUser } from "../../context/UserContext"; // UserContext import
 import './Header.css';
 
 const Header = () => {
-    const navigate = useNavigate();
-    const { userType, setUserType } = useUser(); // Context에서 userType과 setUserType 가져오기
-    
+    const { userType, setUserType } = useUser(); // UserContext 사용
     const [isOpenSearch, setIsOpenSearch] = useState(false);
     const [activeDropdown, setActiveDropdown] = useState(null);
     const [searchTerm, setSearchTerm] = useState("");
@@ -35,7 +33,8 @@ const Header = () => {
             name: "고객센터",
             items: [
                 { name: "고객센터", link: "/service" },
-                { name: "자유게시판", link: "/chaPost" }
+                { name: "자유게시판", link: "/chaPost" },
+                { name: "공지사항", link: "/notice" }
             ]
         },
     ];
@@ -54,28 +53,18 @@ const Header = () => {
         }
     };
 
-    const handleLogout = () => {
-        alert("로그아웃 되었습니다.");
-        setUserType('guest');
-        navigate('/');
+    const handleUserTypeChange = (type) => {
+        setUserType(type);
+        // 새로고침 로직 제거
     };
 
     return (
         <>
-            {/* [개발용 테스트 컨트롤러] */}
-            <div className="fixed top-24 right-4 z-[9999] bg-black/80 text-white p-3 rounded-xl shadow-2xl flex flex-col gap-2 text-xs">
-                <p className="font-bold text-center border-b border-white/20 pb-1 mb-1">Header Test</p>
-                <button onClick={() => setUserType('guest')} className={`px-2 py-1 rounded ${userType === 'guest' ? 'bg-primary' : 'bg-gray-700'}`}>Guest</button>
-                <button onClick={() => setUserType('user')} className={`px-2 py-1 rounded ${userType === 'user' ? 'bg-primary' : 'bg-gray-700'}`}>User</button>
-                <button onClick={() => setUserType('admin')} className={`px-2 py-1 rounded ${userType === 'admin' ? 'bg-primary' : 'bg-gray-700'}`}>Admin</button>
-            </div>
-
             <header className="fixed top-0 left-0 w-full h-20 glass-panel z-[500] flex items-center px-6 md:px-12 border-b border-blue-50/50">
                 <div className="flex-1">
                     <Link to="/">
                         <div className="flex items-center gap-2 cursor-pointer group">
-                            <img src="/images/AnipingLogoNoBack.png" alt="AniPing" className="h-20 w-auto transition-transform group-hover:scale-105 mix-blend-multiply" />
-                            <Sparkles className="text-primary opacity-0 group-hover:opacity-100 transition-opacity" size={16} />
+                            <img src="/images/AniPing_candidate1.png" alt="AniPing" className="h-16 w-auto transition-transform group-hover:scale-105" />
                         </div>
                     </Link>
                 </div>
@@ -109,24 +98,28 @@ const Header = () => {
                     ))}
                 </nav>
 
-                <div className="flex-1 flex justify-end items-center space-x-6">
+                <div className="flex-1 flex justify-end items-center space-x-4">
+                    {/* 상태 변경 버튼 */}
+                    <div className="flex items-center gap-1 p-1 bg-slate-100 rounded-full text-xs font-bold">
+                        <button onClick={() => handleUserTypeChange('guest')} className={`px-3 py-1 rounded-full transition-all ${userType === 'guest' ? 'bg-white text-primary shadow' : 'text-slate-500'}`}>Guest</button>
+                        <button onClick={() => handleUserTypeChange('user')} className={`px-3 py-1 rounded-full transition-all ${userType === 'user' ? 'bg-white text-primary shadow' : 'text-slate-500'}`}>User</button>
+                        <button onClick={() => handleUserTypeChange('admin')} className={`px-3 py-1 rounded-full transition-all ${userType === 'admin' ? 'bg-white text-primary shadow' : 'text-slate-500'}`}>Admin</button>
+                    </div>
+
                     <div className="hidden lg:flex items-center space-x-6 text-[13px] font-bold">
-                        {userType === 'guest' && (
+                        {userType === 'user' ? (
+                            <ul className="flex items-center space-x-6">
+                                <li><Link to="/user" className="text-slate-600 hover:text-primary transition-colors flex items-center gap-2"><User size={16} /> MyPage</Link></li>
+                                <li><button onClick={() => {}} className="text-slate-600 hover:text-primary transition-colors bg-transparent">LogOut</button></li>
+                            </ul>
+                        ) : userType === 'admin' ? (
+                            <ul className="flex items-center space-x-6">
+                                <li><Link to="/" className="text-slate-600 hover:text-primary transition-colors flex items-center gap-2"><Shield size={16} /> Admin</Link></li>
+                            </ul>
+                        ) : (
                             <ul className="flex items-center space-x-6">
                                 <li><Link to="/login" className="text-slate-500 hover:text-primary transition-colors uppercase tracking-wider">LOGIN</Link></li>
                                 <li><Link to="/join" className="bg-primary text-white px-7 py-2.5 rounded-full hover:shadow-[0_10px_20px_-5px_rgba(125,211,252,0.5)] hover:-translate-y-0.5 transition-all uppercase tracking-wider">JOIN</Link></li>
-                            </ul>
-                        )}
-                        {userType === 'user' && (
-                            <ul className="flex items-center space-x-6">
-                                <li><Link to="/user/profile" className="text-slate-600 hover:text-primary transition-colors flex items-center gap-2"><User size={16} /> MyPage</Link></li>
-                                <li><button onClick={handleLogout} className="text-slate-600 hover:text-primary transition-colors bg-transparent">LogOut</button></li>
-                            </ul>
-                        )}
-                        {userType === 'admin' && (
-                            <ul className="flex items-center space-x-6">
-                                <li><Link to="/admin" className="text-slate-600 hover:text-primary transition-colors flex items-center gap-2"><LayoutDashboard size={16} /> Admin Page</Link></li>
-                                <li><button onClick={handleLogout} className="text-slate-600 hover:text-primary transition-colors bg-transparent">LogOut</button></li>
                             </ul>
                         )}
                     </div>
@@ -134,11 +127,16 @@ const Header = () => {
                         onClick={handleClickSearchBtn}
                         className={`p-2 rounded-full transition-colors ${isOpenSearch ? 'bg-blue-50 text-primary' : 'hover:bg-blue-50 text-slate-400 hover:text-primary'} bg-transparent`}
                     >
-                        {isOpenSearch ? <X size={22} /> : <Search size={22} />}
+                        {isOpenSearch ? (
+                            <X size={22} />
+                        ) : (
+                            <Search size={22} />
+                        )}
                     </button>
                 </div>
             </header>
 
+            {/* 검색바 영역 */}
             <div className={`fixed top-20 left-0 w-full bg-white/95 backdrop-blur-xl border-b border-blue-50 shadow-lg z-[490] transition-all duration-300 overflow-hidden ${isOpenSearch ? 'h-24 opacity-100 visible' : 'h-0 opacity-0 invisible'}`}>
                 <div className="max-w-[1440px] mx-auto h-full flex items-center justify-center px-6 md:px-12">
                     <form onSubmit={handleSearchSubmit} className="w-full max-w-3xl relative flex items-center gap-4">

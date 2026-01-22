@@ -19,14 +19,28 @@ const AdminAniEdit = () => {
     });
 
     useEffect(() => {
-        if (isEditing) {
-            axios.get('/data/animeInfoData.json')
-                .then(res => {
-                    const data = res.data.find(item => item.id.toString() === id);
-                    if (data) setFormData(data);
-                })
-                .catch(e => console.error("데이터 로드 실패:", e));
-        }
+        const loadData = async () => {
+            let anis = [];
+            const storedAnis = localStorage.getItem('admin_anis');
+            
+            if (storedAnis) {
+                anis = JSON.parse(storedAnis);
+            } else {
+                try {
+                    const response = await axios.get('/data/animeInfoData.json');
+                    anis = response.data;
+                    localStorage.setItem('admin_anis', JSON.stringify(anis));
+                } catch (e) {
+                    console.error("데이터 로드 실패:", e);
+                }
+            }
+
+            if (isEditing) {
+                const data = anis.find(item => item.id === Number(id));
+                if (data) setFormData(data);
+            }
+        };
+        loadData();
     }, [id, isEditing]);
 
     const handleChange = (e) => {
@@ -36,13 +50,25 @@ const AdminAniEdit = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("수정/등록된 데이터:", formData);
-        alert(isEditing ? "수정되었습니다." : "등록되었습니다.");
-        navigate('/admin/ani');
+        
+        const storedAnis = localStorage.getItem('admin_anis');
+        let anis = storedAnis ? JSON.parse(storedAnis) : [];
+
+        if (isEditing) {
+            anis = anis.map(item => item.id === Number(id) ? { ...formData, id: Number(id) } : item);
+            alert("수정되었습니다.");
+        } else {
+            const newId = anis.length > 0 ? Math.max(...anis.map(item => item.id)) + 1 : 1;
+            anis.push({ ...formData, id: newId });
+            alert("등록되었습니다.");
+        }
+
+        localStorage.setItem('admin_anis', JSON.stringify(anis));
+        navigate('/AdminAni');
     };
 
     const handleGoBack = () => {
-        navigate('/admin/ani');
+        navigate('/AdminAni');
     }
 
     const inputClass = "w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition";
