@@ -64,7 +64,7 @@ const Header = () => {
                 <div className="flex-1">
                     <Link to="/">
                         <div className="flex items-center gap-2 cursor-pointer group">
-                            <img src="/images/AniPing_candidate1.png" alt="AniPing" className="h-16 w-auto transition-transform group-hover:scale-105" />
+                            <img src="/images/headerLogo/AnipingLogoNoBack.png" alt="AniPing" className="h-16 w-auto transition-transform group-hover:scale-105" />
                         </div>
                     </Link>
                 </div>

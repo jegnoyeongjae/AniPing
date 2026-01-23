@@ -32,7 +32,7 @@ const AdminHeader = ({ isCollapsed, toggleSidebar }) => {
 
     const handleLogout = () => {
         setUserType('guest'); // userType을 guest로 변경
-        // window.location.href = '/'; // App.jsx에서 userType 변경 감지하여 라우팅 처리
+        window.location.href = '/'; // App.jsx에서 userType 변경 감지하여 라우팅 처리
     };
 
     const navItems = [

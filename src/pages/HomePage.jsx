@@ -173,15 +173,22 @@ const HomePage = () => {
                           >
                               <SwiperSlide>
                                   <a href="https://maplestory.nexon.com/promotion/event/2025/20250607/event01" target="_blank" rel="noopener noreferrer" className="block w-full h-full bg-white group">
-                                      <div className="flex items-center justify-center h-full p-8 transition-transform group-hover:scale-95">
+                                      <div className="flex items-center justify-center h-full transition-transform group-hover:scale-95">
                                           <img src="/images/mainBanner/BannerSect1.png" alt="광고1" className="w-full h-full object-cover" onError={(e) => { (e.target).src = 'https://api.iconify.design/logos:nexon.svg' }} />
                                       </div>
                                   </a>
                               </SwiperSlide>
                               <SwiperSlide>
                                   <a href="https://www.worldjob.or.kr/new_index.do" target="_blank" rel="noopener noreferrer" className="block w-full h-full bg-white group">
-                                      <div className="flex items-center justify-center h-full p-8 transition-transform group-hover:scale-95">
+                                      <div className="flex items-center justify-center h-full transition-transform group-hover:scale-95">
                                           <img src="/images/mainBanner/BannerSect2.png" alt="광고2" className="w-full h-full object-cover" onError={(e) => { (e.target).src = 'https://api.iconify.design/logos:google.svg' }} />
+                                      </div>
+                                  </a>
+                              </SwiperSlide>
+                              <SwiperSlide>
+                                  <a href="https://www.worldjob.or.kr/new_index.do" target="_blank" rel="noopener noreferrer" className="block w-full h-full bg-white group">
+                                      <div className="flex items-center justify-center h-full transition-transform group-hover:scale-95">
+                                          <img src="/images/mainBanner/BannerSect3.png" alt="광고2" className="w-full h-full object-cover" onError={(e) => { (e.target).src = 'https://api.iconify.design/logos:google.svg' }} />
                                       </div>
                                   </a>
                               </SwiperSlide>
